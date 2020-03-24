@@ -1,0 +1,114 @@
+# depslib dependency file v1.0
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\main.cpp
+	<iostream>
+
+1585058339 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\armes.cpp
+	"Armes.h"
+
+1585058553 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\armes.h
+	"Item.h"
+
+1585059024 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\armures.cpp
+	"Armures.h"
+
+1585059024 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\armures.h
+	"Item.h"
+
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\barde.cpp
+	"Barde.h"
+
+1585055130 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\barde.h
+
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\boss.cpp
+	"Boss.h"
+
+1585055130 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\boss.h
+
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\cerbere.cpp
+	"Cerbere.h"
+
+1585055130 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\cerbere.h
+
+1585061227 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\consommables.cpp
+	"Consommables.h"
+
+1585061252 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\consommables.h
+	"Item.h"
+
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\cristaux.cpp
+	"Cristaux.h"
+
+1585055130 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\cristaux.h
+
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\donjon.cpp
+	"Donjon.h"
+
+1585055130 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\donjon.h
+
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\elementaire.cpp
+	"Elementaire.h"
+
+1585055130 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\elementaire.h
+
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\entite.cpp
+	"Entite.h"
+
+1585055130 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\entite.h
+
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\griffon.cpp
+	"Griffon.h"
+
+1585055130 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\griffon.h
+
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\guerrier.cpp
+	"Guerrier.h"
+
+1585055130 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\guerrier.h
+
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\jeu.cpp
+	"Jeu.h"
+
+1585055130 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\jeu.h
+
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\joueur.cpp
+	"Joueur.h"
+
+1585055130 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\joueur.h
+
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\loup.cpp
+	"Loup.h"
+
+1585055130 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\loup.h
+
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\mage.cpp
+	"Mage.h"
+
+1585055130 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\mage.h
+
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\minotaure.cpp
+	"Minotaure.h"
+
+1585055130 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\minotaure.h
+
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\monstre.cpp
+	"Monstre.h"
+
+1585055130 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\monstre.h
+
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\salle.cpp
+	"Salle.h"
+
+1585055130 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\salle.h
+
+1585055130 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\zombie.cpp
+	"Zombie.h"
+
+1585055130 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\zombie.h
+
+1585057293 source:d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\src\item.cpp
+	"Item.h"
+	<string>
+
+1585057006 d:\travail\projet_dev_cpp\projetdevjeu\projet_cpp\include\item.h
+	<string>
+
