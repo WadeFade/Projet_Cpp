@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -32,7 +34,49 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Armes.h" />
+		<Unit filename="include/Armures.h" />
+		<Unit filename="include/Barde.h" />
+		<Unit filename="include/Boss.h" />
+		<Unit filename="include/Cerbere.h" />
+		<Unit filename="include/Consommables.h" />
+		<Unit filename="include/Cristaux.h" />
+		<Unit filename="include/Donjon.h" />
+		<Unit filename="include/Elementaire.h" />
+		<Unit filename="include/Entite.h" />
+		<Unit filename="include/Griffon.h" />
+		<Unit filename="include/Guerrier.h" />
+		<Unit filename="include/Item.h" />
+		<Unit filename="include/Jeu.h" />
+		<Unit filename="include/Joueur.h" />
+		<Unit filename="include/Loup.h" />
+		<Unit filename="include/Mage.h" />
+		<Unit filename="include/Minotaure.h" />
+		<Unit filename="include/Monstre.h" />
+		<Unit filename="include/Salle.h" />
+		<Unit filename="include/Zombie.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Armes.cpp" />
+		<Unit filename="src/Armures.cpp" />
+		<Unit filename="src/Barde.cpp" />
+		<Unit filename="src/Boss.cpp" />
+		<Unit filename="src/Cerbere.cpp" />
+		<Unit filename="src/Consommables.cpp" />
+		<Unit filename="src/Cristaux.cpp" />
+		<Unit filename="src/Donjon.cpp" />
+		<Unit filename="src/Elementaire.cpp" />
+		<Unit filename="src/Entite.cpp" />
+		<Unit filename="src/Griffon.cpp" />
+		<Unit filename="src/Guerrier.cpp" />
+		<Unit filename="src/Item.cpp" />
+		<Unit filename="src/Jeu.cpp" />
+		<Unit filename="src/Joueur.cpp" />
+		<Unit filename="src/Loup.cpp" />
+		<Unit filename="src/Mage.cpp" />
+		<Unit filename="src/Minotaure.cpp" />
+		<Unit filename="src/Monstre.cpp" />
+		<Unit filename="src/Salle.cpp" />
+		<Unit filename="src/Zombie.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
