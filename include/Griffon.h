@@ -10,13 +10,15 @@ class Griffon : public Boss
         Griffon();
         virtual ~Griffon();
 /* *********************************** Methodes ******************************************* */
-
+        void vol();
+        void atteris();
+        void affichageEntite();
 /* *********************************** Getter ********************************************* */
-
+        int getTauxVueAiguiser();
 /* *********************************** Setter ********************************************* */
-
+        void setTauxVueAiguiser(int tauxVueAiguiser);
     protected:
-
+        int tauxVueAiguiser;
     private:
 };
 

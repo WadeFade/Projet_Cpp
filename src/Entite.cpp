@@ -1,20 +1,18 @@
 #include "Entite.h"
 #include <string>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 Entite::Entite()
 {
     //ctor
-    this->nom="default";
-    this->id=0;
-    this->niveau=1;
-    this->vie=100;
-    this->vieMax=100;
     this->attaque=10;
     this->resistance=10;
     this->initiative=100;
     this->coupCritique=10;
     this->echecCritique=5;
+    this->esquive=0;
 }
 
 Entite::~Entite()
@@ -24,12 +22,6 @@ Entite::~Entite()
 /* *********************************** Getter ********************************************* */
 string Entite::getNom(){
     return this->nom;
-}
-int Entite::getId(){
-    return this->id;
-}
-int Entite::getNiveau(){
-    return this->niveau;
 }
 int Entite::getVie(){
     return this->vie;
@@ -52,15 +44,12 @@ int Entite::getCoupCritique(){
 int Entite::getEchecCritique(){
     return this->echecCritique;
 }
+int Entite::getEsquive(){
+    return this->esquive;
+}
 /* *********************************** Setter ********************************************* */
 void Entite::setNom(string nom){
     this->nom=nom;
-}
-void Entite::setId(int id){
-    this->id=id;
-}
-void Entite::setNiveau(int niveau){
-    this->niveau=niveau;
 }
 void Entite::setVie(int vie){
     this->vie=vie;
@@ -83,4 +72,16 @@ void Entite::setCoupCritique(int coupCritique){
 void Entite::setEchecCritique(int echecCritique){
     this->echecCritique=echecCritique;
 }
+void Entite::setEsquive(int esquive){
+    this->esquive=esquive;
+}
 /* *********************************** Methodes ******************************************* */
+void Entite::affichageEntite(){
+    cout << "Entite : " << endl;
+    cout << "Attaque : " << this->attaque << endl;
+    cout << "Resistance : " << this->resistance << endl;
+    cout << "Initiative : " << this->initiative << endl;
+    cout << "CoupCritique : " << this->coupCritique << endl;
+    cout << "EchecCritique : " << this->echecCritique << endl;
+    cout << "Esquive : " << this->esquive << endl;
+}

@@ -10,13 +10,14 @@ class Minotaure : public Boss
         Minotaure();
         virtual ~Minotaure();
 /* *********************************** Methodes ******************************************* */
-
+        void ceMetEnRage();
+        void affichageEntite();
 /* *********************************** Getter ********************************************* */
-
+        int getTauxRage();
 /* *********************************** Setter ********************************************* */
-
+        void setTauxRage(int tauxRage);
     protected:
-
+        int tauxRage;
     private:
 };
 
