@@ -1,12 +1,19 @@
 #ifndef LOUP_H
 #define LOUP_H
+#include <string>
+#include "Monstre.h"
 
-
-class Loup
+using namespace std;
+class Loup : public Monstre
 {
     public:
         Loup();
         virtual ~Loup();
+/* *********************************** Methodes ******************************************* */
+
+/* *********************************** Getter ********************************************* */
+
+/* *********************************** Setter ********************************************* */
 
     protected:
 

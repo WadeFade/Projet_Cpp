@@ -1,12 +1,18 @@
 #ifndef ZOMBIE_H
 #define ZOMBIE_H
-
-
-class Zombie
+#include <string>
+#include "Monstre.h"
+using namespace std;
+class Zombie : public Monstre
 {
     public:
         Zombie();
         virtual ~Zombie();
+/* *********************************** Methodes ******************************************* */
+
+/* *********************************** Getter ********************************************* */
+
+/* *********************************** Setter ********************************************* */
 
     protected:
 

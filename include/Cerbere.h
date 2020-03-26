@@ -1,12 +1,19 @@
 #ifndef CERBERE_H
 #define CERBERE_H
+#include <string>
+#include "Boss.h"
 
-
-class Cerbere
+using namespace std;
+class Cerbere : public Boss
 {
     public:
         Cerbere();
         virtual ~Cerbere();
+/* *********************************** Methodes ******************************************* */
+
+/* *********************************** Getter ********************************************* */
+
+/* *********************************** Setter ********************************************* */
 
     protected:
 

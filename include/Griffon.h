@@ -1,12 +1,19 @@
 #ifndef GRIFFON_H
 #define GRIFFON_H
+#include <string>
+#include "Boss.h"
 
-
-class Griffon
+using namespace std;
+class Griffon : public Boss
 {
     public:
         Griffon();
         virtual ~Griffon();
+/* *********************************** Methodes ******************************************* */
+
+/* *********************************** Getter ********************************************* */
+
+/* *********************************** Setter ********************************************* */
 
     protected:
 
