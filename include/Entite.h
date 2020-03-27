@@ -9,11 +9,12 @@ class Entite
         Entite();
         virtual ~Entite();
 /* *********************************** Methodes ******************************************* */
-
+        virtual void affichageEntite();
+        // virtual pour peut être plus tard déclenché, des capacités particulières
+        virtual void cePrendUnCoup(int attaqueDansLaTronche);
+        virtual int donneUnCoup();
 /* *********************************** Getter ********************************************* */
         string getNom();
-        int getId();
-        int getNiveau();
         int getVie();
         int getVieMax();
         int getAttaque();
@@ -21,10 +22,10 @@ class Entite
         int getInitiative();
         int getCoupCritique();
         int getEchecCritique();
+        int getEsquive();
+        int getEstMort();
 /* *********************************** Setter ********************************************* */
         void setNom(string nom);
-        void setId(int id);
-        void setNiveau(int niveau);
         void setVie(int vie);
         void setVieMax(int vieMax);
         void setAttaque(int attaque);
@@ -32,10 +33,11 @@ class Entite
         void setInitiative(int initiative);
         void setCoupCritique(int coupCritique);
         void setEchecCritique(int echecCritique);
+        void setEsquive(int esquive);
+        void setEstMort(int estMort);
     protected:
         string nom;
-        int id;
-        int niveau;
+        int estMort;
         int vie;
         int vieMax;
         int attaque;
@@ -43,6 +45,7 @@ class Entite
         int initiative;
         int coupCritique;
         int echecCritique;
+        int esquive;
     private:
 };
 

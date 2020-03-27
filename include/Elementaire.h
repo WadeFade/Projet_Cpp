@@ -10,13 +10,14 @@ class Elementaire : public Monstre
         Elementaire();
         virtual ~Elementaire();
 /* *********************************** Methodes ******************************************* */
-
+        void changeElement();
+        void affichageEntite();
 /* *********************************** Getter ********************************************* */
-
+        int getSurcharge();
 /* *********************************** Setter ********************************************* */
-
+        void setSurcharge(int surcharge);
     protected:
-
+        int surcharge;
     private:
 };
 
