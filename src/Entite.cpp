@@ -2,17 +2,21 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <stdio.h>      /* printf, scanf, puts, NULL */
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 
 using namespace std;
 Entite::Entite()
 {
     //ctor
     this->attaque=10;
-    this->resistance=10;
+    this->resistance=5;
     this->initiative=100;
     this->coupCritique=10;
     this->echecCritique=5;
     this->esquive=0;
+    this->estMort=0;
 }
 
 Entite::~Entite()
@@ -84,4 +88,35 @@ void Entite::affichageEntite(){
     cout << "CoupCritique : " << this->coupCritique << endl;
     cout << "EchecCritique : " << this->echecCritique << endl;
     cout << "Esquive : " << this->esquive << endl;
+}
+void Entite::cePrendUnCoup(int attaqueDansLaTronche){
+    if ((rand()%100)>this->esquive){
+        cout << "PAF " << this->nom << " prend un coup dans la tronche !" << endl;
+        this->vie-=attaqueDansLaTronche-this->resistance;
+        if (this->vie<=0){
+            this->estMort=1;
+        }
+    } else{
+        cout << "Zoup " << this->nom << " esquive tel un ninja ! aucun degats subis" << endl;
+    }
+
+}
+int Entite::donneUnCoup(){
+    // dans le cas ou ça ne crit pas
+    if ((rand()%100)>this->coupCritique){
+        cout << "Dommage " << this->nom << " ne fait pas de critique !" << endl;
+        if ((rand()%100)>this->echecCritique){
+                cout << "Ouf " << this->nom << " ne fait pas d' echec critique !" << endl;
+                return this->attaque;
+        }
+        // dans le cas ou l'attaque échec critique
+        else{
+            cout << "AHAHAHA " << this->nom << " fait un echec critique en plus (mdr) !" << endl;
+            return 0;
+        }
+        // dans le cas ou l'attaque crit
+    } else{
+        cout << "ET PAFFFFF " << this->nom << " balance un sale critique !" << endl;
+        return this->attaque;
+    }
 }
