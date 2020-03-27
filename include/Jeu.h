@@ -13,7 +13,7 @@ class Jeu
 
 //================setter==================
     void setLesEntites(vector<Entite*> entite);
-    void setLesDonjons(vector<Donjon*> donjon);
+    void setLesDonjons();
     void setLesItems(vector<Item*> item);
     void setDifficulty(int difficulty);
 

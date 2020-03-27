@@ -1,16 +1,17 @@
 #include <iostream>
-#include "Donjon.h"
+#include "Jeu.h"
 #include "Item.h"
+#include "Donjon.h"
 
 using namespace std;
 
 int main()
 {
-    Item* monItem = new Item();
+    Jeu* monJeu = new Jeu();
 
-    monItem->setIdItem(11544);
+    monJeu->setLesDonjons();
 
-    cout << "ID_Item : " << monItem->getIdItem() << endl;
+    //cout << "Nom_donjon : " << monJeu->setLesDonjons() << endl;
 
     return 0;
 }
