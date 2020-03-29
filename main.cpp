@@ -8,10 +8,11 @@ using namespace std;
 int main()
 {
     Jeu* monJeu = new Jeu();
+    Donjon* monDonjon = new Donjon();
 
     monJeu->setLesDonjons();
-
-    //cout << "Nom_donjon : " << monJeu->setLesDonjons() << endl;
-
+    monDonjon->setSalle();
+    monJeu->getDonjons();
+    monDonjon->getSalle();
     return 0;
 }

@@ -30,3 +30,18 @@ string Donjon::getNom()
 
 /* *********************************** Methode ********************************************* */
 
+void Donjon::setSalle()
+{
+    for(int i = 0;i < 5;i++){
+        this->lesSalles[i]->setNum(i);
+    }
+}
+
+vector<Salle*> Donjon::getSalle()
+{
+    for(int i =0; i<5;i++){
+        cout << "Salle : ";
+        cout << this->lesSalles[i]->getNum() << endl;
+    }
+    return lesSalles;
+}

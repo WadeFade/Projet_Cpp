@@ -17,11 +17,22 @@ Jeu::~Jeu()
     //dtor
 }
 
+
+// peut etre la deplacer dasn le constructeur
 void Jeu::setLesDonjons()
 {
     string nomDonjon[5] = {"Tortage", "Prairies_du_nord", "Village_de_conarch", "Khemi", "Tarantia"};
     for(int i = 0; i < 5;i++){
         this->lesDonjons[i]->setNom(nomDonjon[i]);
-        cout <<  this->lesDonjons[i]->getNom() << endl;
     }
 }
+
+vector<Donjon*> Jeu::getDonjons()
+{
+    for(int i =0; i<5;i++){
+        cout << this->lesDonjons[i]->getNom() << endl;
+    }
+    return lesDonjons;
+}
+
+

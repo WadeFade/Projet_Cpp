@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include "Salle.h"
 
 using namespace std;
 using std::vector;
@@ -16,7 +17,8 @@ class Donjon
         virtual ~Donjon();
         void setNom(string nom);
         string getNom();
-        void mettreNumSalle();
+        void setSalle();
+        vector<Salle*> getSalle();
 
     protected:
         string nom;
