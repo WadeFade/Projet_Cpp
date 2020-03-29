@@ -2,6 +2,7 @@
 #include "Jeu.h"
 #include "Item.h"
 #include "Donjon.h"
+#include "windows.h"
 
 using namespace std;
 

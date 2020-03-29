@@ -16,6 +16,17 @@ Jeu::~Jeu()
 {
     //dtor
 }
+/* *********************************** Setter ********************************************* */
+
+void Jeu::setDifficulty(int difficulty)
+{
+    this->difficulty=difficulty;
+}
+
+int Jeu::getDifficulty()
+{
+    return this->difficulty;
+}
 
 
 // peut etre la deplacer dasn le constructeur

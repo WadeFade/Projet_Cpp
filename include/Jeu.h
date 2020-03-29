@@ -24,7 +24,6 @@ class Jeu
     int getDifficulty();
 
 
-
     protected:
 
     private:
@@ -32,6 +31,7 @@ class Jeu
         vector<Donjon*> lesDonjons;
         vector<Item*> lesItems;
         int difficulty;
+
 };
 
 #endif // JEU_H
