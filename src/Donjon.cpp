@@ -37,7 +37,7 @@ void Donjon::setSalle()
     }
 }
 
-vector<Salle*> Donjon::getSalle()
+vector<Salle*> Donjon::getSalles()
 {
     for(int i =0; i<5;i++){
         cout << "Salle : ";

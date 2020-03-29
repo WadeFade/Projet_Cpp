@@ -13,6 +13,6 @@ int main()
     monJeu->setLesDonjons();
     monDonjon->setSalle();
     monJeu->getDonjons();
-    monDonjon->getSalle();
+    monDonjon->getSalles();
     return 0;
 }

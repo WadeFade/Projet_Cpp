@@ -18,7 +18,7 @@ class Donjon
         void setNom(string nom);
         string getNom();
         void setSalle();
-        vector<Salle*> getSalle();
+        vector<Salle*> getSalles();
 
     protected:
         string nom;
