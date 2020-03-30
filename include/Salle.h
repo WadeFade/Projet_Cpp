@@ -10,13 +10,16 @@ class Salle
     public:
         Salle();
         virtual ~Salle();
+//같같같같같같� methodes 같같같같같같�
+        void affichageSalle();
+//같같같같같같같 setter 같같같같같같같
         void setNum(int num);
+//같같같같같같같 getter 같같같같같같같
         int getNum();
 
     protected:
-        int num;
-
     private:
+        int num;
 };
 
 #endif // SALLE_H

@@ -4,7 +4,22 @@
 #include "Armes.h"
 #include "Armures.h"
 #include "Consommables.h"
+#include "Cristaux.h"
+#include "Joueur.h"
+#include "Monstre.h"
+#include "Boss.h"
+#include "Jeu.h"
 #include <vector>
+
+#include "Barde.h"
+#include "Guerrier.h"
+#include "Mage.h"
+#include "Elementaire.h"
+#include "Loup.h"
+#include "Zombie.h"
+#include "Cerbere.h"
+#include "Griffon.h"
+#include "Minotaure.h"
 
 using namespace std;
 
@@ -45,7 +60,7 @@ int main()
     vector<Consommables*> tableauPotionsMana(nbNoms);
 
     for (int i = 0; i<nbNomsArmes; i++){
-
+        cout << endl;
         //Instantiation des Armes
         tableauEpees[i] = new Armes();
         tableauArcs[i] = new Armes();
@@ -58,18 +73,52 @@ int main()
         //Set des noms des Armes et de leurs dégats
         tableauEpees[i]->setNomItem(nomsEpees[i]);
         tableauEpees[i]->setAttaque(i*10+10);
+        tableauEpees[i]->deviensUneEpee();
+        // et affichage
+        tableauEpees[i]->affichageItem();
+        cout << endl;
+
         tableauArcs[i]->setNomItem(nomsArcs[i]);
         tableauArcs[i]->setAttaque(i*10+10);
+        tableauArcs[i]->deviensUnArc();
+        // et affichage
+        tableauArcs[i]->affichageItem();
+        cout << endl;
+
         tableauBaguettes[i]->setNomItem(nomsBaguettes[i]);
         tableauBaguettes[i]->setAttaque(i*10+10);
+        tableauBaguettes[i]->deviensUneBaguette();
+        // et affichage
+        tableauBaguettes[i]->affichageItem();
+        cout << endl;
+
         tableauDagues[i]->setNomItem(nomsDagues[i]);
         tableauDagues[i]->setAttaque(i*10+10);
+        tableauDagues[i]->deviensUneDague();
+        // et affichage
+        tableauDagues[i]->affichageItem();
+        cout << endl;
+
         tableauBatons[i]->setNomItem(nomsBatons[i]);
         tableauBatons[i]->setAttaque(i*10+10);
+        tableauBatons[i]->deviensUnBaton();
+        // et affichage
+        tableauBatons[i]->affichageItem();
+        cout << endl;
+
         tableauPelles[i]->setNomItem(nomsPelles[i]);
         tableauPelles[i]->setAttaque(i*10+10);
+        tableauPelles[i]->deviensUnePelle();
+        // et affichage
+        tableauPelles[i]->affichageItem();
+        cout << endl;
+
         tableauMarteaux[i]->setNomItem(nomsMarteaux[i]);
         tableauMarteaux[i]->setAttaque(i*10+10);
+        tableauMarteaux[i]->deviensUnMarteau();
+        // et affichage
+        tableauMarteaux[i]->affichageItem();
+        cout << endl;
     }
 
     for (int i = 0; i<nbNoms; i++){
@@ -78,89 +127,93 @@ int main()
         tableauArmures[i] = new Armures();
         tableauPotionsSoin[i] = new Consommables();
         tableauPotionsMana[i] = new Consommables();
+        cout << endl;
 
         //Set des noms des Armures et Consommables
         tableauArmures[i]->setNomItem(nomsArmures[i]);
         tableauArmures[i]->setResistance(i*5+5);
+        // et affichage
+        tableauArmures[i]->affichageItem();
+        cout << endl;
+
         tableauPotionsSoin[i]->setNomItem(nomsPotionsSoin[i]);
         tableauPotionsSoin[i]->setRegenVie(i*10+10);
+        // et affichage
+        tableauPotionsSoin[i]->affichageItem();
+        cout << endl;
+
         tableauPotionsMana[i]->setNomItem(nomsPotionsMana[i]);
         tableauPotionsMana[i]->setRegenMana(i*10+10);
+        // et affichage
+        tableauPotionsMana[i]->affichageItem();
+        cout << endl;
     }
 
-
-    //AFFICHAGE DE TOUS LES ITEMS
-    for (int i = 0; i<nbNomsArmes; i++){
-
-        cout << "Epees : " << i+1 << " : " << tableauEpees[i]->getNomItem() << endl;
-        cout << "Degats : " << tableauEpees[i]->getAttaque() << endl;
-
-    }
-    cout << endl;
-
-    for (int i = 0; i<nbNomsArmes; i++){
-        cout << "Arcs : " << i+1 << " : " << tableauArcs[i]->getNomItem() << endl;
-        cout << "Degats : " << tableauArcs[i]->getAttaque() << endl;
-
-    }
-    cout << endl;
-
-    for (int i = 0; i<nbNomsArmes; i++){
-        cout << "Baguettes : " << i+1 << " : " << tableauBaguettes[i]->getNomItem() << endl;
-        cout << "Degats : " << tableauBaguettes[i]->getAttaque() << endl;
-
-    }
-    cout << endl;
-
-    for (int i = 0; i<nbNomsArmes; i++){
-        cout << "Dagues : " << i+1 << " : " << tableauDagues[i]->getNomItem() << endl;
-        cout << "Degats : " << tableauDagues[i]->getAttaque() << endl;
-
-    }
-    cout << endl;
-
-    for (int i = 0; i<nbNomsArmes; i++){
-        cout << "Batons : " << i+1 << " : " << tableauBatons[i]->getNomItem() << endl;
-        cout << "Degats : " << tableauBatons[i]->getAttaque() << endl;
-
-    }
-    cout << endl;
-
-    for (int i = 0; i<nbNomsArmes; i++){
-        cout << "Pelles : " << i+1 << " : " << tableauPelles[i]->getNomItem() << endl;
-        cout << "Degats : " << tableauPelles[i]->getAttaque() << endl;
-
-    }
-    cout << endl;
-
-    for (int i = 0; i<nbNomsArmes; i++){
-        cout << "Marteaux : " << i+1 << " : " << tableauMarteaux[i]->getNomItem() << endl;
-        cout << "Degats : " << tableauMarteaux[i]->getAttaque() << endl;
-
-    }
-    cout << endl;
-
-    for (int i = 0; i<5; i++){
-        cout << "Armures : " << i+1 << " : " << tableauArmures[i]->getNomItem() << endl;
-        cout << "Resistance : " << tableauArmures[i]->getResistance() << endl;
-    }
-    cout << endl;
-
-    for (int i = 0; i<5; i++){
-        cout << "Consommables (Heal) : " << i+1 << " : " << tableauPotionsSoin[i]->getNomItem() << endl;
-        cout << "Regen Vie : " << tableauPotionsSoin[i]->getRegenVie() << endl;
-    }
-    cout << endl;
-
-    for (int i = 0; i<5; i++){
-        cout << "Consommables (Mana) : " << i+1 << " : " << tableauPotionsMana[i]->getNomItem() << endl;
-        cout << "Regen Vie : " << tableauPotionsMana[i]->getRegenMana() << endl;
-    }
-    cout << endl;
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
 
-    return 0;
+    Jeu* monJeu = new Jeu();
+
+    for (int i=0;i<5;i++){
+        monJeu->getDonjon(i)->affichageDonjon();
+    }
+    //===========================================================================================
+    //===========================================================================================
+    //===========================================================================================
+    //===========================================================================================
+
+    int nombreClasse=3;
+    int nombreMob=3;
+    int nombreBoss=3;
+    vector<Joueur*> tableauJoueur(nombreClasse);
+    vector<Monstre*> tableauMonstre(nombreMob);
+    vector<Boss*> tableauBoss(nombreBoss);
+
+    //Instantiation des classes
+    tableauJoueur[0]=new Barde();
+    tableauJoueur[1]=new Guerrier();
+    tableauJoueur[2]=new Mage();
+    //Instantiation des monstres
+    tableauMonstre[0]=new Elementaire();
+    tableauMonstre[1]=new Loup();
+    tableauMonstre[2]=new Zombie();
+    //Instantioation des boss
+    tableauBoss[0]=new Cerbere();
+    tableauBoss[1]=new Griffon();
+    tableauBoss[2]=new Minotaure();
+
+    for (int i=0;i<3;i++){
+        cout << endl;
+        tableauJoueur[i]->affichageEntite();
+        cout << endl;
+        tableauMonstre[i]->affichageEntite();
+        cout << endl;
+        tableauBoss[i]->affichageEntite();
+        cout << endl;
+    }
+
+
+    //===========================================================================================
+    //===========================================================================================
+    //===========================================================================================
+    //===========================================================================================
+    for (int i = 0; i<nbNomsArmes; i++){
+        //Destructions des instances d'Armes
+        delete tableauEpees[i];
+        delete tableauArcs[i];
+        delete tableauBaguettes[i];
+        delete tableauDagues[i];
+        delete tableauBatons[i];
+        delete tableauPelles[i];
+        delete tableauMarteaux[i];
+    }
+    for (int i = 0; i<nbNoms; i++){
+        //Instantiation des Armures et Consommables
+        delete tableauArmures[i];
+        delete tableauPotionsSoin[i];
+        delete tableauPotionsMana[i];
+    }
+        return 0;
 }

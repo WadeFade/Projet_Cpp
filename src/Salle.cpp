@@ -8,9 +8,7 @@ using namespace std;
 Salle::Salle()
 {
     //ctor
-    int i = 0;
-    this->setNum(i+1);
-
+    this->num=0;
 }
 
 Salle::~Salle()
@@ -32,5 +30,8 @@ int Salle::getNum()
     return this->num;
 }
 
-/* *********************************** Methode ********************************************* */
-
+/* *********************************** Methodes ********************************************* */
+void Salle::affichageSalle(){
+    //Affichage de salle
+    cout << "Salle numero : " << this->num << endl;
+}

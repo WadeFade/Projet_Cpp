@@ -6,6 +6,7 @@ using namespace std;
 Mage::Mage()
 {
     //ctor
+    this->nom="Mage";
     this->attaque=125;
     this->mana=150;
     this->vie=80;

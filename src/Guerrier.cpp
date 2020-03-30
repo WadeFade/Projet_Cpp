@@ -6,6 +6,7 @@ using namespace std;
 Guerrier::Guerrier()
 {
     //ctor
+    this->nom="Guerrier";
     this->attaque=100;
     this->vie=150;
     this->vieMax=150;

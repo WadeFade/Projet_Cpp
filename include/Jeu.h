@@ -13,19 +13,18 @@ class Jeu
 
 //================setter==================
     void setLesEntites(vector<Entite*> entite);
-    void setLesDonjons();
+    void setLesDonjons(Donjon* donjon);
     void setLesItems(vector<Item*> item);
     void setDifficulty(int difficulty);
 
 //================getter==================
     vector<Entite*> getEntites();
-    vector<Donjon*> getDonjons();
+    vector<Donjon*> getLesDonjons();
+    Donjon* getDonjon(int indexDonjon);
     vector<Item*> getItems();
     int getDifficulty();
 
-
     protected:
-
     private:
         vector<Entite*> lesEntites;
         vector<Donjon*> lesDonjons;

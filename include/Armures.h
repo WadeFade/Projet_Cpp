@@ -7,15 +7,14 @@ class Armures : public Item
     public:
         Armures();
         virtual ~Armures();
-
+//==========methodes=========
+        virtual void affichageItem();
 //=========setter==========
         void setResistance(int modifResistance);
-
 //=========getter==========
         int getResistance();
 
     protected:
-
     private:
         int resistance;
 };

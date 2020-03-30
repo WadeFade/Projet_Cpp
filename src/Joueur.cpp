@@ -15,7 +15,7 @@ Joueur::Joueur()
     this->mana=0;
     this->experience=0;
     this->inventaire.resize(slots,0);
-    this->inventaire.resize(spellAppris,0);
+    this->spellz.resize(spellAppris,0);
 }
 
 Joueur::~Joueur()

@@ -8,7 +8,8 @@ Donjon::Donjon()
 {
     //ctor
     for(int i = 0;i < 5;i++){
-        lesSalles.push_back(new Salle());
+        this->lesSalles.push_back(new Salle());
+        this->lesSalles[i]->setNum(i+1);
     }
 }
 
@@ -39,9 +40,12 @@ void Donjon::setSalle()
 
 vector<Salle*> Donjon::getSalles()
 {
+    return this->lesSalles;
+}
+
+void Donjon::affichageDonjon(){
     for(int i =0; i<5;i++){
-        cout << "Salle : ";
-        cout << this->lesSalles[i]->getNum() << endl;
+        cout << "Donjon : " << this->nom << endl;
+        this->lesSalles[i]->affichageSalle();
     }
-    return lesSalles;
 }

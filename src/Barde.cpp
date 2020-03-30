@@ -6,6 +6,7 @@ using namespace std;
 Barde::Barde()
 {
     //ctor
+    this->nom="Barde";
     this->multiplicateurEXP=1.2;
     this->vie=110;
     this->vieMax=110;

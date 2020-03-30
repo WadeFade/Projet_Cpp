@@ -1,5 +1,6 @@
 #include "Item.h"
 #include <string>
+#include <iostream>
 using namespace std;
 
 Item::Item()
@@ -30,4 +31,9 @@ int Item::getIdItem(){
 
 string Item::getNomItem(){
     return this->nomItem;
+}
+//===============méhodes=================
+void Item::affichageItem(){
+    cout << "Id item : " << this->idItem << endl;
+    cout << "Nom item : " << this->nomItem << endl;
 }

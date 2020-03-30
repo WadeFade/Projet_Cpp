@@ -7,17 +7,16 @@ class Cristaux : public Item
     public:
         Cristaux();
         virtual ~Cristaux();
-
-        //=========setter==========
+//==========methodes=========
+        virtual void affichageItem();
+//=========setter==========
         void setVieSup(int modifVieSup);
         void setManaSup(int modifManaSup);
-
-        //=========getter==========
+//=========getter==========
         int getVieSup();
         int getManaSup();
 
     protected:
-
     private:
         int vieSup;
         int manaSup;
