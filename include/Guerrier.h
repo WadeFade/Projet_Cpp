@@ -12,7 +12,7 @@ class Guerrier : public Joueur
 /* *********************************** Methodes ******************************************* */
         void criDeGuerre();
         void transcendance();
-        void affichageEntite();
+        virtual void affichageEntite();
 /* *********************************** Getter ********************************************* */
         int getForceEsprit();
 /* *********************************** Setter ********************************************* */

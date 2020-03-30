@@ -10,7 +10,7 @@ class Zombie : public Monstre
         virtual ~Zombie();
 /* *********************************** Methodes ******************************************* */
         void mutation();
-        void affichageEntite();
+        virtual void affichageEntite();
 /* *********************************** Getter ********************************************* */
         int getTauxInfection();
 /* *********************************** Setter ********************************************* */

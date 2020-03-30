@@ -11,7 +11,7 @@ class Minotaure : public Boss
         virtual ~Minotaure();
 /* *********************************** Methodes ******************************************* */
         void ceMetEnRage();
-        void affichageEntite();
+        virtual void affichageEntite();
 /* *********************************** Getter ********************************************* */
         int getTauxRage();
 /* *********************************** Setter ********************************************* */

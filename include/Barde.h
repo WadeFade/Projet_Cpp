@@ -11,7 +11,7 @@ class Barde : public Joueur
         virtual ~Barde();
 /* *********************************** Methodes ******************************************* */
         void airDeMusique();
-        void affichageEntite();
+        virtual void affichageEntite();
 /* *********************************** Getter ********************************************* */
         double getMultiplicateurEXP();
 /* *********************************** Setter ********************************************* */

@@ -11,7 +11,7 @@ class Elementaire : public Monstre
         virtual ~Elementaire();
 /* *********************************** Methodes ******************************************* */
         void changeElement();
-        void affichageEntite();
+        virtual void affichageEntite();
 /* *********************************** Getter ********************************************* */
         int getSurcharge();
 /* *********************************** Setter ********************************************* */

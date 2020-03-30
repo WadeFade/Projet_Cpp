@@ -54,6 +54,7 @@
 		<Unit filename="include/Minotaure.h" />
 		<Unit filename="include/Monstre.h" />
 		<Unit filename="include/Salle.h" />
+		<Unit filename="include/Spell.h" />
 		<Unit filename="include/Zombie.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Armes.cpp" />
@@ -76,6 +77,7 @@
 		<Unit filename="src/Minotaure.cpp" />
 		<Unit filename="src/Monstre.cpp" />
 		<Unit filename="src/Salle.cpp" />
+		<Unit filename="src/Spell.cpp" />
 		<Unit filename="src/Zombie.cpp" />
 		<Extensions>
 			<code_completion />

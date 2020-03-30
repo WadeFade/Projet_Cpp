@@ -12,7 +12,7 @@ class Griffon : public Boss
 /* *********************************** Methodes ******************************************* */
         void vol();
         void atteris();
-        void affichageEntite();
+        virtual void affichageEntite();
 /* *********************************** Getter ********************************************* */
         int getTauxVueAiguiser();
 /* *********************************** Setter ********************************************* */

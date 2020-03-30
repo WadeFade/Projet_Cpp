@@ -13,7 +13,7 @@ class Jeu
 
 //================setter==================
     void setLesEntites(vector<Entite*> entite);
-    void setLesDonjons(vector<Donjon*> donjon);
+    void setLesDonjons();
     void setLesItems(vector<Item*> item);
     void setDifficulty(int difficulty);
 
@@ -24,7 +24,6 @@ class Jeu
     int getDifficulty();
 
 
-
     protected:
 
     private:
@@ -32,6 +31,7 @@ class Jeu
         vector<Donjon*> lesDonjons;
         vector<Item*> lesItems;
         int difficulty;
+
 };
 
 #endif // JEU_H

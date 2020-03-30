@@ -11,7 +11,7 @@ class Loup : public Monstre
         virtual ~Loup();
 /* *********************************** Methodes ******************************************* */
         void aiguiser();
-        void affichageEntite();
+        virtual void affichageEntite();
 /* *********************************** Getter ********************************************* */
         int getTauxFaim();
 /* *********************************** Setter ********************************************* */

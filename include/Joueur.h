@@ -13,7 +13,7 @@ class Joueur : public Entite
         Joueur();
         virtual ~Joueur();
 /* *********************************** Methodes ******************************************* */
-        void affichageEntite();
+        virtual void affichageEntite();
 /* *********************************** Getter ********************************************* */
         int getSlots();
         int getMana();

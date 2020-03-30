@@ -16,7 +16,7 @@ class Mage : public Joueur
         void spellBuffResistance();
         void spellBuffCoupCritique();
         void spellBuffEchecCritique();
-        void affichageEntite();
+        virtual void affichageEntite();
 /* *********************************** Getter ********************************************* */
         int getCanalisationSpell();
 /* *********************************** Setter ********************************************* */
