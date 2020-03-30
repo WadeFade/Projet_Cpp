@@ -43,8 +43,12 @@ int main()
     string nomsMarteaux[nbNomsArmes] = {"Marteau de l'initie", "Marteau Outar", "Marteau Nitruhant", "Mourtheau", "Marteau R'ture", "Mjollnir"};
 
     string nomsArmures[nbNoms] = {"Armure en Cuir", "Armure en Or", "Armure en Fer", "Armure en Diamant", "Armure en Obsidienne"};
+
     string nomsPotionsSoin[nbNoms] = {"Petite Potion de Soin", "Potion de Soin", "Grande Potion de Soin", "Gigantesque Potion de Soin", "SurPuissante Potion de Soin"};
     string nomsPotionsMana[nbNoms] = {"Petit Elixir de Mana", "Elixir de Mana", "Grand Elixir de Mana", "Gigantesque Elixir de Mana", "SurPuissant Elixir de Mana"};
+
+    string nomsCristauxVie[nbNoms] = {"Petit Cristal de Vie", "Cristal de Vie", "Grand Cristal de Vie", "Enorme Cristal de Vie", "SurPuissant Cristal de Vie"};
+    string nomsCristauxMana[nbNoms] = {"Petit Cristal de Mana", "Cristal de Mana", "Grand Cristal de Vie", "Enorme Cristal de Mana", "SurPuissant Cristal de Mana"};
 
     //Vector pour les Items (Armes, Armures, Consommables)
     vector<Armes*> tableauEpees(nbNomsArmes);
@@ -56,8 +60,12 @@ int main()
     vector<Armes*> tableauMarteaux(nbNomsArmes);
 
     vector<Armures*> tableauArmures(nbNoms);
+
     vector<Consommables*> tableauPotionsSoin(nbNoms);
     vector<Consommables*> tableauPotionsMana(nbNoms);
+
+    vector<Cristaux*> tableauCristauxVie(nbNoms);
+    vector<Cristaux*> tableauCristauxMana(nbNoms);
 
     for (int i = 0; i<nbNomsArmes; i++){
         cout << endl;
@@ -123,10 +131,12 @@ int main()
 
     for (int i = 0; i<nbNoms; i++){
 
-        //Instantiation des Armures et Consommables
+        //Instantiation des Armures et Consommables et Cristaux
         tableauArmures[i] = new Armures();
         tableauPotionsSoin[i] = new Consommables();
         tableauPotionsMana[i] = new Consommables();
+        tableauCristauxVie[i] = new Cristaux();
+        tableauCristauxMana[i] = new Cristaux();
         cout << endl;
 
         //Set des noms des Armures et Consommables
@@ -147,6 +157,17 @@ int main()
         // et affichage
         tableauPotionsMana[i]->affichageItem();
         cout << endl;
+
+        tableauCristauxVie[i]->setNomItem(nomsCristauxVie[i]);
+        tableauCristauxVie[i]->setVieSup(i*20+20);
+        //affichage
+        tableauCristauxVie[i]->affichageItem();
+        cout << endl;
+
+        tableauCristauxMana[i]->setNomItem(nomsCristauxMana[i]);
+        tableauCristauxMana[i]->setManaSup(i*20+20);
+        //affichage
+        tableauCristauxMana[i]->affichageItem();
     }
 
     //===========================================================================================
@@ -156,9 +177,9 @@ int main()
 
     Jeu* monJeu = new Jeu();
 
-    for (int i=0;i<5;i++){
+    /*for (int i=0;i<5;i++){
         monJeu->getDonjon(i)->affichageDonjon();
-    }
+    }*/
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
@@ -183,7 +204,7 @@ int main()
     tableauBoss[0]=new Cerbere();
     tableauBoss[1]=new Griffon();
     tableauBoss[2]=new Minotaure();
-
+/*
     for (int i=0;i<3;i++){
         cout << endl;
         tableauJoueur[i]->affichageEntite();
@@ -193,7 +214,7 @@ int main()
         tableauBoss[i]->affichageEntite();
         cout << endl;
     }
-
+*/
 
     //===========================================================================================
     //===========================================================================================
@@ -214,6 +235,8 @@ int main()
         delete tableauArmures[i];
         delete tableauPotionsSoin[i];
         delete tableauPotionsMana[i];
+        delete tableauCristauxVie[i];
+        delete tableauCristauxMana[i];
     }
         return 0;
 }

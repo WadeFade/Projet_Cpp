@@ -17,6 +17,7 @@ class Cristaux : public Item
         int getManaSup();
 
     protected:
+
     private:
         int vieSup;
         int manaSup;
