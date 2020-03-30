@@ -68,7 +68,7 @@ int main()
     vector<Cristaux*> tableauCristauxMana(nbNoms);
 
     for (int i = 0; i<nbNomsArmes; i++){
-        cout << endl;
+       // cout << endl;
         //Instantiation des Armes
         tableauEpees[i] = new Armes();
         tableauArcs[i] = new Armes();
@@ -83,50 +83,50 @@ int main()
         tableauEpees[i]->setAttaque(i*10+10);
         tableauEpees[i]->deviensUneEpee();
         // et affichage
-        tableauEpees[i]->affichageItem();
-        cout << endl;
+      //  tableauEpees[i]->affichageItem();
+      //  cout << endl;
 
         tableauArcs[i]->setNomItem(nomsArcs[i]);
         tableauArcs[i]->setAttaque(i*10+10);
         tableauArcs[i]->deviensUnArc();
         // et affichage
-        tableauArcs[i]->affichageItem();
-        cout << endl;
+      //  tableauArcs[i]->affichageItem();
+      //  cout << endl;
 
         tableauBaguettes[i]->setNomItem(nomsBaguettes[i]);
         tableauBaguettes[i]->setAttaque(i*10+10);
         tableauBaguettes[i]->deviensUneBaguette();
         // et affichage
-        tableauBaguettes[i]->affichageItem();
-        cout << endl;
+      //  tableauBaguettes[i]->affichageItem();
+       // cout << endl;
 
         tableauDagues[i]->setNomItem(nomsDagues[i]);
         tableauDagues[i]->setAttaque(i*10+10);
         tableauDagues[i]->deviensUneDague();
         // et affichage
-        tableauDagues[i]->affichageItem();
-        cout << endl;
+      //  tableauDagues[i]->affichageItem();
+       // cout << endl;
 
         tableauBatons[i]->setNomItem(nomsBatons[i]);
         tableauBatons[i]->setAttaque(i*10+10);
         tableauBatons[i]->deviensUnBaton();
         // et affichage
-        tableauBatons[i]->affichageItem();
-        cout << endl;
+     //   tableauBatons[i]->affichageItem();
+       // cout << endl;
 
         tableauPelles[i]->setNomItem(nomsPelles[i]);
         tableauPelles[i]->setAttaque(i*10+10);
         tableauPelles[i]->deviensUnePelle();
         // et affichage
-        tableauPelles[i]->affichageItem();
-        cout << endl;
+     //   tableauPelles[i]->affichageItem();
+       // cout << endl;
 
         tableauMarteaux[i]->setNomItem(nomsMarteaux[i]);
         tableauMarteaux[i]->setAttaque(i*10+10);
         tableauMarteaux[i]->deviensUnMarteau();
         // et affichage
-        tableauMarteaux[i]->affichageItem();
-        cout << endl;
+    //    tableauMarteaux[i]->affichageItem();
+      //  cout << endl;
     }
 
     for (int i = 0; i<nbNoms; i++){
@@ -137,37 +137,37 @@ int main()
         tableauPotionsMana[i] = new Consommables();
         tableauCristauxVie[i] = new Cristaux();
         tableauCristauxMana[i] = new Cristaux();
-        cout << endl;
+      //  cout << endl;
 
         //Set des noms des Armures et Consommables
         tableauArmures[i]->setNomItem(nomsArmures[i]);
         tableauArmures[i]->setResistance(i*5+5);
         // et affichage
-        tableauArmures[i]->affichageItem();
-        cout << endl;
+     //   tableauArmures[i]->affichageItem();
+      //  cout << endl;
 
         tableauPotionsSoin[i]->setNomItem(nomsPotionsSoin[i]);
         tableauPotionsSoin[i]->setRegenVie(i*10+10);
         // et affichage
-        tableauPotionsSoin[i]->affichageItem();
-        cout << endl;
+      //  tableauPotionsSoin[i]->affichageItem();
+       // cout << endl;
 
         tableauPotionsMana[i]->setNomItem(nomsPotionsMana[i]);
         tableauPotionsMana[i]->setRegenMana(i*10+10);
         // et affichage
-        tableauPotionsMana[i]->affichageItem();
-        cout << endl;
+       // tableauPotionsMana[i]->affichageItem();
+       // cout << endl;
 
         tableauCristauxVie[i]->setNomItem(nomsCristauxVie[i]);
         tableauCristauxVie[i]->setVieSup(i*20+20);
         //affichage
-        tableauCristauxVie[i]->affichageItem();
-        cout << endl;
+       // tableauCristauxVie[i]->affichageItem();
+      //  cout << endl;
 
         tableauCristauxMana[i]->setNomItem(nomsCristauxMana[i]);
         tableauCristauxMana[i]->setManaSup(i*20+20);
         //affichage
-        tableauCristauxMana[i]->affichageItem();
+       // tableauCristauxMana[i]->affichageItem();
     }
 
     //===========================================================================================
@@ -177,9 +177,9 @@ int main()
 
     Jeu* monJeu = new Jeu();
 
-    /*for (int i=0;i<5;i++){
+    for (int i=0;i<5;i++){
         monJeu->getDonjon(i)->affichageDonjon();
-    }*/
+    }
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
@@ -214,8 +214,8 @@ int main()
         tableauBoss[i]->affichageEntite();
         cout << endl;
     }
-*/
 
+*/
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================

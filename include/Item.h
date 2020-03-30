@@ -21,6 +21,7 @@ class Item
     protected:
         int idItem;
         string nomItem;
+        double tauxDrop;
     private:
 };
 

@@ -7,6 +7,7 @@ Item::Item()
 {
     this->idItem = 0;
     this->nomItem = "Default";
+    this->tauxDrop = 0;
 }
 
 Item::~Item()
