@@ -14,30 +14,27 @@ class Joueur : public Entite
         virtual ~Joueur();
 /* *********************************** Methodes ******************************************* */
         virtual void affichageEntite();
+        void affichageInventaire();
 /* *********************************** Getter ********************************************* */
-        int getSlots();
+        int getNombreSlots();
+        int getNombreSpellAppris();
+        int getNiveau();
         int getMana();
         int getExperience();
-        int getNiveau();
         Item* getInventaire(int positionDansInventaire);
         Spell* getSpellz(int positionDansSpellz);
-        int getSpellAppris();
 /* *********************************** Setter ********************************************* */
         void setNiveau(int niveau);
-        void setSlots(int slots);
         void setMana(int mana);
         void setExperience(int experience);
         void setInventaire(Item* inventaire);
         void setSpellz(Spell* spell);
-        void setSpellAppris(int spellAppris);
     protected:
         int niveau;
-        int slots;
-        int spellAppris;
-        vector<Item*> inventaire;
-        vector<Spell*> spellz;
         int mana;
         int experience;
+        vector<Item*> inventaire;
+        vector<Spell*> spellz;
     private:
 };
 
