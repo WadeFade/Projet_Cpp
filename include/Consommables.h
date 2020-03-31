@@ -7,17 +7,16 @@ class Consommables : public Item
     public:
         Consommables();
         virtual ~Consommables();
-
-        //=========setter==========
+//==========methodes=========
+        virtual void affichageItem();
+//=========setter==========
         void setRegenVie(int modifRegenVie);
         void setRegenMana(int modifRegenMana);
-
-        //=========getter==========
+//=========getter==========
         int getRegenVie();
         int getRegenMana();
 
     protected:
-
     private:
         int regenVie;
         int regenMana;

@@ -2,15 +2,17 @@
 #include <string>
 #include <iostream>
 #include "Donjon.h"
+#include "time.h"
+#include "stdlib.h"
 
 using namespace std;
 
 Salle::Salle()
 {
     //ctor
-    int i = 0;
-    this->setNum(i+1);
-
+    srand(time(NULL));
+    this->environnement = 0;
+    this->num=0;
 }
 
 Salle::~Salle()
@@ -24,6 +26,10 @@ void Salle::setNum(int num)
 {
     this->num = num;
 }
+void Salle::setEnvironnement(int environnement)
+{
+    this->environnement = environnement;
+}
 
 /* *********************************** Getter ********************************************* */
 
@@ -32,5 +38,13 @@ int Salle::getNum()
     return this->num;
 }
 
-/* *********************************** Methode ********************************************* */
+int Salle::getEnvironnement()
+{
+    return this->environnement;
+}
 
+/* *********************************** Methodes ********************************************* */
+void Salle::affichageSalle(){
+    //Affichage de salle
+    cout << "Salle numero : " << this->num << endl;
+}

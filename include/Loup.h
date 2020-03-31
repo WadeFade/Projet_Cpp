@@ -10,13 +10,14 @@ class Loup : public Monstre
         Loup();
         virtual ~Loup();
 /* *********************************** Methodes ******************************************* */
-
+        void aiguiser();
+        virtual void affichageEntite();
 /* *********************************** Getter ********************************************* */
-
+        int getTauxFaim();
 /* *********************************** Setter ********************************************* */
-
+        void setTauxFaim(int tauxFaim);
     protected:
-
+        int tauxFaim;
     private:
 };
 

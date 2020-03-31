@@ -10,13 +10,15 @@ class Cerbere : public Boss
         Cerbere();
         virtual ~Cerbere();
 /* *********************************** Methodes ******************************************* */
-
+        void aFaim();
+        void manger();
+        virtual void affichageEntite();
 /* *********************************** Getter ********************************************* */
-
+        int getFaim();
 /* *********************************** Setter ********************************************* */
-
+        void setFaim(int faim);
     protected:
-
+        int faim;
     private:
 };
 

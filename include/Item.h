@@ -9,6 +9,8 @@ class Item
     public:
         Item();
         virtual ~Item();
+//==========methodes=========
+        virtual void affichageItem();
 //============setter===============
         void setIdItem(int id);
         void setNomItem(string nom);
@@ -19,8 +21,6 @@ class Item
     protected:
         int idItem;
         string nomItem;
-
-
     private:
 };
 

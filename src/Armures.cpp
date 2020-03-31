@@ -1,5 +1,5 @@
 #include "Armures.h"
-
+#include <iostream>
 Armures::Armures()
 {
     //ctor
@@ -19,4 +19,10 @@ void Armures::setResistance(int resistance){
 //=========getter==========
 int Armures::getResistance(){
     return this->resistance;
+}
+//============Methodes================
+void Armures::affichageItem(){
+    cout << "Id item : " << this->idItem << endl;
+    cout << "Nom item : " << this->nomItem << endl;
+    cout << "Resistance : " << this->resistance << endl;
 }

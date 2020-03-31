@@ -15,15 +15,20 @@ class Donjon
     public:
         Donjon();
         virtual ~Donjon();
-        void setNom(string nom);
-        string getNom();
+//같같같같같같� methodes 같같같같같같�
+        void affichageDonjon();
+
+//같같같같같같같 setter 같같같같같같같
         void setSalle();
-        vector<Salle*> getSalles();
+        void setNom(string nom);
+
+//같같같같같같같 getter 같같같같같같같
+        string getNom();
+        Salle* getSalles(int num);
 
     protected:
         string nom;
         vector<Salle*> lesSalles;
-
     private:
 };
 

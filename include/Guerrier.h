@@ -10,13 +10,15 @@ class Guerrier : public Joueur
         Guerrier();
         virtual ~Guerrier();
 /* *********************************** Methodes ******************************************* */
-
+        void criDeGuerre();
+        void transcendance();
+        virtual void affichageEntite();
 /* *********************************** Getter ********************************************* */
-
+        int getForceEsprit();
 /* *********************************** Setter ********************************************* */
-
+        void setForceEsprit(int forceEsprit);
     protected:
-
+        int forceEsprit;
     private:
 };
 

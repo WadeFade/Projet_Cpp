@@ -1,5 +1,5 @@
 #include "Cristaux.h"
-
+#include <iostream>
 Cristaux::Cristaux()
 {
     //ctor
@@ -28,4 +28,11 @@ int Cristaux::getVieSup(){
 
 int Cristaux::getManaSup(){
     return this->manaSup;
+}
+//============Methodes================
+void Cristaux::affichageItem(){
+    cout << "Id item : " << this->idItem << endl;
+    cout << "Nom item : " << this->nomItem << endl;
+    cout << "Cristaux Mana Sup : " << this->manaSup << endl;
+    cout << "Cristaux Vie Sup : " << this->vieSup << endl;
 }

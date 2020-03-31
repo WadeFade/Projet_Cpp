@@ -9,14 +9,16 @@ class Zombie : public Monstre
         Zombie();
         virtual ~Zombie();
 /* *********************************** Methodes ******************************************* */
-
+        void mutation();
+        virtual void affichageEntite();
 /* *********************************** Getter ********************************************* */
-
+        int getTauxInfection();
 /* *********************************** Setter ********************************************* */
-
+        void setTauxInfection(int tauxInfection);
     protected:
 
     private:
+        int tauxInfection;
 };
 
 #endif // ZOMBIE_H

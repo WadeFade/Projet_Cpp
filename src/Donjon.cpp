@@ -8,7 +8,8 @@ Donjon::Donjon()
 {
     //ctor
     for(int i = 0;i < 5;i++){
-        lesSalles.push_back(new Salle());
+        this->lesSalles.push_back(new Salle());
+        this->lesSalles[i]->setNum(i+1);
     }
 }
 
@@ -22,6 +23,15 @@ void Donjon::setNom(string nom)
     this->nom = nom;
 }
 
+void Donjon::setSalle()
+{
+    for(int i = 0;i < 5;i++){
+        this->lesSalles[i]->setNum(i);
+    }
+}
+
+
+
 /* *********************************** Getter ********************************************* */
 string Donjon::getNom()
 {
@@ -30,18 +40,14 @@ string Donjon::getNom()
 
 /* *********************************** Methode ********************************************* */
 
-void Donjon::setSalle()
+Salle* Donjon::getSalles(int num)
 {
-    for(int i = 0;i < 5;i++){
-        this->lesSalles[i]->setNum(i);
-    }
+    return this->lesSalles[num];
 }
 
-vector<Salle*> Donjon::getSalles()
-{
+void Donjon::affichageDonjon(){
     for(int i =0; i<5;i++){
-        cout << "Salle : ";
-        cout << this->lesSalles[i]->getNum() << endl;
+        cout << "Donjon : " << this->nom << endl;
+        this->lesSalles[i]->affichageSalle();
     }
-    return lesSalles;
 }

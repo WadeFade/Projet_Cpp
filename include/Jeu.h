@@ -4,6 +4,7 @@
 #include "Donjon.h"
 #include "Item.h"
 #include "Entite.h"
+#include "couleur.h"
 
 class Jeu
 {
@@ -13,19 +14,21 @@ class Jeu
 
 //================setter==================
     void setLesEntites(vector<Entite*> entite);
-    void setLesDonjons();
+    void setLesDonjons(Donjon* donjon);
     void setLesItems(vector<Item*> item);
     void setDifficulty(int difficulty);
 
 //================getter==================
     vector<Entite*> getEntites();
-    vector<Donjon*> getDonjons();
+    vector<Donjon*> getLesDonjons();
+    Donjon* getDonjon(int indexDonjon);
     vector<Item*> getItems();
     int getDifficulty();
-
+//================methode==================
+    void affichageJeu();
+    void mettreEnCouleur(int t,int f);
 
     protected:
-
     private:
         vector<Entite*> lesEntites;
         vector<Donjon*> lesDonjons;
