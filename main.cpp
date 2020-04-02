@@ -30,6 +30,7 @@ int main()
     //CETTE PARTIE SERA A DEPLACER DANS LA CLASSE JEU SOUS FORME DE METHODE POUR LIBERER LE MAIN.
     //===========================================================================================
     //===========================================================================================
+// °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° Instantiation des items  °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
     int nbNoms = 5;
     int nbNomsArmes = 6;
 
@@ -174,7 +175,7 @@ int main()
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
-
+// °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° Instantiation du donjon °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
     Jeu* monJeu = new Jeu();
 
     for (int i=0;i<5;i++){
@@ -184,7 +185,7 @@ int main()
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
-
+// °°°°°°°°°°°°°°°°°°°°°°°°°° Instantiation des joueurs / mobs / boss °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
     int nombreClasse=3;
     int nombreMob=3;
     int nombreBoss=3;
@@ -204,7 +205,7 @@ int main()
     tableauBoss[0]=new Cerbere();
     tableauBoss[1]=new Griffon();
     tableauBoss[2]=new Minotaure();
-/*
+
     for (int i=0;i<3;i++){
         cout << endl;
         tableauJoueur[i]->affichageEntite();
@@ -215,7 +216,23 @@ int main()
         cout << endl;
     }
 
-*/
+
+
+    //===========================================================================================
+    //===========================================================================================
+    //===========================================================================================
+    //===========================================================================================
+// °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° Instantiation de l'inventaire  °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+        tableauJoueur[0]->setInventaire(tableauEpees[0]);
+        tableauJoueur[0]->setInventaire(tableauArmures[0]);
+        tableauJoueur[0]->setInventaire(tableauPotionsSoin[0]);
+        tableauJoueur[0]->setInventaire(tableauPotionsMana[0]);
+        tableauJoueur[0]->setInventaire(tableauCristauxVie[0]);
+        tableauJoueur[0]->setInventaire(tableauCristauxMana[0]);
+        tableauJoueur[0]->affichageInventaire();
+
+
+
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
@@ -238,5 +255,11 @@ int main()
         delete tableauCristauxVie[i];
         delete tableauCristauxMana[i];
     }
+    for (int i=0;i<3;i++){
+        delete tableauJoueur[i];
+        delete tableauMonstre[i];
+        delete tableauBoss[i];
+    }
+    delete monJeu;
         return 0;
 }
