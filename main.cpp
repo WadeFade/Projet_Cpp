@@ -90,7 +90,7 @@ int main()
         tableauEpees[i]->setNomItem(nomsEpees[i]);
         tableauEpees[i]->setAttaque(i*10+10);
         //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauEpees[i]->setTauxDrop(8/i);
+        tableauEpees[i]->setTauxDrop(8/(i+1));
         tableauEpees[i]->deviensUneEpee();
         // et affichage
 
@@ -100,7 +100,7 @@ int main()
         tableauArcs[i]->setNomItem(nomsArcs[i]);
         tableauArcs[i]->setAttaque(i*10+10);
         //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauArcs[i]->setTauxDrop(8/i);
+        tableauArcs[i]->setTauxDrop(8/(i+1));
         tableauArcs[i]->deviensUnArc();
         // et affichage
 
@@ -110,7 +110,7 @@ int main()
         tableauBaguettes[i]->setNomItem(nomsBaguettes[i]);
         tableauBaguettes[i]->setAttaque(i*10+10);
         //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauBaguettes[i]->setTauxDrop(8/i);
+        tableauBaguettes[i]->setTauxDrop(8/(i+1));
         tableauBaguettes[i]->deviensUneBaguette();
         // et affichage
 
@@ -120,7 +120,7 @@ int main()
         tableauDagues[i]->setNomItem(nomsDagues[i]);
         tableauDagues[i]->setAttaque(i*10+10);
         //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauDagues[i]->setTauxDrop(8/i);
+        tableauDagues[i]->setTauxDrop(8/(i+1));
         tableauDagues[i]->deviensUneDague();
         // et affichage
 
@@ -130,7 +130,7 @@ int main()
         tableauBatons[i]->setNomItem(nomsBatons[i]);
         tableauBatons[i]->setAttaque(i*10+10);
         //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauBatons[i]->setTauxDrop(8/i);
+        tableauBatons[i]->setTauxDrop(8/(i+1));
         tableauBatons[i]->deviensUnBaton();
         // et affichage
 
@@ -140,7 +140,7 @@ int main()
         tableauPelles[i]->setNomItem(nomsPelles[i]);
         tableauPelles[i]->setAttaque(i*10+10);
         //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauPelles[i]->setTauxDrop(8/i);
+        tableauPelles[i]->setTauxDrop(8/(i+1));
         tableauPelles[i]->deviensUnePelle();
         // et affichage
 
@@ -150,7 +150,7 @@ int main()
         tableauMarteaux[i]->setNomItem(nomsMarteaux[i]);
         tableauMarteaux[i]->setAttaque(i*10+10);
         //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauMarteaux[i]->setTauxDrop(8/i);
+        tableauMarteaux[i]->setTauxDrop(8/(i+1));
         tableauMarteaux[i]->deviensUnMarteau();
         // et affichage
 
@@ -174,7 +174,7 @@ int main()
         tableauArmures[i]->setNomItem(nomsArmures[i]);
         tableauArmures[i]->setResistance(i*5+5);
         //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauArmures[i]->setTauxDrop(8/i);
+        tableauArmures[i]->setTauxDrop(8/(i+1));
 
         // et affichage
      //   tableauArmures[i]->affichageItem();
@@ -183,7 +183,7 @@ int main()
         tableauPotionsSoin[i]->setNomItem(nomsPotionsSoin[i]);
         tableauPotionsSoin[i]->setRegenVie(i*10+10);
         //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauPotionsSoin[i]->setTauxDrop(8/i);
+        tableauPotionsSoin[i]->setTauxDrop(8/(i+1));
         // et affichage
       //  tableauPotionsSoin[i]->affichageItem();
        // cout << endl;
@@ -191,7 +191,7 @@ int main()
         tableauPotionsMana[i]->setNomItem(nomsPotionsMana[i]);
         tableauPotionsMana[i]->setRegenMana(i*10+10);
         //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauPotionsMana[i]->setTauxDrop(8/i);
+        tableauPotionsMana[i]->setTauxDrop(8/(i+1));
         // et affichage
 
        // tableauPotionsMana[i]->affichageItem();
@@ -200,7 +200,7 @@ int main()
         tableauCristauxVie[i]->setNomItem(nomsCristauxVie[i]);
         tableauCristauxVie[i]->setVieSup(i*20+20);
         //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauCristauxVie[i]->setTauxDrop(8/i);
+        tableauCristauxVie[i]->setTauxDrop(8/(i+1));
         //affichage
        // tableauCristauxVie[i]->affichageItem();
       //  cout << endl;
@@ -208,7 +208,7 @@ int main()
         tableauCristauxMana[i]->setNomItem(nomsCristauxMana[i]);
         tableauCristauxMana[i]->setManaSup(i*20+20);
         //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauCristauxMana[i]->setTauxDrop(8/i);
+        tableauCristauxMana[i]->setTauxDrop(8/(i+1));
         //affichage
        // tableauCristauxMana[i]->affichageItem();
        //cout << endl;
