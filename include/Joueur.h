@@ -23,31 +23,19 @@ class Joueur : public Entite
         int getNiveau();
         int getMana();
         int getExperience();
-        int getSpellAppris();
-
         Item* getInventaire(int positionDansInventaire);
         Spell* getSpellz(int positionDansSpellz);
 /* *********************************** Setter ********************************************* */
         void setNiveau(int niveau);
-
-
-/* *********************************** Setter ********************************************* */
-
-        void setSlots(int slots);
-
         void setMana(int mana);
         void setExperience(int experience);
         void setInventaire(Item* inventaire);
         void setSpellz(Spell* spell);
-        void setSpellAppris(int spellAppris);
 
     protected:
         int niveau;
-        int slots;
-        int spellAppris;
         vector<Item*> inventaire;
         vector<Spell*> spellz;
-
         int mana;
         int experience;
     private:
