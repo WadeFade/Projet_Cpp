@@ -42,6 +42,7 @@ void Guerrier::setForceEsprit(int forceEsprit){
 }
 void Guerrier::affichageEntite(){
     cout << "Guerrier : " << endl;
+
     cout << "Nom : " << this->nom << endl;
     cout << "Attaque : " << this->attaque << endl;
     cout << "Niveau : " << this->niveau << endl;
@@ -53,5 +54,8 @@ void Guerrier::affichageEntite(){
     cout << "CoupCritique : " << this->coupCritique << endl;
     cout << "EchecCritique : " << this->echecCritique << endl;
     cout << "Esquive : " << this->esquive << endl;
+
+
+
     cout << "Force Esprit : " << this->forceEsprit << endl;
 }

@@ -98,7 +98,7 @@ void Joueur::affichageEntite(){
 
 void Joueur::affichageInventaire(){
     cout << "Inventaire : " << endl;
-    for (int i=0;i<(this->inventaire.size());i++){
+    for (int i=0; i<(this->inventaire.size()); i++){
         this->getInventaire(i)->affichageItem();
     }
 }

@@ -25,6 +25,9 @@ void Item::setNomItem(string nomItem){
     this->nomItem = nomItem;
 }
 
+void Item::setTauxDrop(double taux){
+    this->tauxDrop = taux;
+}
 //===============getter==================
 int Item::getIdItem(){
     return this->idItem;
@@ -32,6 +35,10 @@ int Item::getIdItem(){
 
 string Item::getNomItem(){
     return this->nomItem;
+}
+
+double Item::getTauxDrop(){
+    return this->tauxDrop;
 }
 //===============méhodes=================
 void Item::affichageItem(){
