@@ -30,11 +30,11 @@ int main()
     //CETTE PARTIE SERA A DEPLACER DANS LA CLASSE JEU SOUS FORME DE METHODE POUR LIBERER LE MAIN.
     //===========================================================================================
     //===========================================================================================
-<<<<<<< HEAD
-// °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° Instantiation des items  °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
-=======
-  /*
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
+
+// °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° Instantiation des items  °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+
+
+
     int nbNoms = 5;
     int nbNomsArmes = 6;
 
@@ -48,7 +48,7 @@ int main()
     string nomsMarteaux[nbNomsArmes] = {"Marteau de l'initie", "Marteau Outar", "Marteau Nitruhant", "Mourtheau", "Marteau R'ture", "Mjollnir"};
 
     string nomsArmures[nbNoms] = {"Armure en Cuir", "Armure en Or", "Armure en Fer", "Armure en Diamant", "Armure en Obsidienne"};
-<<<<<<< HEAD
+
 
     string nomsPotionsSoin[nbNoms] = {"Petite Potion de Soin", "Potion de Soin", "Grande Potion de Soin", "Gigantesque Potion de Soin", "SurPuissante Potion de Soin"};
     string nomsPotionsMana[nbNoms] = {"Petit Elixir de Mana", "Elixir de Mana", "Grand Elixir de Mana", "Gigantesque Elixir de Mana", "SurPuissant Elixir de Mana"};
@@ -56,11 +56,6 @@ int main()
     string nomsCristauxVie[nbNoms] = {"Petit Cristal de Vie", "Cristal de Vie", "Grand Cristal de Vie", "Enorme Cristal de Vie", "SurPuissant Cristal de Vie"};
     string nomsCristauxMana[nbNoms] = {"Petit Cristal de Mana", "Cristal de Mana", "Grand Cristal de Vie", "Enorme Cristal de Mana", "SurPuissant Cristal de Mana"};
 
-=======
-    string nomsPotionsSoin[nbNoms] = {"Petite Potion de Soin", "Potion de Soin", "Grande Potion de Soin", "Gigantesque Potion de Soin", "SurPuissante Potion de Soin"};
-    string nomsPotionsMana[nbNoms] = {"Petit Elixir de Mana", "Elixir de Mana", "Grand Elixir de Mana", "Gigantesque Elixir de Mana", "SurPuissant Elixir de Mana"};
-
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
     //Vector pour les Items (Armes, Armures, Consommables)
     vector<Armes*> tableauEpees(nbNomsArmes);
     vector<Armes*> tableauArcs(nbNomsArmes);
@@ -71,7 +66,7 @@ int main()
     vector<Armes*> tableauMarteaux(nbNomsArmes);
 
     vector<Armures*> tableauArmures(nbNoms);
-<<<<<<< HEAD
+
 
     vector<Consommables*> tableauPotionsSoin(nbNoms);
     vector<Consommables*> tableauPotionsMana(nbNoms);
@@ -80,14 +75,8 @@ int main()
     vector<Cristaux*> tableauCristauxMana(nbNoms);
 
     for (int i = 0; i<nbNomsArmes; i++){
-       // cout << endl;
-=======
-    vector<Consommables*> tableauPotionsSoin(nbNoms);
-    vector<Consommables*> tableauPotionsMana(nbNoms);
 
-    for (int i = 0; i<nbNomsArmes; i++){
-        cout << endl;
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
+        //cout << endl;
         //Instantiation des Armes
         tableauEpees[i] = new Armes();
         tableauArcs[i] = new Armes();
@@ -102,90 +91,63 @@ int main()
         tableauEpees[i]->setAttaque(i*10+10);
         tableauEpees[i]->deviensUneEpee();
         // et affichage
-<<<<<<< HEAD
+
       //  tableauEpees[i]->affichageItem();
       //  cout << endl;
-=======
-        tableauEpees[i]->affichageItem();
-        cout << endl;
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
 
         tableauArcs[i]->setNomItem(nomsArcs[i]);
         tableauArcs[i]->setAttaque(i*10+10);
         tableauArcs[i]->deviensUnArc();
         // et affichage
-<<<<<<< HEAD
+
       //  tableauArcs[i]->affichageItem();
       //  cout << endl;
-=======
-        tableauArcs[i]->affichageItem();
-        cout << endl;
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
 
         tableauBaguettes[i]->setNomItem(nomsBaguettes[i]);
         tableauBaguettes[i]->setAttaque(i*10+10);
         tableauBaguettes[i]->deviensUneBaguette();
         // et affichage
-<<<<<<< HEAD
+
       //  tableauBaguettes[i]->affichageItem();
        // cout << endl;
-=======
-        tableauBaguettes[i]->affichageItem();
-        cout << endl;
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
 
         tableauDagues[i]->setNomItem(nomsDagues[i]);
         tableauDagues[i]->setAttaque(i*10+10);
         tableauDagues[i]->deviensUneDague();
         // et affichage
-<<<<<<< HEAD
+
       //  tableauDagues[i]->affichageItem();
        // cout << endl;
-=======
-        tableauDagues[i]->affichageItem();
-        cout << endl;
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
 
         tableauBatons[i]->setNomItem(nomsBatons[i]);
         tableauBatons[i]->setAttaque(i*10+10);
         tableauBatons[i]->deviensUnBaton();
         // et affichage
-<<<<<<< HEAD
+
      //   tableauBatons[i]->affichageItem();
        // cout << endl;
-=======
-        tableauBatons[i]->affichageItem();
-        cout << endl;
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
 
         tableauPelles[i]->setNomItem(nomsPelles[i]);
         tableauPelles[i]->setAttaque(i*10+10);
         tableauPelles[i]->deviensUnePelle();
         // et affichage
-<<<<<<< HEAD
+
      //   tableauPelles[i]->affichageItem();
        // cout << endl;
-=======
-        tableauPelles[i]->affichageItem();
-        cout << endl;
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
 
         tableauMarteaux[i]->setNomItem(nomsMarteaux[i]);
         tableauMarteaux[i]->setAttaque(i*10+10);
         tableauMarteaux[i]->deviensUnMarteau();
         // et affichage
-<<<<<<< HEAD
+
     //    tableauMarteaux[i]->affichageItem();
       //  cout << endl;
-=======
-        tableauMarteaux[i]->affichageItem();
-        cout << endl;
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
+
     }
 
     for (int i = 0; i<nbNoms; i++){
 
-<<<<<<< HEAD
+
         //Instantiation des Armures et Consommables et Cristaux
         tableauArmures[i] = new Armures();
         tableauPotionsSoin[i] = new Consommables();
@@ -193,41 +155,24 @@ int main()
         tableauCristauxVie[i] = new Cristaux();
         tableauCristauxMana[i] = new Cristaux();
       //  cout << endl;
-=======
-        //Instantiation des Armures et Consommables
-        tableauArmures[i] = new Armures();
-        tableauPotionsSoin[i] = new Consommables();
-        tableauPotionsMana[i] = new Consommables();
-        cout << endl;
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
 
         //Set des noms des Armures et Consommables
         tableauArmures[i]->setNomItem(nomsArmures[i]);
         tableauArmures[i]->setResistance(i*5+5);
         // et affichage
-<<<<<<< HEAD
      //   tableauArmures[i]->affichageItem();
       //  cout << endl;
-=======
-        tableauArmures[i]->affichageItem();
-        cout << endl;
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
 
         tableauPotionsSoin[i]->setNomItem(nomsPotionsSoin[i]);
         tableauPotionsSoin[i]->setRegenVie(i*10+10);
         // et affichage
-<<<<<<< HEAD
       //  tableauPotionsSoin[i]->affichageItem();
        // cout << endl;
-=======
-        tableauPotionsSoin[i]->affichageItem();
-        cout << endl;
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
 
         tableauPotionsMana[i]->setNomItem(nomsPotionsMana[i]);
         tableauPotionsMana[i]->setRegenMana(i*10+10);
         // et affichage
-<<<<<<< HEAD
+
        // tableauPotionsMana[i]->affichageItem();
        // cout << endl;
 
@@ -241,40 +186,37 @@ int main()
         tableauCristauxMana[i]->setManaSup(i*20+20);
         //affichage
        // tableauCristauxMana[i]->affichageItem();
+       //cout << endl;
     }
 
-=======
-        tableauPotionsMana[i]->affichageItem();
-        cout << endl;
-    }
-*/
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
+
+
+
+
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
-<<<<<<< HEAD
+
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° Instantiation du donjon °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
-=======
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
+
     Jeu* monJeu = new Jeu();
 
     for (int i=0;i<5;i++){
         monJeu->getDonjon(i)->affichageDonjon();
     }
-<<<<<<< HEAD
-=======
+
     monJeu->affichageJeu();
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
+
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
-<<<<<<< HEAD
+
 // °°°°°°°°°°°°°°°°°°°°°°°°°° Instantiation des joueurs / mobs / boss °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
-=======
-/*
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
+
+
+
     int nombreClasse=3;
     int nombreMob=3;
     int nombreBoss=3;
@@ -306,25 +248,21 @@ int main()
     }
 
 
-<<<<<<< HEAD
-
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
-// °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° Instantiation de l'inventaire  °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
-        tableauJoueur[0]->setInventaire(tableauEpees[0]);
-        tableauJoueur[0]->setInventaire(tableauArmures[0]);
-        tableauJoueur[0]->setInventaire(tableauPotionsSoin[0]);
-        tableauJoueur[0]->setInventaire(tableauPotionsMana[0]);
-        tableauJoueur[0]->setInventaire(tableauCristauxVie[0]);
-        tableauJoueur[0]->setInventaire(tableauCristauxMana[0]);
-        tableauJoueur[0]->affichageInventaire();
+    // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° Instantiation de l'inventaire  °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+    tableauJoueur[0]->setInventaire(tableauEpees[0]);
+    tableauJoueur[0]->setInventaire(tableauArmures[0]);
+    tableauJoueur[0]->setInventaire(tableauPotionsSoin[0]);
+    tableauJoueur[0]->setInventaire(tableauPotionsMana[0]);
+    tableauJoueur[0]->setInventaire(tableauCristauxVie[0]);
+    tableauJoueur[0]->setInventaire(tableauCristauxMana[0]);
+    tableauJoueur[0]->affichageInventaire();
 
 
 
-=======
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
@@ -344,7 +282,7 @@ int main()
         delete tableauArmures[i];
         delete tableauPotionsSoin[i];
         delete tableauPotionsMana[i];
-<<<<<<< HEAD
+
         delete tableauCristauxVie[i];
         delete tableauCristauxMana[i];
     }
@@ -355,9 +293,9 @@ int main()
     }
     delete monJeu;
         return 0;
-=======
-    }
-    return 0;
-    */
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
+
 }
+
+
+
+

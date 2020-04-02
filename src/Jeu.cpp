@@ -32,37 +32,15 @@ void Jeu::setDifficulty(int difficulty)
 }
 
 void Jeu::setLesDonjons(Donjon* donjon)
-<<<<<<< HEAD
-=======
 {
     this->lesDonjons.push_back(donjon);
 }
-/* *********************************** Getter ********************************************* */
-int Jeu::getDifficulty()
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
-{
-    this->lesDonjons.push_back(donjon);
-}
-<<<<<<< HEAD
+
 /* *********************************** Getter ********************************************* */
 int Jeu::getDifficulty()
 {
     return this->difficulty;
 }
-
-vector<Donjon*> Jeu::getLesDonjons()
-{
-    for(unsigned int i=0; i<lesDonjons.size();i++){
-        cout << this->lesDonjons[i]->getNom() << endl;
-    }
-    return this->lesDonjons;
-}
-Donjon* Jeu::getDonjon(int indexDonjon){
-    return this->lesDonjons[indexDonjon];
-}
-
-/* ********************************* Methodes ******************************************* */
-=======
 
 vector<Donjon*> Jeu::getLesDonjons()
 {
@@ -100,4 +78,4 @@ void Jeu::mettreEnCouleur(int t,int f)
     HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(H,f*16+t);
 }
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
+

@@ -45,14 +45,13 @@ Salle* Donjon::getSalles(int num)
     return this->lesSalles[num];
 }
 
-<<<<<<< HEAD
+
 vector<Salle*> Donjon::getSalles()
 {
     return this->lesSalles;
 }
 
-=======
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
+
 void Donjon::affichageDonjon(){
     for(int i =0; i<5;i++){
         cout << "Donjon : " << this->nom << endl;

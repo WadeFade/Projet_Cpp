@@ -24,12 +24,12 @@ class Donjon
 
 //같같같같같같같 getter 같같같같같같같
         string getNom();
-<<<<<<< HEAD
+
         vector<Salle*> getSalles();
-=======
+
         Salle* getSalles(int num);
 
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
+
     protected:
         string nom;
         vector<Salle*> lesSalles;

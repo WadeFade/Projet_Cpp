@@ -21,10 +21,9 @@ class Item
     protected:
         int idItem;
         string nomItem;
-<<<<<<< HEAD
+
         double tauxDrop;
-=======
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
+
     private:
 };
 

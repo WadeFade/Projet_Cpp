@@ -10,11 +10,10 @@ using namespace std;
 Salle::Salle()
 {
     //ctor
-<<<<<<< HEAD
-=======
+
     srand(time(NULL));
     this->environnement = 0;
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
+
     this->num=0;
 }
 
@@ -41,14 +40,13 @@ int Salle::getNum()
     return this->num;
 }
 
-<<<<<<< HEAD
-=======
+
 int Salle::getEnvironnement()
 {
     return this->environnement;
 }
 
->>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
+
 /* *********************************** Methodes ********************************************* */
 void Salle::affichageSalle(){
     //Affichage de salle
