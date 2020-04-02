@@ -1,6 +1,9 @@
 #include "Jeu.h"
 #include "time.h"
 #include "stdlib.h"
+#include "couleur.h"
+#include "windows.h"
+
 
 using namespace std;
 
@@ -29,9 +32,18 @@ void Jeu::setDifficulty(int difficulty)
 }
 
 void Jeu::setLesDonjons(Donjon* donjon)
+<<<<<<< HEAD
+=======
 {
     this->lesDonjons.push_back(donjon);
 }
+/* *********************************** Getter ********************************************* */
+int Jeu::getDifficulty()
+>>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
+{
+    this->lesDonjons.push_back(donjon);
+}
+<<<<<<< HEAD
 /* *********************************** Getter ********************************************* */
 int Jeu::getDifficulty()
 {
@@ -50,3 +62,42 @@ Donjon* Jeu::getDonjon(int indexDonjon){
 }
 
 /* ********************************* Methodes ******************************************* */
+=======
+
+vector<Donjon*> Jeu::getLesDonjons()
+{
+    for(unsigned int i=0; i<lesDonjons.size();i++){
+        cout << this->lesDonjons[i]->getNom() << endl;
+    }
+    return this->lesDonjons;
+}
+Donjon* Jeu::getDonjon(int indexDonjon){
+    return this->lesDonjons[indexDonjon];
+}
+
+/* ********************************* Methodes ******************************************* */
+
+void Jeu::affichageJeu()
+{
+    int couleur;
+
+    for(int i = 0;i < 5;i++){
+        cout << lesDonjons[i]->getNom();
+            for(int a = 0; a < 5;a++){
+            this->lesDonjons[i]->getSalles(a)->setEnvironnement(rand() % 5 + 1);
+            couleur = this->lesDonjons[i]->getSalles(a)->getEnvironnement();
+            mettreEnCouleur(couleur,0);
+            cout << "|";
+            cout << this->lesDonjons[i]->getSalles(a)->getNum();
+            cout << "|";
+            mettreEnCouleur(7,0);
+        }
+        cout << endl;
+    }
+}
+void Jeu::mettreEnCouleur(int t,int f)
+{
+    HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(H,f*16+t);
+}
+>>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf

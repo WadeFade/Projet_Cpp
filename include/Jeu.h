@@ -4,6 +4,7 @@
 #include "Donjon.h"
 #include "Item.h"
 #include "Entite.h"
+#include "couleur.h"
 
 class Jeu
 {
@@ -23,6 +24,12 @@ class Jeu
     Donjon* getDonjon(int indexDonjon);
     vector<Item*> getItems();
     int getDifficulty();
+<<<<<<< HEAD
+=======
+//================methode==================
+    void affichageJeu();
+    void mettreEnCouleur(int t,int f);
+>>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
 
     protected:
     private:

@@ -33,6 +33,11 @@ int Consommables::getRegenMana(){
 void Consommables::affichageItem(){
     cout << "Id item : " << this->idItem << endl;
     cout << "Nom item : " << this->nomItem << endl;
+<<<<<<< HEAD
     cout << "Regen Mana : " << this->regenMana << endl;
     cout << "Regen Vie : " << this->regenVie << endl;
+=======
+    cout << "Regen mana du consommable : " << this->regenMana << endl;
+    cout << "Regen vie du consommable : " << this->regenVie << endl;
+>>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
 }

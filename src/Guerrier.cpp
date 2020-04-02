@@ -46,6 +46,10 @@ void Guerrier::affichageEntite(){
     cout << "Attaque : " << this->attaque << endl;
     cout << "Niveau : " << this->niveau << endl;
     cout << "Mana : " << this->mana << endl;
+<<<<<<< HEAD
+=======
+    cout << "Slots : " << this->slots << endl;
+>>>>>>> 66bdc9335605420ca4ae9816da616aeec3817aaf
     cout << "Experience : " << this->experience << endl;
     cout << "Resistance : " << this->resistance << endl;
     cout << "Initiative : " << this->initiative << endl;
