@@ -28,68 +28,17 @@ int main()
 {
     Jeu* monJeu = new Jeu();
 
-    vector<Item*> item = monJeu->getTableauItems();
-    item[0]->affichageItem();
-    item[1]->affichageItem();
-    //===========================================================================================
-    //===========================================================================================
-    //===========================================================================================
-    //===========================================================================================
+    //Pour récupérer tous les items du jeu.
+    vector<Item*> lesItems = monJeu->getTableauItems();
+    //Fonction d'affichage, c'est juste pour voir que ça fonctionne.
+    lesItems[0]->affichageItem();
+    lesItems[1]->affichageItem();
 
-// °°°°°°°°°°°°°°°°°°°°°°°°°° Instantiation des joueurs / mobs / boss °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+    //Pour récupérer toutes les entités du jeu.
+    vector<Entite*> lesEntites = monJeu->getTableauEntites();
+    //Fonction d'affichage, c'est juste pour voir que ça fonctionne.
+    lesEntites[0]->affichageEntite();
 
-
-
-    int nombreClasse=3;
-    int nombreMob=3;
-    int nombreBoss=3;
-    vector<Joueur*> tableauJoueur(nombreClasse);
-    vector<Monstre*> tableauMonstre(nombreMob);
-    vector<Boss*> tableauBoss(nombreBoss);
-
-
-    vector<Entite*> tableauEntites;
-
-    //Création des Entites.
-    //C'est la transformation du code d'Andy.
-    for (int i = 0; i<3; i++){
-        Barde* barde = new Barde();
-        Guerrier* guerrier = new Guerrier();
-        Mage* mage = new Mage();
-        Elementaire* elementaire = new Elementaire();
-        Loup* loup = new Loup();
-        Zombie* zombie = new Zombie();
-        Cerbere* cerbere = new Cerbere();
-        Griffon* griffon = new Griffon();
-        Minotaure* minotaure = new Minotaure();
-        tableauEntites.push_back(barde);
-        tableauEntites.push_back(guerrier);
-        tableauEntites.push_back(mage);
-        tableauEntites.push_back(elementaire);
-        tableauEntites.push_back(loup);
-        tableauEntites.push_back(zombie);
-        tableauEntites.push_back(cerbere);
-        tableauEntites.push_back(griffon);
-        tableauEntites.push_back(minotaure);
-    }
-
-
-/*
-    for (int i=0;i<3;i++){
-        cout << endl;
-        tableauJoueur[i]->affichageEntite();
-        cout << endl;
-        tableauMonstre[i]->affichageEntite();
-        cout << endl;
-        tableauBoss[i]->affichageEntite();
-        cout << endl;
-    }
-*/
-
-    //===========================================================================================
-    //===========================================================================================
-    //===========================================================================================
-    //===========================================================================================
 
     //Algo pour le jeu
     //int numDonjon = 0;

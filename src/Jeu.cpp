@@ -5,6 +5,7 @@
 #include "windows.h"
 
 
+
 using namespace std;
 
 Jeu::Jeu()
@@ -33,10 +34,6 @@ Jeu::Jeu()
     //Noms des cristaux.
     string nomsCristauxVie[nbNoms] = {"Petit Cristal de Vie", "Cristal de Vie", "Grand Cristal de Vie", "Enorme Cristal de Vie", "SurPuissant Cristal de Vie"};
     string nomsCristauxMana[nbNoms] = {"Petit Cristal de Mana", "Cristal de Mana", "Grand Cristal de Vie", "Enorme Cristal de Mana", "SurPuissant Cristal de Mana"};
-
-    //Vector pour les Items (Armes, Armures, Consommables et Cristaux)
-
-
 
     //Ajout de toutes les armes dans le vecteur d'items.
     for (int i = 0; i<nbNomsArmes; i++){
@@ -79,9 +76,27 @@ Jeu::Jeu()
     }
 
 
-
-
-
+    //Création des Entites (Réécriture partie d'Andy).
+    //A voir le nombre d'instantiation par la suite des monstres.
+    Barde* barde = new Barde();
+    Guerrier* guerrier = new Guerrier();
+    Mage* mage = new Mage();
+    Elementaire* elementaire = new Elementaire();
+    Loup* loup = new Loup();
+    Zombie* zombie = new Zombie();
+    Cerbere* cerbere = new Cerbere();
+    Griffon* griffon = new Griffon();
+    Minotaure* minotaure = new Minotaure();
+    //Ajout des entites dans le vecteur des entites.
+    this->tableauEntites.push_back(barde);
+    this->tableauEntites.push_back(guerrier);
+    this->tableauEntites.push_back(mage);
+    this->tableauEntites.push_back(elementaire);
+    this->tableauEntites.push_back(loup);
+    this->tableauEntites.push_back(zombie);
+    this->tableauEntites.push_back(cerbere);
+    this->tableauEntites.push_back(griffon);
+    this->tableauEntites.push_back(minotaure);
 
 
 
@@ -89,8 +104,8 @@ Jeu::Jeu()
         this->lesDonjons.push_back(new Donjon());
     }
     this->lesDonjons[0]->setNom("Tortage");
-    this->lesDonjons[1]->setNom("Prairies_du_nord");
-    this->lesDonjons[2]->setNom("Village_de_conarch");
+    this->lesDonjons[1]->setNom("Prairies du nord");
+    this->lesDonjons[2]->setNom("Village de conarch");
     this->lesDonjons[3]->setNom("Khemi");
     this->lesDonjons[4]->setNom("Tarantia");
 }
@@ -130,6 +145,10 @@ Donjon* Jeu::getDonjon(int indexDonjon){
 
 vector<Item*> Jeu::getTableauItems(){
     return this->tableauItems;
+}
+
+vector<Entite*> Jeu::getTableauEntites(){
+    return this->tableauEntites;
 }
 /* ********************************* Methodes ******************************************* */
 

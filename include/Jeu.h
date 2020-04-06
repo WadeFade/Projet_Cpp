@@ -5,6 +5,15 @@
 #include "Item.h"
 #include "Entite.h"
 #include "couleur.h"
+#include "Barde.h"
+#include "Elementaire.h"
+#include "Cerbere.h"
+#include "Griffon.h"
+#include "Guerrier.h"
+#include "Mage.h"
+#include "Loup.h"
+#include "Minotaure.h"
+#include "Zombie.h"
 
 class Jeu
 {
@@ -23,6 +32,7 @@ class Jeu
     vector<Donjon*> getLesDonjons();
     Donjon* getDonjon(int indexDonjon);
     vector<Item*> getTableauItems();
+    vector<Entite*> getTableauEntites();
     int getDifficulty();
 
 //================methode==================
@@ -32,7 +42,7 @@ class Jeu
 
     protected:
     private:
-        vector<Entite*> lesEntites;
+        vector<Entite*> tableauEntites;
         vector<Donjon*> lesDonjons;
         vector<Item*> tableauItems;
         int difficulty;
