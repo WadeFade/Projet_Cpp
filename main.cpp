@@ -34,35 +34,7 @@ int main()
 
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° Instantiation des items  °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 
-
-
-    int nbNoms = 5;
-    int nbNomsArmes = 6;
-
-    //Tous les noms des Items (Armes, Armures, Consommables)
-    //Noms des armes.
-    string nomsEpees[nbNomsArmes] = {"L'Epee de l'initie", "L'Epee Nice", "L'Epee Ta'Rad'", "L'Epee Kari", "L'Epee Toche", "L'Epee du Granduk"};
-    string nomsArcs[nbNomsArmes] = {"Arc de l'initie", "Arc a Chon", "Arc Ontanporin", "Arc Oleptik", "Arc Necrotique", "Arc Ahique"};
-    string nomsBaguettes[nbNomsArmes] = {"Baguette de l'initie", "Baguette Rikiki", "Baguette Hylique", "La Baguette des Limbes", "Baguetterelle", "Baguette Hernelle"};
-    string nomsDagues[nbNomsArmes] = {"Dagues de l'initie", "Dagues Tylo", "Dagues O'Bert", "Youyettes", "Dagues Acantes", "Dagoulinantes"};
-    string nomsBatons[nbNomsArmes] = {"Baton de l'initie", "Abraton", "Baton Lav'Heur'", "Canne Hassukre", "Baton Brelle", "Canne Harr"};
-    string nomsPelles[nbNomsArmes] = {"Pelle de l'initie", "Pelle a Thart'", "Pelle Ikan", "Pelle Hikule", "La Beche a Mel", "Beche Asse"};
-    string nomsMarteaux[nbNomsArmes] = {"Marteau de l'initie", "Marteau Outar", "Marteau Nitruhant", "Mourtheau", "Marteau R'ture", "Mjollnir"};
-
-    //Noms des armures.
-    string nomsArmures[nbNoms] = {"Armure en Cuir", "Armure en Or", "Armure en Fer", "Armure en Diamant", "Armure en Obsidienne"};
-
-    //Noms des consommables.
-    string nomsPotionsSoin[nbNoms] = {"Petite Potion de Soin", "Potion de Soin", "Grande Potion de Soin", "Gigantesque Potion de Soin", "SurPuissante Potion de Soin"};
-    string nomsPotionsMana[nbNoms] = {"Petit Elixir de Mana", "Elixir de Mana", "Grand Elixir de Mana", "Gigantesque Elixir de Mana", "SurPuissant Elixir de Mana"};
-
-    //Noms des cristaux.
-    string nomsCristauxVie[nbNoms] = {"Petit Cristal de Vie", "Cristal de Vie", "Grand Cristal de Vie", "Enorme Cristal de Vie", "SurPuissant Cristal de Vie"};
-    string nomsCristauxMana[nbNoms] = {"Petit Cristal de Mana", "Cristal de Mana", "Grand Cristal de Vie", "Enorme Cristal de Mana", "SurPuissant Cristal de Mana"};
-
-    //Vector pour les Items (Armes, Armures, Consommables et Cristaux)
-    vector<Item*> tableauItems;
-
+/*
     //Ajout de toutes les armes dans le vecteur d'items.
     for (int i = 0; i<nbNomsArmes; i++){
         Armes* epee = new Armes(i, (i*10+10), "epee", (8/(i+1)), nomsEpees[i], 50*i);
@@ -102,65 +74,6 @@ int main()
         tableauItems.push_back(cristalV);
         tableauItems.push_back(cristalM);
     }
-
-/*
-
-    for (int i = 0; i<nbNoms; i++){
-
-
-        //Instantiation des Armures et Consommables et Cristaux
-        tableauArmures[i] = new Armures();
-        tableauPotionsSoin[i] = new Consommables();
-        tableauPotionsMana[i] = new Consommables();
-        tableauCristauxVie[i] = new Cristaux();
-        tableauCristauxMana[i] = new Cristaux();
-      //  cout << endl;
-
-        //Set des noms des Armures et Consommables
-        tableauArmures[i]->setNomItem(nomsArmures[i]);
-        tableauArmures[i]->setResistance(i*5+5);
-        //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauArmures[i]->setTauxDrop(8/(i+1));
-
-        // et affichage
-     //   tableauArmures[i]->affichageItem();
-      //  cout << endl;
-
-        tableauPotionsSoin[i]->setNomItem(nomsPotionsSoin[i]);
-        tableauPotionsSoin[i]->setRegenVie(i*10+10);
-        //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauPotionsSoin[i]->setTauxDrop(8/(i+1));
-        // et affichage
-      //  tableauPotionsSoin[i]->affichageItem();
-       // cout << endl;
-
-        tableauPotionsMana[i]->setNomItem(nomsPotionsMana[i]);
-        tableauPotionsMana[i]->setRegenMana(i*10+10);
-        //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauPotionsMana[i]->setTauxDrop(8/(i+1));
-        // et affichage
-
-       // tableauPotionsMana[i]->affichageItem();
-       // cout << endl;
-
-        tableauCristauxVie[i]->setNomItem(nomsCristauxVie[i]);
-        tableauCristauxVie[i]->setVieSup(i*20+20);
-        //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauCristauxVie[i]->setTauxDrop(8/(i+1));
-        //affichage
-       // tableauCristauxVie[i]->affichageItem();
-      //  cout << endl;
-
-        tableauCristauxMana[i]->setNomItem(nomsCristauxMana[i]);
-        tableauCristauxMana[i]->setManaSup(i*20+20);
-        //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauCristauxMana[i]->setTauxDrop(8/(i+1));
-        //affichage
-       // tableauCristauxMana[i]->affichageItem();
-       //cout << endl;
-    }
-
-
 */
 
 
@@ -179,6 +92,9 @@ int main()
 
     monJeu->affichageJeu();
 */
+    vector<Item*> item = monJeu->getTableauItems();
+    item[0]->affichageItem();
+    item[1]->affichageItem();
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================

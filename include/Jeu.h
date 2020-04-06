@@ -22,7 +22,7 @@ class Jeu
     vector<Entite*> getEntites();
     vector<Donjon*> getLesDonjons();
     Donjon* getDonjon(int indexDonjon);
-    vector<Item*> getItems();
+    vector<Item*> getTableauItems();
     int getDifficulty();
 
 //================methode==================
@@ -34,7 +34,7 @@ class Jeu
     private:
         vector<Entite*> lesEntites;
         vector<Donjon*> lesDonjons;
-        vector<Item*> lesItems;
+        vector<Item*> tableauItems;
         int difficulty;
 
 };
