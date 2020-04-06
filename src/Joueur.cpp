@@ -14,6 +14,7 @@ Joueur::Joueur()
     this->experience=0;
     this->inventaire;
     this->spellz;
+    this->attaque=50;
 }
 
 Joueur::~Joueur()
@@ -83,5 +84,3 @@ void Joueur::affichageInventaire(){
         this->getInventaire(i)->affichageItem();
     }
 }
-
-

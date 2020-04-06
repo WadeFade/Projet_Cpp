@@ -24,15 +24,13 @@ class Donjon
 
 //같같같같같같같 getter 같같같같같같같
         string getNom();
-
         vector<Salle*> getSalles();
-
         Salle* getSalles(int num);
-
 
     protected:
         string nom;
         vector<Salle*> lesSalles;
+
     private:
 };
 

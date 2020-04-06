@@ -10,7 +10,7 @@ Minotaure::Minotaure()
     this->nom="Minotaure";
     this->coupCritique=25;
     this->echecCritique=10;
-    this->vie=220;
+    this->vie=50;
     this->vieMax=220;
     this->tauxRage=0;
 }

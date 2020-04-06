@@ -16,7 +16,7 @@ Entite::Entite()
     this->coupCritique=10;
     this->echecCritique=5;
     this->esquive=0;
-    this->estMort=0;
+    //this->estMort=0;
 }
 
 Entite::~Entite()
@@ -89,12 +89,12 @@ void Entite::affichageEntite(){
     cout << "EchecCritique : " << this->echecCritique << endl;
     cout << "Esquive : " << this->esquive << endl;
 }
-void Entite::cePrendUnCoup(int attaqueDansLaTronche){
+void Entite::sePrendUnCoup(int attaqueDansLaTronche){
     if ((rand()%100)>this->esquive){
         cout << "PAF " << this->nom << " prend un coup dans la tronche !" << endl;
         this->vie-=attaqueDansLaTronche-this->resistance;
         if (this->vie<=0){
-            this->estMort=1;
+//            this->estMort=1;
         }
     } else{
         cout << "Zoup " << this->nom << " esquive tel un ninja ! aucun degats subis" << endl;
@@ -119,4 +119,9 @@ int Entite::donneUnCoup(){
         cout << "ET PAFFFFF " << this->nom << " balance un sale critique !" << endl;
         return this->attaque;
     }
+}
+
+bool Entite::estMort()
+{
+    return this->vie <= 0;
 }

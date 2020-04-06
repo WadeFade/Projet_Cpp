@@ -14,7 +14,6 @@ class Joueur : public Entite
         virtual ~Joueur();
 /* *********************************** Methodes ******************************************* */
         virtual void affichageEntite();
-
         void affichageInventaire();
 
 /* *********************************** Getter ********************************************* */
