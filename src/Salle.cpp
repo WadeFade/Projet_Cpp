@@ -68,17 +68,19 @@ Monstre* Salle::getMonstre(int indexMonstre)
     return this->lesMonstresDeLaSalle[indexMonstre];
 }
 /* *********************************** Methodes ********************************************* */
+//voir les salles + leur elements + les monstres de la salle
 void Salle::affichageSalle(){
     int couleur = 0;
     //Affichage de salle
     this->setEnvironnement(rand() % 5 + 1);
     couleur = this->getEnvironnement();
     mettreEnCouleur(couleur,0);
-    cout << "|salle n'" << this->getNum() << "|" << endl;
+    cout << "|n'" << this->getNum() << "|";
     mettreEnCouleur(7,0);
-    for(unsigned int i =0;i<lesMonstresDeLaSalle.size();i++){
-        cout << this->lesMonstresDeLaSalle[i]->getNom() << endl;
-    }
+    //Pour voir les monstres de la salle
+    //for(unsigned int i =0;i<lesMonstresDeLaSalle.size();i++){
+    //    cout << this->lesMonstresDeLaSalle[i]->getNom() << endl;
+    //}
 }
 void Salle::mettreEnCouleur(int t,int f)
 {

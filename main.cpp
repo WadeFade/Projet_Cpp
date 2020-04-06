@@ -229,10 +229,10 @@ int main()
 
     Jeu* monJeu = new Jeu();
     Joueur* joueur = new Joueur();
+    monJeu->menu();
     monJeu->setJoueur(joueur);
-    //monJeu->affichageElementSalle();
-    //monJeu->afficherMonstresSalles();
     monJeu->resoudreJeu();
+
 /*
     //===========================================================================================
     //===========================================================================================

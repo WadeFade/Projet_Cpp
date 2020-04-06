@@ -41,6 +41,7 @@ class Jeu
     void resoudreDonjon(Donjon* donjon);
     void resoudreJeu();
     void deplacerJoueur(Joueur * joueur);
+    void menu();
 
     protected:
     private:
