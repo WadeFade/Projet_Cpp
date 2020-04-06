@@ -1,9 +1,14 @@
 #include "Armures.h"
 #include <iostream>
-Armures::Armures()
+Armures::Armures(int id, string nom, int res, double taux, int dura)
 {
     //ctor
-    this->resistance = 0;
+    this->idItem = id;
+    this->nomItem = nom;
+    this->resistance = res;
+    this->tauxDrop = taux;
+    this->durability = dura;
+
 }
 
 Armures::~Armures()

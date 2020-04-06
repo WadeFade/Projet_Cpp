@@ -8,6 +8,7 @@ Item::Item()
     this->idItem = 0;
     this->nomItem = "Default";
     this->tauxDrop = 0;
+    this->durability = 1;
 }
 
 Item::~Item()
@@ -28,6 +29,10 @@ void Item::setNomItem(string nomItem){
 void Item::setTauxDrop(double taux){
     this->tauxDrop = taux;
 }
+
+void Item::setDurability(int dura){
+    this->durability = dura;
+}
 //===============getter==================
 int Item::getIdItem(){
     return this->idItem;
@@ -39,6 +44,10 @@ string Item::getNomItem(){
 
 double Item::getTauxDrop(){
     return this->tauxDrop;
+}
+
+int Item::getDurability(){
+    return this->durability;
 }
 //===============méhodes=================
 void Item::affichageItem(){

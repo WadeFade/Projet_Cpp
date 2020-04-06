@@ -1,10 +1,15 @@
 #include "Cristaux.h"
 #include <iostream>
-Cristaux::Cristaux()
+Cristaux::Cristaux(int id, string nom, int vieS, int manaS, string type, double taux, int dura)
 {
     //ctor
-    this->vieSup = 0;
-    this->manaSup = 0;
+    this->idItem = id;
+    this->nomItem = nom;
+    this->vieSup = vieS;
+    this->manaSup = manaS;
+    this->typeCristal = type;
+    this->tauxDrop = taux;
+    this->durability = dura;
 }
 
 Cristaux::~Cristaux()

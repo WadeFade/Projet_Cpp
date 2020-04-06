@@ -15,15 +15,18 @@ class Item
         void setIdItem(int id);
         void setNomItem(string nom);
         void setTauxDrop(double taux);
+        void setDurability(int dura);
 //===========getter================
         int getIdItem();
         string getNomItem();
         double getTauxDrop();
+        int getDurability();
 
     protected:
         int idItem;
         string nomItem;
         double tauxDrop;
+        int durability;
 
     private:
 };

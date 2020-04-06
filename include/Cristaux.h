@@ -5,7 +5,7 @@
 class Cristaux : public Item
 {
     public:
-        Cristaux();
+        Cristaux(int id, string nom, int vieS, int manaS, string type, double taux, int dura);
         virtual ~Cristaux();
 //==========methodes=========
         virtual void affichageItem();
@@ -18,6 +18,7 @@ class Cristaux : public Item
 
     protected:
     private:
+        string typeCristal;
         int vieSup;
         int manaSup;
 };

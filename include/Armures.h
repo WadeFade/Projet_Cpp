@@ -5,7 +5,7 @@
 class Armures : public Item
 {
     public:
-        Armures();
+        Armures(int id, string nom, int res, double taux, int dura);
         virtual ~Armures();
 //==========methodes=========
         virtual void affichageItem();

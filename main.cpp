@@ -9,6 +9,7 @@
 #include "Monstre.h"
 #include "Boss.h"
 #include "Jeu.h"
+#include "Salle.h"
 #include <vector>
 
 #include "Barde.h"
@@ -39,6 +40,7 @@ int main()
     int nbNomsArmes = 6;
 
     //Tous les noms des Items (Armes, Armures, Consommables)
+    //Noms des armes.
     string nomsEpees[nbNomsArmes] = {"L'Epee de l'initie", "L'Epee Nice", "L'Epee Ta'Rad'", "L'Epee Kari", "L'Epee Toche", "L'Epee du Granduk"};
     string nomsArcs[nbNomsArmes] = {"Arc de l'initie", "Arc a Chon", "Arc Ontanporin", "Arc Oleptik", "Arc Necrotique", "Arc Ahique"};
     string nomsBaguettes[nbNomsArmes] = {"Baguette de l'initie", "Baguette Rikiki", "Baguette Hylique", "La Baguette des Limbes", "Baguetterelle", "Baguette Hernelle"};
@@ -47,117 +49,61 @@ int main()
     string nomsPelles[nbNomsArmes] = {"Pelle de l'initie", "Pelle a Thart'", "Pelle Ikan", "Pelle Hikule", "La Beche a Mel", "Beche Asse"};
     string nomsMarteaux[nbNomsArmes] = {"Marteau de l'initie", "Marteau Outar", "Marteau Nitruhant", "Mourtheau", "Marteau R'ture", "Mjollnir"};
 
+    //Noms des armures.
     string nomsArmures[nbNoms] = {"Armure en Cuir", "Armure en Or", "Armure en Fer", "Armure en Diamant", "Armure en Obsidienne"};
 
-
+    //Noms des consommables.
     string nomsPotionsSoin[nbNoms] = {"Petite Potion de Soin", "Potion de Soin", "Grande Potion de Soin", "Gigantesque Potion de Soin", "SurPuissante Potion de Soin"};
     string nomsPotionsMana[nbNoms] = {"Petit Elixir de Mana", "Elixir de Mana", "Grand Elixir de Mana", "Gigantesque Elixir de Mana", "SurPuissant Elixir de Mana"};
 
+    //Noms des cristaux.
     string nomsCristauxVie[nbNoms] = {"Petit Cristal de Vie", "Cristal de Vie", "Grand Cristal de Vie", "Enorme Cristal de Vie", "SurPuissant Cristal de Vie"};
     string nomsCristauxMana[nbNoms] = {"Petit Cristal de Mana", "Cristal de Mana", "Grand Cristal de Vie", "Enorme Cristal de Mana", "SurPuissant Cristal de Mana"};
 
-    //Vector pour les Items (Armes, Armures, Consommables)
-    vector<Armes*> tableauEpees(nbNomsArmes);
-    vector<Armes*> tableauArcs(nbNomsArmes);
-    vector<Armes*> tableauBaguettes(nbNomsArmes);
-    vector<Armes*> tableauDagues(nbNomsArmes);
-    vector<Armes*> tableauBatons(nbNomsArmes);
-    vector<Armes*> tableauPelles(nbNomsArmes);
-    vector<Armes*> tableauMarteaux(nbNomsArmes);
+    //Vector pour les Items (Armes, Armures, Consommables et Cristaux)
+    vector<Item*> tableauItems;
 
-    vector<Armures*> tableauArmures(nbNoms);
-
-
-    vector<Consommables*> tableauPotionsSoin(nbNoms);
-    vector<Consommables*> tableauPotionsMana(nbNoms);
-
-    vector<Cristaux*> tableauCristauxVie(nbNoms);
-    vector<Cristaux*> tableauCristauxMana(nbNoms);
-
+    //Ajout de toutes les armes dans le vecteur d'items.
     for (int i = 0; i<nbNomsArmes; i++){
-
-        //cout << endl;
-        //Instantiation des Armes
-        tableauEpees[i] = new Armes();
-        tableauArcs[i] = new Armes();
-        tableauBaguettes[i] = new Armes();
-        tableauDagues[i] = new Armes();
-        tableauBatons[i] = new Armes();
-        tableauPelles[i] = new Armes();
-        tableauMarteaux[i] = new Armes();
-
-        //Set des noms des Armes et de leurs dégats
-        tableauEpees[i]->setNomItem(nomsEpees[i]);
-        tableauEpees[i]->setAttaque(i*10+10);
-        //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauEpees[i]->setTauxDrop(8/(i+1));
-        tableauEpees[i]->deviensUneEpee();
-        // et affichage
-
-      //  tableauEpees[i]->affichageItem();
-      //  cout << endl;
-
-        tableauArcs[i]->setNomItem(nomsArcs[i]);
-        tableauArcs[i]->setAttaque(i*10+10);
-        //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauArcs[i]->setTauxDrop(8/(i+1));
-        tableauArcs[i]->deviensUnArc();
-        // et affichage
-
-      //  tableauArcs[i]->affichageItem();
-      //  cout << endl;
-
-        tableauBaguettes[i]->setNomItem(nomsBaguettes[i]);
-        tableauBaguettes[i]->setAttaque(i*10+10);
-        //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauBaguettes[i]->setTauxDrop(8/(i+1));
-        tableauBaguettes[i]->deviensUneBaguette();
-        // et affichage
-
-      //  tableauBaguettes[i]->affichageItem();
-       // cout << endl;
-
-        tableauDagues[i]->setNomItem(nomsDagues[i]);
-        tableauDagues[i]->setAttaque(i*10+10);
-        //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauDagues[i]->setTauxDrop(8/(i+1));
-        tableauDagues[i]->deviensUneDague();
-        // et affichage
-
-      //  tableauDagues[i]->affichageItem();
-       // cout << endl;
-
-        tableauBatons[i]->setNomItem(nomsBatons[i]);
-        tableauBatons[i]->setAttaque(i*10+10);
-        //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauBatons[i]->setTauxDrop(8/(i+1));
-        tableauBatons[i]->deviensUnBaton();
-        // et affichage
-
-     //   tableauBatons[i]->affichageItem();
-       // cout << endl;
-
-        tableauPelles[i]->setNomItem(nomsPelles[i]);
-        tableauPelles[i]->setAttaque(i*10+10);
-        //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauPelles[i]->setTauxDrop(8/(i+1));
-        tableauPelles[i]->deviensUnePelle();
-        // et affichage
-
-     //   tableauPelles[i]->affichageItem();
-       // cout << endl;
-
-        tableauMarteaux[i]->setNomItem(nomsMarteaux[i]);
-        tableauMarteaux[i]->setAttaque(i*10+10);
-        //Ne pas oublier de mettre en pourcentage sur le taux de loot sur la salle avec un multiplicateur en fonction de l'étage.
-        tableauMarteaux[i]->setTauxDrop(8/(i+1));
-        tableauMarteaux[i]->deviensUnMarteau();
-        // et affichage
-
-    //    tableauMarteaux[i]->affichageItem();
-      //  cout << endl;
-
+        Armes* epee = new Armes(i, (i*10+10), "epee", (8/(i+1)), nomsEpees[i], 50*i);
+        Armes* arc = new Armes(i, (i*10+10), "arc", (8/(i+1)), nomsArcs[i], 50*i);
+        Armes* baguette = new Armes(i, (i*10+10), "baguette", (8/(i+1)), nomsBaguettes[i], 50*i);
+        Armes* dague = new Armes(i, (i*10+10), "dague", (8/(i+1)), nomsDagues[i], 50*i);
+        Armes* baton = new Armes(i, (i*10+10), "baton", (8/(i+1)), nomsBatons[i], 50*i);
+        Armes* pelle = new Armes(i, (i*10+10), "pelle", (8/(i+1)), nomsPelles[i], 50*i);
+        Armes* marteau = new Armes(i, (i*10+10), "marteau", (8/(i+1)), nomsMarteaux[i], 50*i);
+        tableauItems.push_back(epee);
+        tableauItems.push_back(arc);
+        tableauItems.push_back(baguette);
+        tableauItems.push_back(dague);
+        tableauItems.push_back(baton);
+        tableauItems.push_back(pelle);
+        tableauItems.push_back(marteau);
     }
+
+    //Ajout de toutes les armures dans le vecteur d'items.
+    for (int i = 0; i<nbNoms; i++){
+        Armures* armure = new Armures(i, nomsArmures[i], (i*5+5), (8/(i+1)), 50*i);
+        tableauItems.push_back(armure);
+    }
+
+    //Ajout de tous les consommables dans le vecteur d'items.
+    for (int i = 0; i<nbNoms; i++){
+        Consommables* consommableV = new Consommables(i, nomsPotionsSoin[i], (i*10+10), 0, "vie", (8/(i+1)), 1);
+        Consommables* consommableM = new Consommables(i, nomsPotionsMana[i], 0, (i*10+10), "mana", (8/(i+1)), 1);
+        tableauItems.push_back(consommableV);
+        tableauItems.push_back(consommableM);
+    }
+
+    //Ajout de tous les cristaux dans le vecteur d'items.
+    for (int i = 0; i<nbNoms; i++){
+        Cristaux* cristalV = new Cristaux(i, nomsCristauxVie[i], (i*20+20), 0, "vie", (8/(i+1)), 1);
+        Cristaux* cristalM = new Cristaux(i, nomsCristauxMana[i], 0, (i*20+20), "mana", (8/(i+1)), 1);
+        tableauItems.push_back(cristalV);
+        tableauItems.push_back(cristalM);
+    }
+
+/*
 
     for (int i = 0; i<nbNoms; i++){
 
@@ -215,7 +161,7 @@ int main()
     }
 
 
-
+*/
 
 
     //===========================================================================================
@@ -226,13 +172,13 @@ int main()
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° Instantiation du donjon °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 
     Jeu* monJeu = new Jeu();
-
+/*
     for (int i=0;i<5;i++){
         monJeu->getDonjon(i)->affichageDonjon();
     }
 
     monJeu->affichageJeu();
-
+*/
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
@@ -261,7 +207,7 @@ int main()
     tableauBoss[0]=new Cerbere();
     tableauBoss[1]=new Griffon();
     tableauBoss[2]=new Minotaure();
-
+/*
     for (int i=0;i<3;i++){
         cout << endl;
         tableauJoueur[i]->affichageEntite();
@@ -271,27 +217,61 @@ int main()
         tableauBoss[i]->affichageEntite();
         cout << endl;
     }
+*/
+
+    //===========================================================================================
+    //===========================================================================================
+    //===========================================================================================
+    //===========================================================================================
+
+    //Algo pour le jeu
+    int numDonjon = 0;
+    int numSalle = 0;
+    // c'est dégueu il aurait fallu faire 1classe par type d'arme.. et tout réunir sur un seul et même tableau.
+ //   monJeu->getDonjon(numDonjon)->getSalles(numSalle)->lootSalle(numDonjon, numSalle, tableauEpees, tableauArcs, tableauBaguettes, tableauDagues, tableauBatons, tableauPelles, tableauMarteaux, tableauArmures, tableauPotionsSoin, tableauPotionsMana, tableauCristauxVie, tableauCristauxMana);
+/*
+    for (int x = 0; x<3; x++){
+
+    if ((tableauJoueur[x]->getNom()) == "Barde"){
+        tableauJoueur[x]->setInventaire(tableauBatons[0]);
+        tableauJoueur[x]->setInventaire(tableauArmures[0]);
+        tableauJoueur[x]->setInventaire(tableauPotionsSoin[0]);
+        tableauJoueur[x]->setInventaire(tableauPotionsMana[0]);
+        tableauJoueur[x]->setInventaire(tableauCristauxVie[0]);
+        tableauJoueur[x]->setInventaire(tableauCristauxMana[0]);
+
+    } else if ((tableauJoueur[x]->getNom()) == "Guerrier"){
+        tableauJoueur[x]->setInventaire(tableauEpees[0]);
+        tableauJoueur[x]->setInventaire(tableauArmures[0]);
+        tableauJoueur[x]->setInventaire(tableauPotionsSoin[0]);
+        tableauJoueur[x]->setInventaire(tableauPotionsMana[0]);
+        tableauJoueur[x]->setInventaire(tableauCristauxVie[0]);
+        tableauJoueur[x]->setInventaire(tableauCristauxMana[0]);
+
+    } else if ((tableauJoueur[x]->getNom()) == "Mage"){
+        tableauJoueur[x]->setInventaire(tableauBaguettes[0]);
+        tableauJoueur[x]->setInventaire(tableauArmures[0]);
+        tableauJoueur[x]->setInventaire(tableauPotionsSoin[0]);
+        tableauJoueur[x]->setInventaire(tableauPotionsMana[0]);
+        tableauJoueur[x]->setInventaire(tableauCristauxVie[0]);
+        tableauJoueur[x]->setInventaire(tableauCristauxMana[0]);
+    }
+
+    tableauJoueur[x]->affichageEntite();
+    cout << endl;
+}
+*/
+
+
+
+
 
 
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
-    // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° Instantiation de l'inventaire  °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
-    tableauJoueur[0]->setInventaire(tableauEpees[0]);
-    tableauJoueur[0]->setInventaire(tableauArmures[0]);
-    tableauJoueur[0]->setInventaire(tableauPotionsSoin[0]);
-    tableauJoueur[0]->setInventaire(tableauPotionsMana[0]);
-    tableauJoueur[0]->setInventaire(tableauCristauxVie[0]);
-    tableauJoueur[0]->setInventaire(tableauCristauxMana[0]);
-    tableauJoueur[0]->affichageInventaire();
-
-
-
-    //===========================================================================================
-    //===========================================================================================
-    //===========================================================================================
-    //===========================================================================================
+    /*
     for (int i = 0; i<nbNomsArmes; i++){
         //Destructions des instances d'Armes
         delete tableauEpees[i];
@@ -316,6 +296,7 @@ int main()
         delete tableauMonstre[i];
         delete tableauBoss[i];
     }
+    */
     delete monJeu;
         return 0;
 
