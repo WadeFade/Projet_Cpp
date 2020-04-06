@@ -308,13 +308,31 @@ int main()
     getchar();
     fflush(stdin);
     cout << "Veuillez choisir votre classe : \n 1- Guerrier\n 2- Mage \n 3- Barde" << endl;
-    int saisie=0;
+    string saisie="0";
     cin>>saisie;
-    while(saisie!=1&&saisie!=2&&saisie!=3){
+    while(saisie!="1"&&saisie!="2"&&saisie!="3"){
         cout<<"Erreur :"<<endl;
         cout << "Veuillez choisir votre classe : \n 1- Guerrier\n 2- Mage \n 3- Barde" << endl;
         cin>>saisie;
     }
+    if(saisie=="1"){
+        //creation barde
+        cout<<"Guerrier choisis"<<endl;
+        tableauJoueur[0]=new Guerrier();
+    }
+    if (saisie=="2"){
+        //creation barde
+        cout<<"Mage choisis"<<endl;
+        tableauJoueur[0]=new Mage();
+    }
+    if (saisie=="3"){
+        //creation barde
+        cout<<"Barde choisis"<<endl;
+        tableauJoueur[0]=new Barde();
+    }
+
+    // Test de l'affichage des spells
+    tableauJoueur[0]->affichageSpellz();
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================

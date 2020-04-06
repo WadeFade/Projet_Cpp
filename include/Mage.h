@@ -10,21 +10,23 @@ class Mage : public Joueur
         Mage();
         virtual ~Mage();
 /* *********************************** Methodes ******************************************* */
+/*
         void spellBuffAttaque();
         void spellBuffVie();
         void spellBuffInitiative();
         void spellBuffResistance();
         void spellBuffCoupCritique();
         void spellBuffEchecCritique();
+*/
         virtual void affichageEntite();
 /* *********************************** Getter ********************************************* */
-        int getCanalisationSpell();
+        //int getCanalisationSpell();
 /* *********************************** Setter ********************************************* */
-        void setCanalisationSpell(int canalisationSpell);
+        //void setCanalisationSpell(int canalisationSpell);
     protected:
 
     private:
-        int canalisationSpell;
+        //int canalisationSpell;
 };
 
 #endif // MAGE_H

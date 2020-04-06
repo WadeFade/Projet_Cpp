@@ -16,8 +16,6 @@ Joueur::Joueur()
     this->niveau=1;
     this->mana=0;
     this->experience=0;
-    this->inventaire;
-    this->spellz;
     //new
     this->manaMax=100;
     this->vieMax=100;
@@ -94,13 +92,20 @@ void Joueur::affichageEntite(){
 
 void Joueur::affichageInventaire(){
     cout << "Inventaire : " << endl;
-    for (int i=0; i<(this->inventaire.size()); i++){
+    for (unsigned int i=0; i<(this->inventaire.size()); i++){
         this->getInventaire(i)->affichageItem();
+    }
+}
+// new
+void Joueur::affichageSpellz(){
+    cout << "Spellz dispo : " << endl;
+    for (unsigned int i=0; i<(this->spellz.size()); i++){
+        this->getSpellz(i)->affichageSpell();
     }
 }
 // fonctionnel
 void Joueur::manaRegen(int manaRegen){
-        //on bloque la regen mana au mana max
+    //on bloque la regen mana au mana max
     if (this->mana+manaRegen>=this->manaMax){
         this->mana=this->manaMax;
     }else {
@@ -108,14 +113,14 @@ void Joueur::manaRegen(int manaRegen){
     }
 }
 void Joueur::manaSupp(int manaSupp){
-        //on ajoute de la mana max
-        this->manaMax+=manaSupp;
-        this->mana=this->manaMax;
+    //on ajoute de la mana max
+    this->manaMax+=manaSupp;
+    this->mana=this->manaMax;
 }
 void Joueur::vieSupp(int vieSupp){
-        //on ajoute de la mana max
-        this->vieMax+=vieSupp;
-        this->vie=this->getVieMax();
+    //on ajoute de la mana max
+    this->vieMax+=vieSupp;
+    this->vie=this->getVieMax();
 }
 // new
 void Joueur::utiliserUnConsommable(int emplacementDansInventaire){
@@ -169,3 +174,45 @@ void Joueur::utilisationItem(int emplacementDansInventaire){
             break;
         }
 }
+//retourne une valeur de degat infligé
+int Joueur::utilisationSpell(int emplacementSpell){
+    Spell* monSpell=this->spellz[emplacementSpell];
+    if(monSpell->getBuffAttaque()>0){
+        this->attaque+=monSpell->getBuffAttaque();
+    }
+    if (monSpell->getBuffCoupCritique()>0){
+        this->coupCritique+=monSpell->getBuffCoupCritique();
+    }
+    if (monSpell->getBuffEchecCritique()>0){
+        this->echecCritique+=monSpell->getBuffEchecCritique();
+    }
+    if (monSpell->getBuffInitiative()>0){
+        this->initiative+=monSpell->getBuffInitiative();
+    }
+    if (monSpell->getBuffResistance()>0){
+        this->resistance+=monSpell->getBuffResistance();
+    }
+    if (monSpell->getBuffVie()>0){
+        this->vie+=monSpell->getBuffVie();
+    }
+    if (monSpell->getManaCost()){
+        this->mana-=monSpell->getManaCost();
+    }
+    if (monSpell->getDegat()>0){
+        //todo trouver un moyen de récupéré l'élément du mob en face pour appliqué un multiplicateur au dégat en cours
+        int degatInfliger=monSpell->getDegat();
+        if (monSpell->getElement()=="Katon"){
+
+        } else if (monSpell->getElement()=="Suiton"){
+
+        } else if (monSpell->getElement()=="Futon"){
+
+        } else if (monSpell->getElement()=="Doton"){
+
+        } else if (monSpell->getElement()=="Raiton"){
+
+        }
+        return degatInfliger;
+    }
+}
+

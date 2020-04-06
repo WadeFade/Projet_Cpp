@@ -21,6 +21,9 @@ class Joueur : public Entite
         void manaSupp(int manaSupp);
         void vieSupp(int manaSupp);
         void utilisationItem(int emplacementDansInventaire);
+        //retourne une valeur de degat infligé
+        int utilisationSpell(int emplacementSpell);
+        void affichageSpellz();
 /* *********************************** Getter ********************************************* */
         int getNombreSlots();
         int getNombreSpellAppris();
