@@ -18,6 +18,8 @@ class Armes : public Item
         void deviensUnBaton();
         void deviensUnePelle();
         void deviensUnMarteau();
+        //new
+        virtual int type();
 //==========setter===========
         void setAttaque(int modifAttaque);
         void setTypeArme(string typeArme);

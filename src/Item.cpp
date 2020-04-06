@@ -8,6 +8,8 @@ Item::Item()
     this->idItem = 0;
     this->nomItem = "Default";
     this->tauxDrop = 0;
+    //new
+    this->durability = 1;
 }
 
 Item::~Item()
@@ -28,6 +30,10 @@ void Item::setNomItem(string nomItem){
 void Item::setTauxDrop(double taux){
     this->tauxDrop = taux;
 }
+//new
+void Item::setDurability(int durability){
+    this->durability=durability;
+}
 //===============getter==================
 int Item::getIdItem(){
     return this->idItem;
@@ -40,8 +46,22 @@ string Item::getNomItem(){
 double Item::getTauxDrop(){
     return this->tauxDrop;
 }
+// new
+int Item::getDurability(){
+    return this->durability;
+}
 //===============méhodes=================
 void Item::affichageItem(){
     cout << "Id item : " << this->idItem << endl;
     cout << "Nom item : " << this->nomItem << endl;
+}
+int Item::type(){
+    return 0;
+}
+// test pa bo
+int Item::getRegenVie(){
+    return 0;
+}
+int Item::getRegenMana(){
+    return 0;
 }

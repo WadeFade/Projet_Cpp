@@ -21,6 +21,10 @@
 #include "Griffon.h"
 #include "Minotaure.h"
 
+//new
+#include <stdlib.h>
+#include <cstdio>
+
 using namespace std;
 
 int main()
@@ -286,8 +290,31 @@ int main()
     tableauJoueur[0]->setInventaire(tableauCristauxMana[0]);
     tableauJoueur[0]->affichageInventaire();
 
-
-
+    //===========================================================================================
+    //===========================================================================================
+    //===========================================================================================
+    //===========================================================================================
+    // 같같같같같같같같같같같같같같같� Choix - creation du joueur  같같같같같같같같같같같같같같같같같같같�
+    system("CLS");
+    cout << "\t\t\tJEUX ROGUE HEY'PSI" << endl;
+    cout << "\n\
+\t\t\t      _,     ,_\n"
+"\t\t\t    .'/  ,_   \\'.\n"
+"\t\t\t   |  \\__( >__/  |\n"
+"\t\t\t   \\             /\n"
+"\t\t\t    '-..__ __..-'\n"
+"\t\t\t         /_\\ "<< endl;
+    cout << "\t\t\t      Bienvenue ! \n\t   veuillez appuyez sur un touche pour commencer ! " << endl;
+    getchar();
+    fflush(stdin);
+    cout << "Veuillez choisir votre classe : \n 1- Guerrier\n 2- Mage \n 3- Barde" << endl;
+    int saisie=0;
+    cin>>saisie;
+    while(saisie!=1&&saisie!=2&&saisie!=3){
+        cout<<"Erreur :"<<endl;
+        cout << "Veuillez choisir votre classe : \n 1- Guerrier\n 2- Mage \n 3- Barde" << endl;
+        cin>>saisie;
+    }
     //===========================================================================================
     //===========================================================================================
     //===========================================================================================
