@@ -30,21 +30,28 @@ int main()
 
     //Pour récupérer tous les items du jeu.
     vector<Item*> lesItems = monJeu->getTableauItems();
+
     //Fonction d'affichage, c'est juste pour voir que ça fonctionne.
     lesItems[0]->affichageItem();
     lesItems[1]->affichageItem();
 
-    //Pour récupérer toutes les entités du jeu.
+    //Pour récupérer toutes les entités du Jeu.
     vector<Entite*> lesEntites = monJeu->getTableauEntites();
     //Fonction d'affichage, c'est juste pour voir que ça fonctionne.
     lesEntites[0]->affichageEntite();
+    cout << endl;
 
+    //Pour récupérer tous les donjons du Jeu.
+    vector<Donjon*> lesDonjons = monJeu->getLesDonjons();
+    //Affichage, c'est juste pour voir que ça fonctionne.
+    cout << lesDonjons[0]->getNom() << endl;
+    cout << lesDonjons[1]->getNom() << endl;
 
     //Algo pour le jeu
-    //int numDonjon = 0;
-    //int numSalle = 0;
-    // c'est dégueu il aurait fallu faire 1classe par type d'arme.. et tout réunir sur un seul et même tableau.
- //   monJeu->getDonjon(numDonjon)->getSalles(numSalle)->lootSalle(numDonjon, numSalle, tableauEpees, tableauArcs, tableauBaguettes, tableauDagues, tableauBatons, tableauPelles, tableauMarteaux, tableauArmures, tableauPotionsSoin, tableauPotionsMana, tableauCristauxVie, tableauCristauxMana);
+    int numDonjon = 0;
+    int numSalle = 0;
+    //c'est dégueu il aurait fallu faire 1classe par type d'arme.. et tout réunir sur un seul et même tableau.
+    //monJeu->getDonjon(numDonjon)->getSalles(numSalle)->lootSalle(numDonjon, numSalle, tableauEpees, tableauArcs, tableauBaguettes, tableauDagues, tableauBatons, tableauPelles, tableauMarteaux, tableauArmures, tableauPotionsSoin, tableauPotionsMana, tableauCristauxVie, tableauCristauxMana);
 /*
     for (int x = 0; x<3; x++){
 

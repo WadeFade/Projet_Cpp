@@ -134,9 +134,6 @@ int Jeu::getDifficulty()
 
 vector<Donjon*> Jeu::getLesDonjons()
 {
-    for(unsigned int i=0; i<lesDonjons.size();i++){
-        cout << this->lesDonjons[i]->getNom() << endl;
-    }
     return this->lesDonjons;
 }
 Donjon* Jeu::getDonjon(int indexDonjon){
