@@ -41,6 +41,7 @@ void Consommables::affichageItem(){
 
     cout << "Regen Mana : " << this->regenMana << endl;
     cout << "Regen Vie : " << this->regenVie << endl;
-
-
+}
+int Consommables::type(){
+    return 3;
 }

@@ -39,3 +39,6 @@ void Armes::affichageItem(){
     cout << "Type item : " << this->typeArme << endl;
     cout << "Attaque : " << this->attaque << endl;
 }
+int Armes::type(){
+    return 1;
+}

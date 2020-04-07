@@ -9,6 +9,8 @@ class Consommables : public Item
         virtual ~Consommables();
 //==========methodes=========
         virtual void affichageItem();
+        // new
+        virtual int type();
 //=========setter==========
         void setRegenVie(int modifRegenVie);
         void setRegenMana(int modifRegenMana);

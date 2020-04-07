@@ -41,3 +41,6 @@ void Cristaux::affichageItem(){
     cout << "Cristaux Mana Sup : " << this->manaSup << endl;
     cout << "Cristaux Vie Sup : " << this->vieSup << endl;
 }
+int Cristaux::type(){
+    return 4;
+}

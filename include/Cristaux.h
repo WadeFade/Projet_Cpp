@@ -9,6 +9,8 @@ class Cristaux : public Item
         virtual ~Cristaux();
 //==========methodes=========
         virtual void affichageItem();
+        //new
+        virtual int type();
 //=========setter==========
         void setVieSup(int modifVieSup);
         void setManaSup(int modifManaSup);

@@ -172,4 +172,6 @@ void Jeu::mettreEnCouleur(int t,int f)
     HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(H,f*16+t);
 }
+void Jeu::creationJoueur(){
 
+}

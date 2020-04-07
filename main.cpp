@@ -22,6 +22,10 @@
 #include "Griffon.h"
 #include "Minotaure.h"
 
+//new
+#include <stdlib.h>
+#include <cstdio>
+
 using namespace std;
 
 int main()
@@ -62,14 +66,10 @@ int main()
 
     } else if ((tableauJoueur[x]->getNom()) == "Guerrier"){
 
-
     } else if ((tableauJoueur[x]->getNom()) == "Mage"){
 
     }
 
-    tableauJoueur[x]->affichageEntite();
-    cout << endl;
-}
     delete monJeu;
         return 0;
 

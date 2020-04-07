@@ -1,6 +1,7 @@
 #ifndef ITEM_H
 #define ITEM_H
 #include <string>
+
 using namespace std;
 
 
@@ -11,11 +12,17 @@ class Item
         virtual ~Item();
 //==========methodes=========
         virtual void affichageItem();
+        // new
+        virtual int type();
+        // test pa bo
+        virtual int getRegenVie();
+        virtual int getRegenMana();
 //============setter===============
         void setIdItem(int id);
         void setNomItem(string nom);
         void setTauxDrop(double taux);
-        void setDurability(int dura);
+        void setDurability(int durability);
+
 //===========getter================
         int getIdItem();
         string getNomItem();
@@ -27,7 +34,6 @@ class Item
         string nomItem;
         double tauxDrop;
         int durability;
-
     private:
 };
 

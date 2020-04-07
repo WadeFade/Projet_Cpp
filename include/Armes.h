@@ -10,17 +10,15 @@ class Armes : public Item
         virtual ~Armes();
 //==========methodes=========
         virtual void affichageItem();
+        //new
+        virtual int type();
 //==========setter===========
         void setAttaque(int modifAttaque);
         void setTypeArme(string typeArme);
 //===========getter==========
         int getAttaque();
         string getTypeArme();
-
-
     protected:
-
-
     private:
         int attaque;
         string typeArme;

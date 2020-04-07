@@ -30,9 +30,10 @@ void Item::setTauxDrop(double taux){
     this->tauxDrop = taux;
 }
 
-void Item::setDurability(int dura){
-    this->durability = dura;
+void Item::setDurability(int durability){
+    this->durability=durability;
 }
+
 //===============getter==================
 int Item::getIdItem(){
     return this->idItem;
@@ -45,7 +46,6 @@ string Item::getNomItem(){
 double Item::getTauxDrop(){
     return this->tauxDrop;
 }
-
 int Item::getDurability(){
     return this->durability;
 }
@@ -53,4 +53,14 @@ int Item::getDurability(){
 void Item::affichageItem(){
     cout << "Id item : " << this->idItem << endl;
     cout << "Nom item : " << this->nomItem << endl;
+}
+int Item::type(){
+    return 0;
+}
+// test pa bo
+int Item::getRegenVie(){
+    return 0;
+}
+int Item::getRegenMana(){
+    return 0;
 }

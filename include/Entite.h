@@ -13,6 +13,8 @@ class Entite
         // virtual pour peut être plus tard déclenché, des capacités particulières
         virtual void cePrendUnCoup(int attaqueDansLaTronche);
         virtual int donneUnCoup();
+        //new
+        void healing(int valeurHeal);
 /* *********************************** Getter ********************************************* */
         string getNom();
         int getVie();

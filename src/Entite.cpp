@@ -120,3 +120,12 @@ int Entite::donneUnCoup(){
         return this->attaque;
     }
 }
+//new
+void Entite::healing(int valeurHeal){
+    //on bloque le healing au hp max
+    if (this->vie+valeurHeal>=this->vieMax){
+        this->vie=this->vieMax;
+    }else {
+        this->vie+=valeurHeal;
+    }
+}

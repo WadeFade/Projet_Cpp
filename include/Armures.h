@@ -9,6 +9,8 @@ class Armures : public Item
         virtual ~Armures();
 //==========methodes=========
         virtual void affichageItem();
+        //new
+        virtual int type();
 //=========setter==========
         void setResistance(int modifResistance);
 //=========getter==========

@@ -26,7 +26,6 @@ class Jeu
     void setLesDonjons(Donjon* donjon);
     void setLesItems(vector<Item*> item);
     void setDifficulty(int difficulty);
-
 //================getter==================
     vector<Entite*> getEntites();
     vector<Donjon*> getLesDonjons();
@@ -38,7 +37,7 @@ class Jeu
 //================methode==================
     void affichageJeu();
     void mettreEnCouleur(int t,int f);
-
+    void creationJoueur();
 
     protected:
     private:
