@@ -95,6 +95,7 @@ void Entite::sePrendUnCoup(int attaqueDansLaTronche){
         this->vie-=attaqueDansLaTronche-this->resistance;
         if (this->vie<=0){
 //            this->estMort=1;
+
         }
     } else{
         cout << "Zoup " << this->nom << " esquive tel un ninja ! aucun degats subis" << endl;

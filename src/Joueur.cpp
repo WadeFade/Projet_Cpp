@@ -54,8 +54,11 @@ void Joueur::setMana(int mana){
 void Joueur::setExperience(int experience){
     this->experience=experience;
 }
-void Joueur::setNiveau(int niveau){
-    this->niveau=niveau;
+void Joueur::ajoutExperience(int experience){
+    this->experience+=experience;
+}
+void Joueur::ajoutNiveau(int niveau){
+    this->niveau+=niveau;
 }
 void Joueur::setInventaire(Item* unItem){
     this->inventaire.push_back(unItem);
@@ -82,5 +85,14 @@ void Joueur::affichageInventaire(){
     cout << "Inventaire : " << endl;
     for (int i=0; i<(this->inventaire.size()); i++){
         this->getInventaire(i)->affichageItem();
+    }
+}
+
+bool Joueur::gagneNiveau()
+{
+    if(this->getExperience()>=100){
+            this->setVie(vieMax);
+            this->setExperience(0);
+            this->ajoutNiveau(1);
     }
 }

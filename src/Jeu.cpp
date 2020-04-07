@@ -151,6 +151,13 @@ void Jeu::baston(Monstre* monstre)
 
         }
     }
+    if(monstre->estMort()) {
+        this->joueur->ajoutExperience(10);
+        if(this->joueur->gagneNiveau()) {
+                cout << "Vous gagnez 1 niveau " << ". Vous avez ete soigne."  << endl;
+        }
+        cout << "Vous gagnez 10xp, vous etes niveau " << joueur->getNiveau()  << endl;
+    }
 }
 
 //methode du menu

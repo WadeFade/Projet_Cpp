@@ -15,7 +15,7 @@ class Joueur : public Entite
 /* *********************************** Methodes ******************************************* */
         virtual void affichageEntite();
         void affichageInventaire();
-
+        bool gagneNiveau();
 /* *********************************** Getter ********************************************* */
         int getNombreSlots();
         int getNombreSpellAppris();
@@ -25,9 +25,10 @@ class Joueur : public Entite
         Item* getInventaire(int positionDansInventaire);
         Spell* getSpellz(int positionDansSpellz);
 /* *********************************** Setter ********************************************* */
-        void setNiveau(int niveau);
+        void ajoutNiveau(int niveau);
         void setMana(int mana);
         void setExperience(int experience);
+        void ajoutExperience(int experience);
         void setInventaire(Item* inventaire);
         void setSpellz(Spell* spell);
 
