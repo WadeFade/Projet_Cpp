@@ -158,6 +158,7 @@ void Joueur::utilisationItem(int emplacementDansInventaire){
             if (consommables->getRegenMana()>0){
                 this->manaRegen(consommables->getRegenMana());
             }
+
             break;
         case 4:
             cristaux = (Cristaux*)this->getInventaire(emplacementDansInventaire);
