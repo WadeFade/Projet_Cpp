@@ -70,43 +70,6 @@ int main()
     tableauJoueur[x]->affichageEntite();
     cout << endl;
 }
-
-
-
-
-
-
-
-    //===========================================================================================
-    //===========================================================================================
-    //===========================================================================================
-    //===========================================================================================
-    /*
-    for (int i = 0; i<nbNomsArmes; i++){
-        //Destructions des instances d'Armes
-        delete tableauEpees[i];
-        delete tableauArcs[i];
-        delete tableauBaguettes[i];
-        delete tableauDagues[i];
-        delete tableauBatons[i];
-        delete tableauPelles[i];
-        delete tableauMarteaux[i];
-    }
-    for (int i = 0; i<nbNoms; i++){
-        //Instantiation des Armures et Consommables
-        delete tableauArmures[i];
-        delete tableauPotionsSoin[i];
-        delete tableauPotionsMana[i];
-
-        delete tableauCristauxVie[i];
-        delete tableauCristauxMana[i];
-    }
-    for (int i=0;i<3;i++){
-        delete tableauJoueur[i];
-        delete tableauMonstre[i];
-        delete tableauBoss[i];
-    }
-    */
     delete monJeu;
         return 0;
 
