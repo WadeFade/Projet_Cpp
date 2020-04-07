@@ -15,6 +15,7 @@ class Entite
         virtual void sePrendUnCoup(int attaqueDansLaTronche);
         virtual int donneUnCoup();
         virtual bool estMort();
+        virtual int type();
         void healing(int valeurHeal);
 /* *********************************** Getter ********************************************* */
         string getNom();

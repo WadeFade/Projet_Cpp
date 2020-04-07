@@ -150,3 +150,7 @@ bool Entite::estMort()
 {
     return (this->vie <= 0);
 }
+
+int Entite::type(){
+    return 0;
+}

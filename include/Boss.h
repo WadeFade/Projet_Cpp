@@ -13,13 +13,13 @@ class Boss : public Monstre
         virtual void affichageEntite();
         virtual void sePrendUnCoup(int attaqueDansLaTronche);
         virtual int donneUnCoup();
+        virtual int type();
         virtual bool estMort();
 /* *********************************** Getter ********************************************* */
 
 /* *********************************** Setter ********************************************* */
 
     protected:
-
     private:
 };
 

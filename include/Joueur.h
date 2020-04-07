@@ -21,7 +21,7 @@ class Joueur : public Entite
         void vieSupp(int manaSupp);
         void utilisationItem(int emplacementDansInventaire);
         //utilisationSpell -> retourne une valeur de degat infligé
-        int utilisationSpell(int emplacementSpell);
+        int utilisationSpell(int emplacementSpell,Entite* entiteQuiSePrendUnCoup);
         void affichageSpellz();
         bool gagneNiveau();
 

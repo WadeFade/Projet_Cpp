@@ -8,6 +8,10 @@
 #include "Armures.h"
 #include "Consommables.h"
 #include "Cristaux.h"
+#include "Entite.h"
+#include "Boss.h"
+#include "Monstre.h"
+#include <math.h>
 
 using namespace std;
 Joueur::Joueur()
@@ -192,7 +196,22 @@ void Joueur::utilisationItem(int emplacementDansInventaire){
 
 //retourne une valeur de degat infligé
 // passer monstrer en param pour récup element du monstre et faire les critz
-int Joueur::utilisationSpell(int emplacementSpell){
+int Joueur::utilisationSpell(int emplacementSpell, Entite* entiterQuiPrendUnCoup){
+    Boss* unBoss;
+    Monstre* unMonstre;
+    int monstreOuBoss=0;
+    switch (entiterQuiPrendUnCoup->type()){
+    case 0:
+        break;
+    case 1:
+        monstreOuBoss=1;
+        unBoss=(Boss*)entiterQuiPrendUnCoup;
+        break;
+    case 2:
+        monstreOuBoss=2;
+        unMonstre=(Monstre*)entiterQuiPrendUnCoup;
+        break;
+    }
     Spell* monSpell=this->spellz[emplacementSpell];
     if(monSpell->getBuffAttaque()>0){
         this->attaque+=monSpell->getBuffAttaque();
@@ -216,20 +235,52 @@ int Joueur::utilisationSpell(int emplacementSpell){
         this->mana-=monSpell->getManaCost();
     }
     if (monSpell->getDegat()>0){
-        //todo trouver un moyen de récupéré l'élément du mob en face pour appliqué un multiplicateur au dégat en cours
-        int degatInfliger=monSpell->getDegat();
+    // trouvé le type de l'entité, savoir si c'est un boss ou un mob
+    // trouvé l'élément du mob en question
+    int degatInfliger=monSpell->getDegat();
+    if (monstreOuBoss==1){
         if (monSpell->getElement()=="Katon"){
-
-        } else if (monSpell->getElement()=="Suiton"){
-
-        } else if (monSpell->getElement()=="Futon"){
-
-        } else if (monSpell->getElement()=="Doton"){
-
-        } else if (monSpell->getElement()=="Raiton"){
-
+                // si dégat element opposé sur lesquelles on tape, alors +50% ou -50% dmg
+                if (unMonstre->getElement()=="Futon"){
+                    degatInfliger=(int)((degatInfliger*1.5)+0.5);
+                } else if (unMonstre->getElement()=="Suiton"){
+                    degatInfliger=(int)((degatInfliger*0.5)+0.5);
+                }
+            } else if (monSpell->getElement()=="Suiton"){
+                // si dégat element opposé sur lesquelles on tape, alors +50% ou -50% dmg
+                if (unMonstre->getElement()=="Katon"){
+                    degatInfliger=(int)((degatInfliger*1.5)+0.5);
+                } else if (unMonstre->getElement()=="Doton"){
+                    degatInfliger=(int)((degatInfliger*0.5)+0.5);
+                }
+            } else if (monSpell->getElement()=="Futon"){
+                // si dégat element opposé sur lesquelles on tape, alors +50% ou -50% dmg
+                if (unMonstre->getElement()=="Raiton"){
+                    degatInfliger=(int)((degatInfliger*1.5)+0.5);
+                } else if (unMonstre->getElement()=="Katon"){
+                    degatInfliger=(int)((degatInfliger*0.5)+0.5);
+                }
+            } else if (monSpell->getElement()=="Doton"){
+                // si dégat element opposé sur lesquelles on tape, alors +50% ou -50% dmg
+                if (unMonstre->getElement()=="Suiton"){
+                    degatInfliger=(int)((degatInfliger*1.5)+0.5);
+                } else if (unMonstre->getElement()=="Raiton"){
+                    degatInfliger=(int)((degatInfliger*0.5)+0.5);
+                }
+            } else if (monSpell->getElement()=="Raiton"){
+                // si dégat element opposé sur lesquelles on tape, alors +50% ou -50% dmg
+                if (unMonstre->getElement()=="Doton"){
+                    degatInfliger=(int)((degatInfliger*1.5)+0.5);
+                } else if (unMonstre->getElement()=="Futon"){
+                    degatInfliger=(int)((degatInfliger*0.5)+0.5);
+                }
+            }
+            return degatInfliger;
+            } else if (monstreOuBoss==2){
+            // retirer 15% de degats vu que c'est un boss, sans parlé de resistance
+            // + moyen d'arrondir trouvé
+            return (int)((degatInfliger*0.85)+0.5);
         }
-        return degatInfliger;
     }
 }
 

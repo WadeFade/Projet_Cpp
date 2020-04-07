@@ -60,3 +60,7 @@ bool Boss::estMort()
 {
     return (this->vie <= 0);
 }
+
+int Boss::type(){
+    return 1;
+}
