@@ -5,17 +5,7 @@
 #include "Item.h"
 #include "Entite.h"
 #include "couleur.h"
-#include "Barde.h"
-#include "Elementaire.h"
-#include "Cerbere.h"
-#include "Griffon.h"
-#include "Guerrier.h"
-#include "Mage.h"
-#include "Loup.h"
-#include "Minotaure.h"
-#include "Zombie.h"
 #include "Monstre.h"
-#include "Joueur.h"
 
 class Jeu
 {
@@ -33,33 +23,21 @@ class Jeu
     vector<Entite*> getEntites();
     vector<Donjon*> getLesDonjons();
     Donjon* getDonjon(int indexDonjon);
-    vector<Item*> getTableauItems();
-    vector<Entite*> getTableauEntites();
+    vector<Item*> getItems();
     int getDifficulty();
 
 //================methode==================
     void affichageElementSalle();
     void mettreEnCouleur(int t,int f);
+    void afficherMonstresSalles();
 
     protected:
     private:
-        vector<Entite*> tableauEntites;
-        void afficherMonstresSalles();
-        void setJoueur(Joueur* joueur);
-        void baston(Monstre* monstre);
-        void resoudreSalle(Salle* salle);
-        void resoudreDonjon(Donjon* donjon);
-        void resoudreJeu();
-        void deplacerJoueur(Joueur * joueur);
-        void menu();
-    protected:
-    private:
-        Joueur* joueur;
         vector<Entite*> lesEntites;
         vector<Donjon*> lesDonjons;
-        vector<Item*> tableauItems;
+        vector<Item*> lesItems;
         int difficulty;
-        couleur color;
+
 };
 
 #endif // JEU_H

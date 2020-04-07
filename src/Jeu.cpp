@@ -1,9 +1,14 @@
 #include "Jeu.h"
 #include "time.h"
 #include "stdlib.h"
+#include <cstdio>
 #include "couleur.h"
 #include "windows.h"
-
+#include "Monstre.h"
+#include "couleur.h"
+#include "Barde.h"
+#include "Guerrier.h"
+#include "Mage.h"
 
 
 using namespace std;
@@ -78,9 +83,12 @@ Jeu::Jeu()
 
     //Création des Entites (Réécriture partie d'Andy).
     //A voir le nombre d'instantiation par la suite des monstres.
+    /*
+    creation du perso
     Barde* barde = new Barde();
     Guerrier* guerrier = new Guerrier();
     Mage* mage = new Mage();
+    
     Elementaire* elementaire = new Elementaire();
     Loup* loup = new Loup();
     Zombie* zombie = new Zombie();
@@ -97,12 +105,13 @@ Jeu::Jeu()
     this->tableauEntites.push_back(cerbere);
     this->tableauEntites.push_back(griffon);
     this->tableauEntites.push_back(minotaure);
-
+    */
 
 
     for(int i = 0; i < 5;i++){
         this->lesDonjons.push_back(new Donjon());
     }
+
     this->lesDonjons[0]->setNom("Tortage");
     this->lesDonjons[1]->setNom("Prairies du nord");
     this->lesDonjons[2]->setNom("Village de conarch");
@@ -115,7 +124,6 @@ Jeu::~Jeu()
     //dtor
 }
 /* *********************************** Setter ********************************************* */
-
 void Jeu::setDifficulty(int difficulty)
 {
     this->difficulty=difficulty;
@@ -136,6 +144,7 @@ vector<Donjon*> Jeu::getLesDonjons()
 {
     return this->lesDonjons;
 }
+
 Donjon* Jeu::getDonjon(int indexDonjon){
     return this->lesDonjons[indexDonjon];
 }
@@ -149,29 +158,151 @@ vector<Entite*> Jeu::getTableauEntites(){
 }
 /* ********************************* Methodes ******************************************* */
 
-void Jeu::affichageJeu()
+//voir les element de chaque salle
+void Jeu::affichageElementSalle()
 {
     int couleur;
 
     for(int i = 0;i < 5;i++){
         cout << lesDonjons[i]->getNom();
             for(int a = 0; a < 5;a++){
-            this->lesDonjons[i]->getSalles(a)->setEnvironnement(rand() % 5 + 1);
-            couleur = this->lesDonjons[i]->getSalles(a)->getEnvironnement();
-            mettreEnCouleur(couleur,0);
-            cout << "|";
-            cout << this->lesDonjons[i]->getSalles(a)->getNum();
-            cout << "|";
-            mettreEnCouleur(7,0);
+            this->lesDonjons[i]->getSalles(a)->affichageSalle();
         }
         cout << endl;
     }
 }
+
+//fin du jeu
+void Jeu::resoudreJeu()
+{
+    for(unsigned int i = 0;i < this->lesDonjons.size();i++){
+        this->resoudreDonjon(this->lesDonjons[i]);
+    }
+    cout << "Vous avez fini le jeux, BRAVO" << endl;
+}
+
+//fin du donjon
+void Jeu::resoudreDonjon(Donjon* donjon)
+{
+    cout << "Vous entrez dans le " << donjon->getNom() << endl;
+    vector<Salle*> lesSalles = donjon->getSalles();
+    for(unsigned int i = 0;i < lesSalles.size();i++){
+        this->resoudreSalle(lesSalles[i]);
+    }
+}
+
+//fin de la salle
+void Jeu::resoudreSalle(Salle* salle)
+{
+    cout << "Vous entrez dans la salle " << salle->getNum() << endl;
+    int baston = 0;// vivant, mort,fuite
+    vector<Monstre*> lesMonstres = salle->getLesMonstresDeLaSalle();
+    for(unsigned int i = 0; i < lesMonstres.size();i++) {
+        this->baston(lesMonstres[i]);
+    }
+    system("cls");
+}
+
+//Methode de combat
+void Jeu::baston(Monstre* monstre)
+{
+    cout << "Vous rencontrez le monstre " << monstre->getNom() << " qui a " << monstre->getVie() << "pv." << endl;
+    int choix =0;
+    int degat;
+    while(!monstre->estMort()) {
+        cout << "Que voulez vous faire ?\nFuir = 1, Attaquer = 2, utiliser un item = 3, utiliser un sort = 4 ?" << endl;
+        cin >> choix;
+        if(choix == 1) {
+            cout << "Vous avez fuit le combat, vous éviter ce mob" << endl;
+            break;
+        }
+        else if (choix == 2) {
+            degat = this->joueur->donneUnCoup();
+            monstre->sePrendUnCoup(degat);
+        cout << "Vous frappez le monstre " << monstre->getNom() <<" de " << degat << " degats" << ", il lui reste " << monstre->getVie() << endl;
+        }
+        else if (choix == 3) {
+
+        }
+        else if( choix == 4) {
+
+        }
+    }
+    if(monstre->estMort()) {
+        this->joueur->ajoutExperience(10);
+        if(this->joueur->gagneNiveau()) {
+                cout << "Vous gagnez 1 niveau " << ". Vous avez ete soigne."  << endl;
+        }
+        cout << "Vous gagnez 10xp, vous etes niveau " << joueur->getNiveau() << "."  << endl;
+    }
+}
+
+//methode du menu
+Joueur* Jeu::menu()
+{
+    system("CLS");
+    cout << "\t\t\tJEUX ROGUE HEY'PSI" << endl;
+    cout << "\n\
+\t\t\t      _,     ,_\n"
+"\t\t\t    .'/  ,_   \\'.\n"
+"\t\t\t   |  \\__( >__/  |\n"
+"\t\t\t   \\             /\n"
+"\t\t\t    '-..__ __..-'\n"
+"\t\t\t         /_\\ "<< endl;
+    string saisie="0";
+    cout << "\t\t\t      Bienvenue ! \n\t   veuillez appuyez sur un touche pour commencer ! " << endl;
+    getchar();
+    fflush(stdin);
+    //jeu ou tuto
+    cout << "Tapez 1 pour commencer a jouer, tapez 2 voir le tutoriel" << endl;
+    cin>>saisie;
+    while(saisie!="1"&&saisie!="2"&&saisie!="3"){
+        cout<<"Erreur :"<<endl;
+        cout << "Tapez 1 pour commencer a jouer, tapez 2 voir le tutoriel" << endl;
+        cin>>saisie;
+    }
+    if(saisie == "2") {
+        cout<<"Rogue Hey'psi est un rpg textuel, le jeu ce constitue de 5 donjons contenant chacun 5 salles. Le but etant d'arriver au bout des 5 donjons sans mourir.\nSur votre chemin vous pouvez recuperez des armes, armures ou des consomnable qui vous seront tres utile pour avancer.Au debut vous pouvez choisir une classe, chaque classe a des sort differents."<<endl;
+        system("pause");
+        system("cls");
+        saisie = 1;
+    }
+    //choix classe
+    cout << "Veuillez choisir votre classe : \n 1- Guerrier\n 2- Mage \n 3- Barde" << endl;
+    cin>>saisie;
+    while(saisie!="1"&&saisie!="2"&&saisie!="3"){
+        cout<<"Erreur :"<<endl;
+        cout << "Veuillez choisir votre classe : \n 1- Guerrier\n 2- Mage \n 3- Barde" << endl;
+        cin>>saisie;
+    }
+ Joueur* joueur;
+    if(saisie=="1"){
+        //creation barde
+        cout<<"Guerrier choisis"<<endl;
+        joueur=new Guerrier();
+    }
+    if (saisie=="2"){
+        //creation barde
+        cout<<"Mage choisis"<<endl;
+        joueur=new Mage();
+    }
+    if (saisie=="3"){
+        //creation barde
+        cout<<"Barde choisis"<<endl;
+        joueur=new Barde();
+    }
+    system("cls");
+    return joueur;
+}
+
+void Jeu::setJoueur( Joueur* joueur)
+{
+    this->joueur = joueur;
+}
+
+// TODO a déplacé
 void Jeu::mettreEnCouleur(int t,int f)
 {
     HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(H,f*16+t);
-}
-void Jeu::creationJoueur(){
-
 }

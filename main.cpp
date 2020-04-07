@@ -28,6 +28,7 @@
 
 using namespace std;
 
+
 int main()
 {
     Jeu* monJeu = new Jeu();
@@ -54,25 +55,12 @@ int main()
     //Algo pour le jeu
     int numDonjon = 0;
     int numSalle = 0;
-
-    Joueur* joueur;
-
-    for (int x = 0; x<3; x++){
-
-    if ((lesEntites[x]->getNom()) == "Barde"){
-        joueur = (Joueur*)lesEntites[x];
-        joueur->setInventaire(lesItems[2]);
-
-
-    } else if ((tableauJoueur[x]->getNom()) == "Guerrier"){
-
-    } else if ((tableauJoueur[x]->getNom()) == "Mage"){
-
-    }
-
+  
+    monJeu->setJoueur(monJeu->menu());
+    monJeu->resoudreJeu();
+    
     delete monJeu;
-        return 0;
-
+    return 0;
 }
 
 

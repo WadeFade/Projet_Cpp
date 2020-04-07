@@ -15,33 +15,34 @@ class Joueur : public Entite
 /* *********************************** Methodes ******************************************* */
         virtual void affichageEntite();
         void affichageInventaire();
-        //new
         void utiliserUnConsommable(int emplacementDansInventaire);
         void manaRegen(int regenMana);
         void manaSupp(int manaSupp);
         void vieSupp(int manaSupp);
         void utilisationItem(int emplacementDansInventaire);
-        //retourne une valeur de degat infligé
+        //utilisationSpell -> retourne une valeur de degat infligé
         int utilisationSpell(int emplacementSpell);
         void affichageSpellz();
+        bool gagneNiveau();
+
 /* *********************************** Getter ********************************************* */
         int getNombreSlots();
         int getNombreSpellAppris();
         int getNiveau();
         int getMana();
         int getExperience();
+        int getManaMax();
         Item* getInventaire(int positionDansInventaire);
         Spell* getSpellz(int positionDansSpellz);
-        //new
-        int getManaMax();
+
 /* *********************************** Setter ********************************************* */
-        void setNiveau(int niveau);
+        void ajoutNiveau(int niveau);
         void setMana(int mana);
         void setExperience(int experience);
+        void ajoutExperience(int experience);
+        void setManaMax(int manaMax);
         void setInventaire(Item* inventaire);
         void setSpellz(Spell* spell);
-        //new
-        void setManaMax(int manaMax);
     protected:
         int niveau;
         vector<Item*> inventaire;
@@ -49,7 +50,6 @@ class Joueur : public Entite
         int mana;
         int experience;
         int manaMax;
-
     private:
 };
 

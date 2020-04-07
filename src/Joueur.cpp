@@ -16,9 +16,9 @@ Joueur::Joueur()
     this->niveau=1;
     this->mana=0;
     this->experience=0;
-    //new
     this->manaMax=100;
     this->vieMax=100;
+    this->attaque=50; 
 }
 
 Joueur::~Joueur()
@@ -30,17 +30,25 @@ Joueur::~Joueur()
 int Joueur::getNombreSlots(){
     return this->inventaire.size();
 }
+
 int Joueur::getNombreSpellAppris(){
     return this->spellz.size();
 }
+
 int Joueur::getMana(){
     return this->mana;
 }
+
 int Joueur::getExperience(){
     return this->experience;
 }
+
 int Joueur::getNiveau(){
     return this->niveau;
+}
+
+int Joueur::getManaMax(){
+    return this->manaMax;
 }
 
 Item* Joueur::getInventaire(int positionDansInventaire){
@@ -50,31 +58,36 @@ Item* Joueur::getInventaire(int positionDansInventaire){
 Spell* Joueur::getSpellz(int positionDansInventaire){
     return this->spellz.at(positionDansInventaire);
 }
-//new
-int Joueur::getManaMax(){
-    return this->manaMax;
-}
 
 /* *********************************** Setter ********************************************* */
 void Joueur::setMana(int mana){
     this->mana=mana;
 }
+
 void Joueur::setExperience(int experience){
     this->experience=experience;
 }
-void Joueur::setNiveau(int niveau){
-    this->niveau=niveau;
+
+void Joueur::ajoutExperience(int experience){
+    this->experience+=experience;
 }
-void Joueur::setInventaire(Item* unItem){
-    this->inventaire.push_back(unItem);
+
+void Joueur::ajoutNiveau(int niveau){
+    this->niveau+=niveau;
 }
-void Joueur::setSpellz(Spell* unSpell){
-    this->spellz.push_back(unSpell);
-}
-//new
+
 void Joueur::setManaMax(int manaMax){
     this->manaMax=manaMax;
 }
+
+void Joueur::setInventaire(Item* unItem){
+    this->inventaire.push_back(unItem);
+}
+
+void Joueur::setSpellz(Spell* unSpell){
+    this->spellz.push_back(unSpell);
+}
+
 /* *********************************** Methodes ******************************************* */
 void Joueur::affichageEntite(){
     cout << "Joueur : " << endl;
@@ -96,14 +109,14 @@ void Joueur::affichageInventaire(){
         this->getInventaire(i)->affichageItem();
     }
 }
-// new
+
 void Joueur::affichageSpellz(){
     cout << "Spellz dispo : " << endl;
     for (unsigned int i=0; i<(this->spellz.size()); i++){
         this->getSpellz(i)->affichageSpell();
     }
 }
-// fonctionnel
+
 void Joueur::manaRegen(int manaRegen){
     //on bloque la regen mana au mana max
     if (this->mana+manaRegen>=this->manaMax){
@@ -122,15 +135,15 @@ void Joueur::vieSupp(int vieSupp){
     this->vieMax+=vieSupp;
     this->vie=this->getVieMax();
 }
-// new
+
 void Joueur::utiliserUnConsommable(int emplacementDansInventaire){
-    //this->inventaire[emplacementDansInventaire]->utilisationItem();
     this->utilisationItem(emplacementDansInventaire);
     // si le consommable n'a plus de durabilité, le supprimé a la fin
     if (this->inventaire[emplacementDansInventaire]->getDurability()<=1){
         this->inventaire.erase(inventaire.begin()+emplacementDansInventaire);
     }
 }
+
 void Joueur::utilisationItem(int emplacementDansInventaire){
     Armes* armes;
     Armures* armures;
@@ -175,7 +188,9 @@ void Joueur::utilisationItem(int emplacementDansInventaire){
             break;
         }
 }
+
 //retourne une valeur de degat infligé
+// passer monstrer en param pour récup element du monstre et faire les critz
 int Joueur::utilisationSpell(int emplacementSpell){
     Spell* monSpell=this->spellz[emplacementSpell];
     if(monSpell->getBuffAttaque()>0){
@@ -185,7 +200,7 @@ int Joueur::utilisationSpell(int emplacementSpell){
         this->coupCritique+=monSpell->getBuffCoupCritique();
     }
     if (monSpell->getBuffEchecCritique()>0){
-        this->echecCritique+=monSpell->getBuffEchecCritique();
+        this->echecCritique-=monSpell->getBuffEchecCritique();
     }
     if (monSpell->getBuffInitiative()>0){
         this->initiative+=monSpell->getBuffInitiative();
@@ -214,6 +229,15 @@ int Joueur::utilisationSpell(int emplacementSpell){
 
         }
         return degatInfliger;
+    }
+}
+
+bool Joueur::gagneNiveau()
+{
+    if(this->getExperience()>=100){
+            this->setVie(vieMax);
+            this->setExperience(0);
+            this->ajoutNiveau(1);
     }
 }
 

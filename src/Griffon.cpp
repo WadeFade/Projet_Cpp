@@ -10,8 +10,8 @@ Griffon::Griffon()
     this->nom="Griffon";
     this->coupCritique=25;
     this->echecCritique=10;
-    this->vie=200;
-    this->vieMax=200;
+    this->vie=50;
+    this->vieMax=150;
 }
 
 Griffon::~Griffon()

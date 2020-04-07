@@ -16,69 +16,87 @@ Entite::Entite()
     this->coupCritique=10;
     this->echecCritique=5;
     this->esquive=0;
-    this->estMort=0;
 }
 
 Entite::~Entite()
 {
     //dtor
 }
+
 /* *********************************** Getter ********************************************* */
 string Entite::getNom(){
     return this->nom;
 }
+
 int Entite::getVie(){
     return this->vie;
 }
+
 int Entite::getVieMax(){
     return this->vieMax;
 }
+
 int Entite::getAttaque(){
     return this->attaque;
 }
+
 int Entite::getResistance(){
     return this->resistance;
 }
+
 int Entite::getInitiative(){
     return this->initiative;
 }
+
 int Entite::getCoupCritique(){
     return this->coupCritique;
 }
+
 int Entite::getEchecCritique(){
     return this->echecCritique;
 }
+
 int Entite::getEsquive(){
     return this->esquive;
 }
+
 /* *********************************** Setter ********************************************* */
 void Entite::setNom(string nom){
     this->nom=nom;
 }
+
 void Entite::setVie(int vie){
     this->vie=vie;
 }
+
 void Entite::setVieMax(int vieMax){
     this->vieMax=vieMax;
 }
+
 void Entite::setAttaque(int attaque){
     this->attaque=attaque;
 }
+
 void Entite::setResistance(int resistance){
     this->resistance=resistance;
 }
+
 void Entite::setInitiative(int initiative){
     this->initiative=initiative;
 }
+
 void Entite::setCoupCritique(int coupCritique){
     this->coupCritique=coupCritique;
 }
+
 void Entite::setEchecCritique(int echecCritique){
     this->echecCritique=echecCritique;
 }
+
 void Entite::setEsquive(int esquive){
     this->esquive=esquive;
 }
+
 /* *********************************** Methodes ******************************************* */
 void Entite::affichageEntite(){
     cout << "Entite : " << endl;
@@ -89,18 +107,16 @@ void Entite::affichageEntite(){
     cout << "EchecCritique : " << this->echecCritique << endl;
     cout << "Esquive : " << this->esquive << endl;
 }
-void Entite::cePrendUnCoup(int attaqueDansLaTronche){
+
+void Entite::sePrendUnCoup(int attaqueDansLaTronche){
     if ((rand()%100)>this->esquive){
         cout << "PAF " << this->nom << " prend un coup dans la tronche !" << endl;
         this->vie-=attaqueDansLaTronche-this->resistance;
-        if (this->vie<=0){
-            this->estMort=1;
-        }
     } else{
         cout << "Zoup " << this->nom << " esquive tel un ninja ! aucun degats subis" << endl;
     }
-
 }
+
 int Entite::donneUnCoup(){
     // dans le cas ou ça ne crit pas
     if ((rand()%100)>this->coupCritique){
@@ -120,12 +136,17 @@ int Entite::donneUnCoup(){
         return this->attaque;
     }
 }
-//new
+
 void Entite::healing(int valeurHeal){
     //on bloque le healing au hp max
     if (this->vie+valeurHeal>=this->vieMax){
         this->vie=this->vieMax;
-    }else {
+    } else {
         this->vie+=valeurHeal;
     }
+}
+
+bool Entite::estMort()
+{
+    return (this->vie <= 0);
 }

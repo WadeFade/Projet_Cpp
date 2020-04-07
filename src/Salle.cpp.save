@@ -1,0 +1,71 @@
+#include "Salle.h"
+#include <string>
+#include <iostream>
+#include "Donjon.h"
+#include "time.h"
+#include "stdlib.h"
+#include "Monstre.h"
+
+using namespace std;
+
+Salle::Salle()
+{
+    //ctor
+    for(int i = 0; i < 3;i++){
+        this->lesMonstresDeLaSalle.push_back(new Monstre());
+    }
+    this->lesMonstresDeLaSalle[0]->setNom("Monstre 1");
+    this->lesMonstresDeLaSalle[1]->setNom("Monstre 2");
+    this->lesMonstresDeLaSalle[2]->setNom("Monstre 3");
+}
+
+Salle::~Salle()
+{
+    //dtor
+}
+
+/* *********************************** Setter ********************************************* */
+
+void Salle::setNum(int num)
+{
+    this->num = num;
+}
+void Salle::setEnvironnement(int environnement)
+{
+    this->environnement = environnement;
+}
+void Salle::setLesMonstresDeLaSalle(Monstre* monstre)
+{
+    this->lesMonstresDeLaSalle.push_back(monstre);
+}
+
+/* *********************************** Getter ********************************************* */
+
+int Salle::getNum()
+{
+    return this->num;
+}
+
+
+int Salle::getEnvironnement()
+{
+    return this->environnement;
+}
+
+vector<Monstre*> Salle::getLesMonstresDeLaSalle()
+{
+    for(int i =0;i<lesMonstresDeLaSalle.size();i++){
+        cout << this->lesMonstresDeLaSalle[i]->getNom() << endl;
+    }
+    return this->lesMonstresDeLaSalle;
+}
+
+Monstre* Salle::getMonstre(int indexMonstre)
+{
+    return this->lesMonstresDeLaSalle[indexMonstre];
+}
+/* *********************************** Methodes ********************************************* */
+void Salle::affichageSalle(){
+    //Affichage de salle
+    cout << "Salle numero : " << this->num << endl;
+}
