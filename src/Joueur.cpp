@@ -18,7 +18,7 @@ Joueur::Joueur()
     this->experience=0;
     this->manaMax=100;
     this->vieMax=100;
-    this->attaque=50; 
+    this->attaque=50;
 }
 
 Joueur::~Joueur()
@@ -151,12 +151,14 @@ void Joueur::utilisationItem(int emplacementDansInventaire){
     Cristaux* cristaux;
     switch (this->inventaire[emplacementDansInventaire]->type()){
         case 1:
+            /** ****TODO*** **/
             // fonction dans le cas ou c'est une arme
             armes = (Armes*)this->getInventaire(emplacementDansInventaire);
             cout<<"item basique il ne ce passe rien de special (armes)"<<endl;
             // rien de spécial, on ne veux pas pouvoir utilisé une arme via le menu pour utilisé les consommables
             break;
         case 2:
+            /** ****TODO*** **/
             // fonction dans le cas ou c'est une armure
             armures = (Armures*)this->getInventaire(emplacementDansInventaire);
             cout<<"item basique il ne ce passe rien de special (armure)"<<endl;
@@ -171,7 +173,6 @@ void Joueur::utilisationItem(int emplacementDansInventaire){
             if (consommables->getRegenMana()>0){
                 this->manaRegen(consommables->getRegenMana());
             }
-
             break;
         case 4:
             cristaux = (Cristaux*)this->getInventaire(emplacementDansInventaire);
