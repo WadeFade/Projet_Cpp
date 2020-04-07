@@ -50,40 +50,27 @@ int main()
     //Algo pour le jeu
     int numDonjon = 0;
     int numSalle = 0;
-    //c'est dégueu il aurait fallu faire 1classe par type d'arme.. et tout réunir sur un seul et même tableau.
-    //monJeu->getDonjon(numDonjon)->getSalles(numSalle)->lootSalle(numDonjon, numSalle, tableauEpees, tableauArcs, tableauBaguettes, tableauDagues, tableauBatons, tableauPelles, tableauMarteaux, tableauArmures, tableauPotionsSoin, tableauPotionsMana, tableauCristauxVie, tableauCristauxMana);
-/*
+
+    Joueur* joueur;
+
     for (int x = 0; x<3; x++){
 
-    if ((tableauJoueur[x]->getNom()) == "Barde"){
-        tableauJoueur[x]->setInventaire(tableauBatons[0]);
-        tableauJoueur[x]->setInventaire(tableauArmures[0]);
-        tableauJoueur[x]->setInventaire(tableauPotionsSoin[0]);
-        tableauJoueur[x]->setInventaire(tableauPotionsMana[0]);
-        tableauJoueur[x]->setInventaire(tableauCristauxVie[0]);
-        tableauJoueur[x]->setInventaire(tableauCristauxMana[0]);
+    if ((lesEntites[x]->getNom()) == "Barde"){
+        joueur = (Joueur*)lesEntites[x];
+        joueur->setInventaire(lesItems[2]);
+
 
     } else if ((tableauJoueur[x]->getNom()) == "Guerrier"){
-        tableauJoueur[x]->setInventaire(tableauEpees[0]);
-        tableauJoueur[x]->setInventaire(tableauArmures[0]);
-        tableauJoueur[x]->setInventaire(tableauPotionsSoin[0]);
-        tableauJoueur[x]->setInventaire(tableauPotionsMana[0]);
-        tableauJoueur[x]->setInventaire(tableauCristauxVie[0]);
-        tableauJoueur[x]->setInventaire(tableauCristauxMana[0]);
+
 
     } else if ((tableauJoueur[x]->getNom()) == "Mage"){
-        tableauJoueur[x]->setInventaire(tableauBaguettes[0]);
-        tableauJoueur[x]->setInventaire(tableauArmures[0]);
-        tableauJoueur[x]->setInventaire(tableauPotionsSoin[0]);
-        tableauJoueur[x]->setInventaire(tableauPotionsMana[0]);
-        tableauJoueur[x]->setInventaire(tableauCristauxVie[0]);
-        tableauJoueur[x]->setInventaire(tableauCristauxMana[0]);
+
     }
 
     tableauJoueur[x]->affichageEntite();
     cout << endl;
 }
-*/
+
 
 
 
