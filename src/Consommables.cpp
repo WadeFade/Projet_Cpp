@@ -1,10 +1,15 @@
 #include "Consommables.h"
 #include <iostream>
-Consommables::Consommables()
+Consommables::Consommables(int id, string nom, int regenV, int regenM, string type, double taux, int dura)
 {
     //ctor
-    this->regenVie = 0;
-    this->regenMana = 0;
+    this->idItem = id;
+    this->nomItem = nom;
+    this->regenVie = regenV;
+    this->regenMana = regenM;
+    this->typePotion = type;
+    this->tauxDrop = taux;
+    this->durability = dura;
 }
 
 Consommables::~Consommables()

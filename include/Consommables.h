@@ -5,7 +5,7 @@
 class Consommables : public Item
 {
     public:
-        Consommables();
+        Consommables(int id, string nom, int regenV, int regenM, string type, double taux, int dura);
         virtual ~Consommables();
 //==========methodes=========
         virtual void affichageItem();
@@ -18,6 +18,7 @@ class Consommables : public Item
 
     protected:
     private:
+        string typePotion;
         int regenVie;
         int regenMana;
 };

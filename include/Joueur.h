@@ -38,6 +38,7 @@ class Joueur : public Entite
         vector<Spell*> spellz;
         int mana;
         int experience;
+
     private:
 };
 

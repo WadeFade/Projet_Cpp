@@ -36,6 +36,7 @@ void Barde::affichageEntite(){
     cout << "Nom : " << this->nom << endl;
     cout << "Attaque : " << this->attaque << endl;
     cout << "Niveau : " << this->niveau << endl;
+    cout << "Vie : " << this->vie << endl;
     cout << "Mana : " << this->mana << endl;
     cout << "Experience : " << this->experience << endl;
     cout << "Resistance : " << this->resistance << endl;

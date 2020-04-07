@@ -3,6 +3,11 @@
 #include <string>
 #include <iostream>
 #include "Donjon.h"
+#include "Armes.h"
+#include "Item.h"
+#include "Consommables.h"
+#include "Armures.h"
+#include "Cristaux.h"
 using namespace std;
 
 class Salle
@@ -12,6 +17,7 @@ class Salle
         virtual ~Salle();
 //같같같같같같� methodes 같같같같같같�
         void affichageSalle();
+        void lootSalle(int numDonjon, int numSalle, vector<Armes*> tableauEpees, vector<Armes*> tableauArcs, vector<Armes*> tableauBaguettes, vector<Armes*> tableauDagues, vector<Armes*> tableauBatons, vector<Armes*> tableauPelles, vector<Armes*> tableauMarteaux, vector<Armures*> tableauArmures, vector<Consommables*> tableauPotionsSoin, vector<Consommables*> tableauPotionsMana, vector<Cristaux*> tableauCristauxVie, vector<Cristaux*> tableauCristauxMana);
 //같같같같같같같 setter 같같같같같같같
         void setNum(int num);
 
