@@ -9,6 +9,7 @@
 #include "Barde.h"
 #include "Guerrier.h"
 #include "Mage.h"
+#include "Entite.h"
 
 
 using namespace std;
@@ -88,7 +89,7 @@ Jeu::Jeu()
     Barde* barde = new Barde();
     Guerrier* guerrier = new Guerrier();
     Mage* mage = new Mage();
-    
+
     Elementaire* elementaire = new Elementaire();
     Loup* loup = new Loup();
     Zombie* zombie = new Zombie();
@@ -161,8 +162,6 @@ vector<Entite*> Jeu::getTableauEntites(){
 //voir les element de chaque salle
 void Jeu::affichageElementSalle()
 {
-    int couleur;
-
     for(int i = 0;i < 5;i++){
         cout << lesDonjons[i]->getNom();
             for(int a = 0; a < 5;a++){
@@ -195,7 +194,6 @@ void Jeu::resoudreDonjon(Donjon* donjon)
 void Jeu::resoudreSalle(Salle* salle)
 {
     cout << "Vous entrez dans la salle " << salle->getNum() << endl;
-    int baston = 0;// vivant, mort,fuite
     vector<Monstre*> lesMonstres = salle->getLesMonstresDeLaSalle();
     for(unsigned int i = 0; i < lesMonstres.size();i++) {
         this->baston(lesMonstres[i]);
@@ -209,7 +207,7 @@ void Jeu::baston(Monstre* monstre)
     cout << "Vous rencontrez le monstre " << monstre->getNom() << " qui a " << monstre->getVie() << "pv." << endl;
     int choix =0;
     int degat;
-    while(!monstre->estMort()) {
+    while(!monstre->estMort()){
         cout << "Que voulez vous faire ?\nFuir = 1, Attaquer = 2, utiliser un item = 3, utiliser un sort = 4 ?" << endl;
         cin >> choix;
         if(choix == 1) {
@@ -228,6 +226,7 @@ void Jeu::baston(Monstre* monstre)
 
         }
     }
+
     if(monstre->estMort()) {
         this->joueur->ajoutExperience(10);
         if(this->joueur->gagneNiveau()) {
@@ -249,12 +248,14 @@ Joueur* Jeu::menu()
 "\t\t\t   \\             /\n"
 "\t\t\t    '-..__ __..-'\n"
 "\t\t\t         /_\\ "<< endl;
-    string saisie="0";
+
     cout << "\t\t\t      Bienvenue ! \n\t   veuillez appuyez sur un touche pour commencer ! " << endl;
     getchar();
     fflush(stdin);
+
     //jeu ou tuto
     cout << "Tapez 1 pour commencer a jouer, tapez 2 voir le tutoriel" << endl;
+    string saisie="0";
     cin>>saisie;
     while(saisie!="1"&&saisie!="2"&&saisie!="3"){
         cout<<"Erreur :"<<endl;

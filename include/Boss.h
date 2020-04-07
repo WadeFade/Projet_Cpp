@@ -11,6 +11,9 @@ class Boss : public Monstre
         virtual ~Boss();
 /* *********************************** Methodes ******************************************* */
         virtual void affichageEntite();
+        virtual void sePrendUnCoup(int attaqueDansLaTronche);
+        virtual int donneUnCoup();
+        virtual bool estMort();
 /* *********************************** Getter ********************************************* */
 
 /* *********************************** Setter ********************************************* */

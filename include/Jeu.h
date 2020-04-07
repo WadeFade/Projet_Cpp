@@ -40,21 +40,19 @@ class Jeu
 //================methode==================
     void affichageElementSalle();
     void mettreEnCouleur(int t,int f);
+    Joueur* menu();
+    void afficherMonstresSalles();
+    void setJoueur(Joueur* joueur);
+    void baston(Monstre* monstre);
+    void resoudreSalle(Salle* salle);
+    void resoudreDonjon(Donjon* donjon);
+    void resoudreJeu();
+    void deplacerJoueur(Joueur * joueur);
 
     protected:
     private:
-        vector<Entite*> tableauEntites;
-        void afficherMonstresSalles();
-        void setJoueur(Joueur* joueur);
-        void baston(Monstre* monstre);
-        void resoudreSalle(Salle* salle);
-        void resoudreDonjon(Donjon* donjon);
-        void resoudreJeu();
-        void deplacerJoueur(Joueur * joueur);
-        void menu();
-    protected:
-    private:
         Joueur* joueur;
+        vector<Entite*> tableauEntites;
         vector<Entite*> lesEntites;
         vector<Donjon*> lesDonjons;
         vector<Item*> tableauItems;

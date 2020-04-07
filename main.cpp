@@ -10,8 +10,6 @@
 #include "Boss.h"
 #include "Jeu.h"
 #include "Salle.h"
-#include <vector>
-
 #include "Barde.h"
 #include "Guerrier.h"
 #include "Mage.h"
@@ -23,6 +21,7 @@
 #include "Minotaure.h"
 
 //new
+#include <vector>
 #include <stdlib.h>
 #include <cstdio>
 
@@ -40,10 +39,6 @@ int main()
     lesItems[0]->affichageItem();
     lesItems[1]->affichageItem();
 
-    //Pour récupérer toutes les entités du Jeu.
-    vector<Entite*> lesEntites = monJeu->getTableauEntites();
-    //Fonction d'affichage, c'est juste pour voir que ça fonctionne.
-    lesEntites[0]->affichageEntite();
     cout << endl;
 
     //Pour récupérer tous les donjons du Jeu.
@@ -52,13 +47,9 @@ int main()
     cout << lesDonjons[0]->getNom() << endl;
     cout << lesDonjons[1]->getNom() << endl;
 
-    //Algo pour le jeu
-    int numDonjon = 0;
-    int numSalle = 0;
-  
     monJeu->setJoueur(monJeu->menu());
     monJeu->resoudreJeu();
-    
+
     delete monJeu;
     return 0;
 }

@@ -87,7 +87,7 @@ void Salle::mettreEnCouleur(int t,int f)
     SetConsoleTextAttribute(H,f*16+t);
 }
 
-void Salle::lootSalle(int numDonjon, int numSalle, vector<Armes*> tableauEpees, vector<Armes*> tableauArcs, vector<Armes*> tableauBaguettes, vector<Armes*> tableauDagues, vector<Armes*> tableauBatons, vector<Armes*> tableauPelles, vector<Armes*> tableauMarteaux, vector<Armures*> tableauArmures, vector<Consommables*> tableauPotionsSoin, vector<Consommables*> tableauPotionsMana, vector<Cristaux*> tableauCristauxVie, vector<Cristaux*> tableauCristauxMana){
+void Salle::lootSalle(int numDonjon, int numSalle, vector<Item*> items){
     //à compléter
     //et à transformer quand tout ce qui est dans le main sera remis à la bonne place.
     if (numSalle%6+1){
