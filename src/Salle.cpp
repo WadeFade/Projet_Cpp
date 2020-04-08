@@ -7,6 +7,9 @@
 #include "Zombie.h"
 #include "Minotaure.h"
 #include "Griffon.h"
+#include "Cerbere.h"
+#include "Elementaire.h"
+#include "Loup.h"
 #include <windows.h>
 #include <string>
 #include <iostream>
@@ -16,19 +19,66 @@ using namespace std;
 Salle::Salle()
 {
     //ctor
-    this->lesMonstresDeLaSalle.push_back(new Zombie());
-    this->lesMonstresDeLaSalle.push_back(new Griffon());
-    this->lesMonstresDeLaSalle.push_back(new Minotaure());
-    this->lesMonstresDeLaSalle[0]->setNom("Zombie");
-    this->lesMonstresDeLaSalle[1]->setNom("Griffon");
-    this->lesMonstresDeLaSalle[2]->setNom("Minotaure");
+}
+
+Salle::Salle(int numeroSalle, int numeroDonjon)
+{
+    //ctor
+    Zombie* zombie=new Zombie();
+    Loup* loup=new Loup();
+    Elementaire* elementaire=new Elementaire();
+
+    numeroDonjon*=10;
+    numeroSalle+=numeroDonjon;
+    double multiplicateur;
+    multiplicateur=numeroSalle*0.1;
+
+    zombie->multiplicationStatistique(multiplicateur);
+    loup->multiplicationStatistique(multiplicateur);
+    elementaire->multiplicationStatistique(multiplicateur);
+
+    this->lesMonstresDeLaSalle.push_back(zombie);
+    this->lesMonstresDeLaSalle.push_back(loup);
+    this->lesMonstresDeLaSalle.push_back(elementaire);
+}
+
+Salle::Salle(int numeroDonjon)
+{
+    //ctor
+    Minotaure* minotaure=new Minotaure();
+    Griffon* griffon=new Griffon();
+    Cerbere* cerbere=new Cerbere();
+
+    minotaure->multiplicationStatistique((double)numeroDonjon);
+    griffon->multiplicationStatistique((double)numeroDonjon);
+    cerbere->multiplicationStatistique((double)numeroDonjon);
+
+    switch (numeroDonjon){
+    case 0:
+        this->lesMonstresDeLaSalle.push_back(minotaure);
+        break;
+    case 1:
+        this->lesMonstresDeLaSalle.push_back(griffon);
+        break;
+    case 2:
+        this->lesMonstresDeLaSalle.push_back(cerbere);
+        break;
+    case 3:
+        this->lesMonstresDeLaSalle.push_back(minotaure);
+        this->lesMonstresDeLaSalle.push_back(griffon);
+        break;
+    case 4:
+        this->lesMonstresDeLaSalle.push_back(minotaure);
+        this->lesMonstresDeLaSalle.push_back(griffon);
+        this->lesMonstresDeLaSalle.push_back(cerbere);
+        break;
+    }
 }
 
 Salle::~Salle()
 {
     //dtor
 }
-
 /* *********************************** Setter ********************************************* */
 
 void Salle::setNum(int num)
@@ -42,6 +92,11 @@ void Salle::setEnvironnement(int environnement)
 void Salle::setLesMonstresDeLaSalle(Monstre* monstre)
 {
     this->lesMonstresDeLaSalle.push_back(monstre);
+}
+
+void Salle::setLesBoss(Boss* boss)
+{
+    this->lesBoss.push_back(boss);
 }
 
 /* *********************************** Getter ********************************************* */
@@ -65,6 +120,16 @@ Monstre* Salle::getMonstre(int indexMonstre)
     return this->lesMonstresDeLaSalle[indexMonstre];
 }
 
+vector<Boss*> Salle::getLesBossDuDonjon()
+{
+    return this->lesBoss;
+}
+
+Boss* Salle::getBoss(int indexBoss)
+{
+    return this->lesBoss[indexBoss];
+}
+
 /* *********************************** Methodes ********************************************* */
 //voir les salles + leur elements + les monstres de la salle
 void Salle::affichageSalle(){
@@ -77,7 +142,7 @@ void Salle::affichageSalle(){
     mettreEnCouleur(7,0);
     //Pour voir les monstres de la salle
     //for(unsigned int i =0;i<lesMonstresDeLaSalle.size();i++){
-    //    cout << this->lesMonstresDeLaSalle[i]->getNom() << endl;
+        //cout << this->lesMonstresDeLaSalle[i]->getNom() << endl;
     //}
 }
 

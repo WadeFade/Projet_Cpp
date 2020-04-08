@@ -12,6 +12,7 @@ Cerbere::Cerbere()
     this->echecCritique=10;
     this->vie=210;
     this->vieMax=210;
+    this->initiative=100;
 }
 
 Cerbere::~Cerbere()

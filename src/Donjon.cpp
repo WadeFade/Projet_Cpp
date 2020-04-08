@@ -7,9 +7,20 @@ using namespace std;
 Donjon::Donjon()
 {
     //ctor
+}
+
+Donjon::Donjon(int numeroDonjon)
+{
+    //ctor
     for(int i = 0;i < 5;i++){
-        this->lesSalles.push_back(new Salle());
-        this->lesSalles[i]->setNum(i+1);
+            if (i==4){
+                this->lesSalles.push_back(new Salle(numeroDonjon));
+                this->lesSalles[i]->setNum(i+1);
+            }
+            else {
+                this->lesSalles.push_back(new Salle(i,numeroDonjon));
+                this->lesSalles[i]->setNum(i+1);
+            }
     }
 }
 

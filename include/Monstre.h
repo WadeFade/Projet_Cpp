@@ -14,6 +14,7 @@ class Monstre : public Entite
         virtual void sePrendUnCoup(int attaqueDansLaTronche);
         virtual int donneUnCoup();
         virtual bool estMort();
+        virtual void multiplicationStatistique(double multiplicateur);
 /* *********************************** Getter ********************************************* */
         string getElement();
 /* *********************************** Setter ********************************************* */

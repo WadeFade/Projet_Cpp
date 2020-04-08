@@ -10,7 +10,7 @@ Zombie::Zombie()
     this->vie=20;
     this->vieMax=20;
     this->resistance=5;
-    this->initiative=50;
+    this->initiative=40;
     this->tauxInfection=0;
 }
 

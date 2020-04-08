@@ -5,12 +5,12 @@
 #include "couleur.h"
 #include "windows.h"
 #include "Monstre.h"
+#include "Boss.h"
 #include "couleur.h"
 #include "Barde.h"
 #include "Guerrier.h"
 #include "Mage.h"
 #include "Entite.h"
-
 
 using namespace std;
 
@@ -109,8 +109,8 @@ Jeu::Jeu()
     */
 
 
-    for(int i = 0; i < 5;i++){
-        this->lesDonjons.push_back(new Donjon());
+for(int i = 0; i < 5;i++){
+        this->lesDonjons.push_back(new Donjon(i));
     }
 
     this->lesDonjons[0]->setNom("Tortage");
@@ -184,7 +184,7 @@ void Jeu::resoudreJeu()
 void Jeu::resoudreDonjon(Donjon* donjon)
 {
     cout << "Vous entrez dans le " << donjon->getNom() << endl;
-    vector<Salle*> lesSalles = donjon->getSalles();
+    vector<Salle*> lesSalles = donjon->getSalles() ;
     for(unsigned int i = 0;i < lesSalles.size();i++){
         this->resoudreSalle(lesSalles[i]);
     }
@@ -194,6 +194,12 @@ void Jeu::resoudreDonjon(Donjon* donjon)
 void Jeu::resoudreSalle(Salle* salle)
 {
     cout << "Vous entrez dans la salle " << salle->getNum() << endl;
+    if(salle->getNum()==5){
+        vector<Boss*> lesBoss = salle->getLesBossDuDonjon();
+        for(unsigned int i = 0;i < lesBoss.size();i++){
+            this->baston(lesBoss[i]);
+        }
+    }
     vector<Monstre*> lesMonstres = salle->getLesMonstresDeLaSalle();
     for(unsigned int i = 0; i < lesMonstres.size();i++) {
         this->baston(lesMonstres[i]);
@@ -207,17 +213,43 @@ void Jeu::baston(Monstre* monstre)
     cout << "Vous rencontrez le monstre " << monstre->getNom() << " qui a " << monstre->getVie() << "pv." << endl;
     int choix =0;
     int degat;
-    while(!monstre->estMort()){
+    int degat2;
+    while(!monstre->estMort() && !joueur->estMort()){
         cout << "Que voulez vous faire ?\nFuir = 1, Attaquer = 2, utiliser un item = 3, utiliser un sort = 4 ?" << endl;
         cin >> choix;
         if(choix == 1) {
-            cout << "Vous avez fuit le combat, vous éviter ce mob" << endl;
+            cout << "Vous avez fuit le combat, vous eviter ce mob" << endl;
             break;
         }
         else if (choix == 2) {
-            degat = this->joueur->donneUnCoup();
-            monstre->sePrendUnCoup(degat);
-        cout << "Vous frappez le monstre " << monstre->getNom() <<" de " << degat << " degats" << ", il lui reste " << monstre->getVie() << endl;
+                if(joueur->getInitiative()== monstre->getInitiative()*2 || monstre->getInitiative() == joueur->getInitiative()*2){
+                    switch (monstre->getInitiative() == joueur->getInitiative()*2){
+                    case 1:
+                    degat = this->joueur->donneUnCoup();
+                    degat2 = this->joueur->donneUnCoup();
+                    monstre->sePrendUnCoup(degat);
+                    monstre->sePrendUnCoup(degat2);
+                    cout << "Vous frappez le monstre " << monstre->getNom() <<" de " << degat << " degats et vous recommencez avec" << degat2 << ", il lui reste " << monstre->getVie() << endl;
+
+                    case 2:
+                    degat = monstre->donneUnCoup();
+                    degat2 = monstre->donneUnCoup();
+                    joueur->sePrendUnCoup(degat);
+                    joueur->sePrendUnCoup(degat2);
+                    cout << "Le monstre " << monstre->getNom() << " vous donne un coup a " << degat << "et il recommence avec " << degat2 << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                    }
+                }
+               else if(joueur->getInitiative() > monstre->getInitiative()) {
+                    degat = this->joueur->donneUnCoup();
+                    monstre->sePrendUnCoup(degat);
+                    cout << "Vous frappez le monstre " << monstre->getNom() <<" de " << degat << " degats" << ", il lui reste " << monstre->getVie() << endl;
+                }
+                else{
+                    degat = monstre->donneUnCoup();
+                    joueur->sePrendUnCoup(degat);
+                    cout << "Le monstre " << monstre->getNom() << " vous donne un coup a " << degat << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                }
+
         }
         else if (choix == 3) {
 
@@ -225,10 +257,68 @@ void Jeu::baston(Monstre* monstre)
         else if( choix == 4) {
 
         }
+        if(joueur->estMort()){
+            return;
+        }
     }
 
     if(monstre->estMort()) {
         this->joueur->ajoutExperience(10);
+        if(this->joueur->gagneNiveau()) {
+                cout << "Vous gagnez 1 niveau " << ". Vous avez ete soigne."  << endl;
+        }
+        cout << "Vous gagnez 10xp, vous etes niveau " << joueur->getNiveau() << "."  << endl;
+    }
+}
+
+void Jeu::baston(Boss* boss)
+{
+    cout << "Vous rencontrez le Boss " << boss->getNom() << " qui a " << boss->getVie() << "pv." << endl;
+    int choix =0;
+    int degat;
+    int degat2;
+    while(!boss->estMort() || !joueur->estMort()){
+        cout << "Que voulez vous faire ?\nAttaquer = 1, utiliser un item = 2, utiliser un sort = 3 ?" << endl;
+        cin >> choix;
+        if(choix ==1){
+        if(joueur->getInitiative()== boss->getInitiative()*2 || boss->getInitiative() == joueur->getInitiative()*2){
+                    switch (boss->getInitiative() == joueur->getInitiative()*2){
+                    case 1:
+                    degat = this->joueur->donneUnCoup();
+                    degat2 = this->joueur->donneUnCoup();
+                    boss->sePrendUnCoup(degat);
+                    boss->sePrendUnCoup(degat2);
+                    cout << "Vous frappez le monstre " << boss->getNom() <<" de " << degat << " degats et vous recommencez avec" << degat2 << ", il lui reste " << boss->getVie() << endl;
+
+                    case 2:
+                    degat = boss->donneUnCoup();
+                    degat2 = boss->donneUnCoup();
+                    joueur->sePrendUnCoup(degat);
+                    joueur->sePrendUnCoup(degat2);
+                    cout << "Le monstre " << boss->getNom() << " vous donne un coup a " << degat << "et il recommence avec " << degat2 << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                    }
+                }
+               else if(joueur->getInitiative() > boss->getInitiative()) {
+                    degat = this->joueur->donneUnCoup();
+                    boss->sePrendUnCoup(degat);
+                    cout << "Vous frappez le monstre " << boss->getNom() <<" de " << degat << " degats" << ", il lui reste " << boss->getVie() << endl;
+                }
+                else{
+                    degat = boss->donneUnCoup();
+                    joueur->sePrendUnCoup(degat);
+                    cout << "Le monstre " << boss->getNom() << " vous donne un coup a " << degat << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                }
+        }
+        else if (choix == 2) {
+
+        }
+        else if( choix == 3) {
+
+        }
+    }
+
+    if(boss->estMort()) {
+        this->joueur->ajoutExperience(50);
         if(this->joueur->gagneNiveau()) {
                 cout << "Vous gagnez 1 niveau " << ". Vous avez ete soigne."  << endl;
         }

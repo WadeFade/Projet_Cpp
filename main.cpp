@@ -20,7 +20,6 @@
 #include "Griffon.h"
 #include "Minotaure.h"
 
-//new
 #include <vector>
 #include <stdlib.h>
 #include <cstdio>
@@ -31,6 +30,7 @@ using namespace std;
 int main()
 {
     Jeu* monJeu = new Jeu();
+    Salle* mesSalles = new Salle();
 
     //Pour récupérer tous les items du jeu.
     vector<Item*> lesItems = monJeu->getTableauItems();
@@ -49,7 +49,6 @@ int main()
 
     monJeu->setJoueur(monJeu->menu());
     monJeu->resoudreJeu();
-
     delete monJeu;
     return 0;
 }

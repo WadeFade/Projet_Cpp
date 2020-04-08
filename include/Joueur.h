@@ -24,6 +24,11 @@ class Joueur : public Entite
         int utilisationSpell(int emplacementSpell);
         void affichageSpellz();
         bool gagneNiveau();
+        void ajoutVieMax(int vieaAjouter);
+        void ajoutManaMax(int manaaAjouter);
+        void ajoutresistance(int resistanceaAjouter);
+        void ajoutAttaque(int attaqueaAjouter);
+        void ajoutEsquive(int esquiveaAjouter);
 
 /* *********************************** Getter ********************************************* */
         int getNombreSlots();

@@ -18,7 +18,8 @@ Joueur::Joueur()
     this->experience=0;
     this->manaMax=100;
     this->vieMax=100;
-    this->attaque=50; 
+    this->attaque=50;
+    this->initiative=100;
 }
 
 Joueur::~Joueur()
@@ -66,14 +67,6 @@ void Joueur::setMana(int mana){
 
 void Joueur::setExperience(int experience){
     this->experience=experience;
-}
-
-void Joueur::ajoutExperience(int experience){
-    this->experience+=experience;
-}
-
-void Joueur::ajoutNiveau(int niveau){
-    this->niveau+=niveau;
 }
 
 void Joueur::setManaMax(int manaMax){
@@ -232,12 +225,50 @@ int Joueur::utilisationSpell(int emplacementSpell){
     }
 }
 
+void Joueur::ajoutExperience(int experience){
+    this->experience+=experience;
+}
+
+void Joueur::ajoutNiveau(int niveau){
+    this->niveau+=niveau;
+}
+
+void Joueur::ajoutVieMax(int vieaAjouter)
+{
+    this->vieMax+=vieaAjouter;
+}
+
+void Joueur::ajoutManaMax(int manaaAjouter)
+{
+    this->manaMax+=manaaAjouter;
+}
+
+void Joueur::ajoutresistance(int resistanceaAjouter)
+{
+    this->resistance=+resistanceaAjouter;
+}
+
+void Joueur::ajoutAttaque(int attaqueaAjouter)
+{
+    this->attaque+=attaqueaAjouter;
+}
+
+void Joueur::ajoutEsquive(int esquiveaAjouter)
+{
+    this->esquive+=esquiveaAjouter;
+}
+
 bool Joueur::gagneNiveau()
 {
-    if(this->getExperience()>=100){
+    if(this->getExperience() >=100){
             this->setVie(vieMax);
             this->setExperience(0);
             this->ajoutNiveau(1);
+            this->ajoutAttaque(10);
+            this->ajoutEsquive(10);
+            this->ajoutManaMax(50);
+            this->ajoutVieMax(50);
+            this->ajoutresistance(1);
     }
 }
 
