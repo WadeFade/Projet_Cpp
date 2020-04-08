@@ -12,6 +12,9 @@
 #include "Boss.h"
 #include "Monstre.h"
 #include <math.h>
+#include <stdlib.h>
+#include <cstdio>
+
 
 using namespace std;
 Joueur::Joueur()
@@ -23,6 +26,7 @@ Joueur::Joueur()
     this->manaMax=100;
     this->vieMax=100;
     this->attaque=50;
+    inventaire.resize(6, 0);
 }
 
 Joueur::~Joueur()
@@ -91,8 +95,123 @@ void Joueur::setManaMax(int manaMax){
     this->manaMax=manaMax;
 }
 
-void Joueur::setInventaire(Item* unItem){
-    this->inventaire.push_back(unItem);
+int Joueur::setInventaire(Item* unItem, int position){
+    //Pour le transtypage......
+    Armes* uneArme;
+    Armes* armeInventaire;
+    Armures* uneArmure;
+    Armures* armureInventaire;
+    Consommables* unePotionVie;
+    Consommables* potionVieInventaire;
+    Consommables* unePotionMana;
+    Consommables* potionManaInventaire;
+    Cristaux* unCristalVie;
+    Cristaux* cristalVieInventaire;
+    Cristaux* unCristalMana;
+    Cristaux* cristalManaInventaire;
+
+    int veutChanger = 0;
+
+    if (this->inventaire[position]!='\0'){
+            while (veutChanger != 1 && veutChanger != 2){
+                system("cls");
+                cout << "Voulez-vous remplacer votre ";
+
+                switch (position){
+                case 1:
+                    uneArme = (Armes*)unItem;
+
+                    //Pour pouvoir appeler la méthode getAttaque liée à la classe Armes.
+                    armeInventaire = (Armes*)this->inventaire[position];
+
+                    cout << "arme : " << this->inventaire[position]->getNomItem() << " (degats : " << armeInventaire->getAttaque() << ")";
+                    cout << " par : " << uneArme->getNomItem() << " (degats : " << uneArme->getAttaque() << ") ?" << endl;
+                    break;
+
+                case 2:
+                    uneArmure = (Armures*)unItem;
+
+                    //Pour pouvoir appeler la méthode getResistance liée à la classe Armures.
+                    armureInventaire = (Armures*)this->inventaire[position];
+
+                    cout << "armure : " << this->inventaire[position]->getNomItem() << " (resistance : " << armureInventaire->getResistance() << ")";
+                    cout << " par : " << uneArmure->getNomItem() << " (resistance : " << uneArmure->getResistance() << ") ?" << endl;
+                    break;
+
+                case 3:
+                    unePotionVie = (Consommables*)unItem;
+
+                    //Pour pouvoir appeler la méthode getRegen liée à la classe Consommables.
+                    potionVieInventaire = (Consommables*)this->inventaire[position];
+
+                    if (unePotionVie->getRegenVie() == potionVieInventaire->getRegenVie()){
+                        system("cls");
+                        potionVieInventaire->addDurability(1);
+                        cout << "Comme vous possedez deja cette Potion, vous avez gagne une utilisation supplementaire." << endl;
+                        cout << "Utilisation restante pour \"" << this->inventaire[position]->getNomItem() << "\" : " << potionVieInventaire->getDurability() << endl;
+                    }
+                    else {
+                        cout << this->inventaire[position]->getNomItem() << " regen (" << potionVieInventaire->getRegenVie() << "), utilisation restante (" << potionVieInventaire->getDurability() << ")";
+                        cout << " par : \"" << unePotionVie->getNomItem() << "\" regen (" << unePotionVie->getRegenVie() << ") ?" << endl;
+                    }
+                    break;
+
+                case 4:
+                    unePotionMana = (Consommables*)unItem;
+
+                    //Pour pouvoir appeler la méthode getRegen liée à la classe Consommables.
+                    potionManaInventaire = (Consommables*)this->inventaire[position];
+
+                    if (unePotionMana->getRegenMana() == potionManaInventaire->getRegenMana()){
+                        system("cls");
+                        potionManaInventaire->addDurability(1);
+                        cout << "Comme vous possedez deja cette Potion, vous avez gagne une utilisation supplementaire." << endl;
+                        cout << "Utilisation restante pour \"" << this->inventaire[position]->getNomItem() << "\" : " << potionManaInventaire->getDurability() << endl;
+                    }
+                    else {
+                        cout << this->inventaire[position]->getNomItem() << " regen (" << potionManaInventaire->getRegenMana() << "), utilisation restante (" << potionManaInventaire->getDurability() << ")";
+                        cout << " par : \"" << unePotionMana->getNomItem() << "\" regen (" << unePotionMana->getRegenMana() << ") ?" << endl;
+                    }
+                    break;
+
+                case 5:
+                    unCristalVie = (Cristaux*)unItem;
+
+                    //Pour pouvoir appeler la méthode liée à la classe Cristaux.
+                    cristalVieInventaire = (Cristaux*)this->inventaire[position];
+
+                    cout << this->inventaire[position]->getNomItem() << " vie supplementaire (" << cristalVieInventaire->getVieSup() << ")";
+                    cout << " par : \"" << unItem->getNomItem() << "\" vie supplementaire (" << unCristalVie->getVieSup() << ") ?" << endl;
+                    break;
+
+                case 6:
+                    unCristalMana = (Cristaux*)unItem;
+
+                    //Pour pouvoir appeler la méthode liée à la classe Cristaux.
+                    cristalManaInventaire = (Cristaux*)this->inventaire[position];
+
+                    cout << this->inventaire[position]->getNomItem() << " mana supplementaire (" << cristalManaInventaire->getManaSup() << ")";
+                    cout << " par : \"" << unItem->getNomItem() << "\" mana supplementaire (" << unCristalMana->getManaSup() << ") ?" << endl;
+                    break;
+                }//fin switch
+
+                cout << "1. Oui" << endl;
+                cout << "2. Non" << endl;
+                cout << "Votre choix (1 ou 2) : " << endl;
+                cin >> veutChanger;
+            }//fin while
+
+            if (veutChanger == 1){
+                this->inventaire[position] = unItem;
+            }
+            else {
+
+            }
+    }//fin if
+    else {
+        this->inventaire[position] = unItem;
+    }
+    return veutChanger;
 }
 
 void Joueur::setSpellz(Spell* unSpell){

@@ -57,3 +57,7 @@ void Item::affichageItem(){
 int Item::type(){
     return 0;
 }
+
+void Item::addDurability(int dura){
+    this->durability += dura;
+}

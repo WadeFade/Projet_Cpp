@@ -13,9 +13,8 @@ class Item
 //==========methodes=========
         virtual void affichageItem();
         virtual int type();
-        //virtual int getRegenVie();
-        //virtual int getRegenMana();
-
+        void addDurability(int durability);
+        
 //============setter===============
         void setIdItem(int id);
         void setNomItem(string nom);

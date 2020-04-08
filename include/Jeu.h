@@ -43,13 +43,15 @@ class Jeu
     Joueur* menu();
     void afficherMonstresSalles();
     void setJoueur(Joueur* joueur);
-    void baston(Monstre* monstre);
+    int baston(Monstre* monstre);
     void resoudreSalle(Salle* salle);
     void resoudreDonjon(Donjon* donjon);
     void resoudreJeu();
     void deplacerJoueur(Joueur * joueur);
 
     protected:
+
+
     private:
         Joueur* joueur;
         vector<Entite*> tableauEntites;
@@ -58,6 +60,7 @@ class Jeu
         vector<Item*> tableauItems;
         int difficulty;
         couleur color;
+
 };
 
 #endif // JEU_H
