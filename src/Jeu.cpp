@@ -159,7 +159,7 @@ void Jeu::resoudreJeu()
     for(unsigned int i = 0;i < this->lesDonjons.size();i++){
         this->resoudreDonjon(this->lesDonjons[i]);
     }
-    cout << "Vous avez fini le jeux, BRAVO" << endl;
+    this->ecranDeVictoireDeLaMortQuiTue();
 }
 
 //fin du donjon
@@ -175,6 +175,7 @@ void Jeu::resoudreDonjon(Donjon* donjon)
 //fin de la salle
 void Jeu::resoudreSalle(Salle* salle)
 {
+    system("CLS");
     int abandon = 0;
     int nbGen = 0;
     int choix = 0;
@@ -279,15 +280,7 @@ void Jeu::resoudreSalle(Salle* salle)
                 else if (aChange == 2){
                     cout << "Vous n'avez pas ramasse l'item !" << endl;
                 }
-                else {
-
-                }
-
             }
-            else {
-
-            }
-
         } //fin IF
         else {
             cout << "Vous n'avez malheureusement pas eu de chance ! :(" << endl;
@@ -305,22 +298,31 @@ int Jeu::baston(Monstre* monstre)
     int degat;
 
     int abandon = 0;
+    int tourDeJeu=0;
+    int tourDuMonstre=0;
+    int joueurCommenceEnPremier=0;
     // todo rajouter joueur mort
-    while(!monstre->estMort() && abandon!=1){
+    while(!monstre->estMort() && abandon!=1 && !joueur->estMort()){
+        tourDeJeu++;
     	int degat2;
-        cout << "Que voulez vous faire ?\nFuir = 1, Attaquer = 2, utiliser un item = 3, utiliser un sort = 4 ?" << endl;
-        cin>>saisie;
-        while (saisie!="1"&&saisie!="2"&&saisie!="3"&&saisie!="4"){
-            cout << "Erreur vous n'avez pas saisie l'une des options ..." << endl;
+    	if (tourDuMonstre==0){
             cout << "Que voulez vous faire ?\nFuir = 1, Attaquer = 2, utiliser un item = 3, utiliser un sort = 4 ?" << endl;
             cin>>saisie;
+            while (saisie!="1"&&saisie!="2"&&saisie!="3"&&saisie!="4"){
+                cout << "Erreur vous n'avez pas saisie l'une des options ..." << endl;
+                cout << "Que voulez vous faire ?\nFuir = 1, Attaquer = 2, utiliser un item = 3, utiliser un sort = 4 ?" << endl;
+                cin>>saisie;
+            }
+            istringstream(saisie)>>choix;
+        } else {
+            choix=2;
         }
-        istringstream(saisie)>>choix;
         if(choix == 1) {
             cout << "Vous avez fuit le combat, vous éviter ce mob" << endl;
             abandon = 1;
         }
         else if (choix == 2) {
+            if (tourDeJeu==1){
                 if(joueur->getInitiative()>= monstre->getInitiative()*2 || monstre->getInitiative() >= joueur->getInitiative()*2){
                 	int initiativeSuperieur=0;
                 	if (monstre->getInitiative() >= joueur->getInitiative()*2){
@@ -330,31 +332,77 @@ int Jeu::baston(Monstre* monstre)
                 	}
                     switch (initiativeSuperieur){
                     case 1:
+                        cout << joueur->getNom() << " Donne un premier coup " << endl;
                     	degat = this->joueur->donneUnCoup();
+                    	cout << joueur->getNom() << " Donne un second coup " << endl;
                     	degat2 = this->joueur->donneUnCoup();
                     	monstre->sePrendUnCoup(degat);
                     	monstre->sePrendUnCoup(degat2);
-                    	cout << "Vous frappez le monstre " << monstre->getNom() <<" de " << degat << " degats et vous recommencez avec" << degat2 << ", il lui reste " << monstre->getVie() << endl;
+                    	cout << "Vous frappez le monstre " << monstre->getNom() <<" de " << degat << " degats et vous recommencez avec " << degat2 << ", il lui reste " << monstre->getVie() << endl;
+                        joueurCommenceEnPremier=1;
+                        tourDuMonstre=0;
                     break;
                     case 2:
+                        cout << monstre->getNom() << " Donne un premier coup " << endl;
                     	degat = monstre->donneUnCoup();
+                    	cout << monstre->getNom() << " Donne un second coup " << endl;
                     	degat2 = monstre->donneUnCoup();
                     	joueur->sePrendUnCoup(degat);
                     	joueur->sePrendUnCoup(degat2);
                     	cout << "Le monstre " << monstre->getNom() << " vous donne un coup a " << degat << "et il recommence avec " << degat2 << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                        tourDuMonstre=1;
                     break;
                     }
                 }
                else if(joueur->getInitiative() > monstre->getInitiative()) {
+                    cout << joueur->getNom() << " Donne un coup " << endl;
                     degat = this->joueur->donneUnCoup();
                     monstre->sePrendUnCoup(degat);
                     cout << "Vous frappez le monstre " << monstre->getNom() <<" de " << degat << " degats" << ", il lui reste " << monstre->getVie() << endl;
+                    tourDuMonstre=0;
                 }
                 else{
+                    cout << monstre->getNom() << " Donne un coup " << endl;
                     degat = monstre->donneUnCoup();
                     joueur->sePrendUnCoup(degat);
                     cout << "Le monstre " << monstre->getNom() << " vous donne un coup a " << degat << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                    tourDuMonstre=1;
                 }
+            } else {
+                if (joueurCommenceEnPremier==1){
+                        if (tourDeJeu%2){
+                            // le monstre tape
+                            cout << monstre->getNom() << " Donne un coup " << endl;
+                            degat = monstre->donneUnCoup();
+                            joueur->sePrendUnCoup(degat);
+                            cout << "Le monstre " << monstre->getNom() << " vous donne un coup a " << degat << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                            tourDuMonstre=1;
+                        } else {
+                            // le joueur tape
+                            cout << joueur->getNom() << " Donne un coup " << endl;
+                            degat = this->joueur->donneUnCoup();
+                            monstre->sePrendUnCoup(degat);
+                            cout << "Vous frappez le monstre " << monstre->getNom() <<" de " << degat << " degats" << ", il lui reste " << monstre->getVie() << endl;
+                            tourDuMonstre=0;
+                        }
+                } else {
+                        if (tourDeJeu%2){
+                            // le joueur tape
+                            cout << joueur->getNom() << " Donne un coup " << endl;
+                            degat = this->joueur->donneUnCoup();
+                            monstre->sePrendUnCoup(degat);
+                            cout << "Vous frappez le monstre " << monstre->getNom() <<" de " << degat << " degats" << ", il lui reste " << monstre->getVie() << endl;
+                            tourDuMonstre=0;
+                        } else {
+                            // le monstre tape
+                            cout << monstre->getNom() << " Donne un coup " << endl;
+                            degat = monstre->donneUnCoup();
+                            joueur->sePrendUnCoup(degat);
+                            cout << "Le monstre " << monstre->getNom() << " vous donne un coup a " << degat << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                            tourDuMonstre=1;
+                    }
+                }
+            }
         }
         // utilisation item
         else if (choix == 3) {
@@ -381,24 +429,71 @@ int Jeu::baston(Monstre* monstre)
         }
         // utilisation spell
         else if( choix == 4) {
-            this->joueur->affichageSpellz();
-            // gestion de saisie + utilisation du spell en question
-            cout << "Veuillez selectionner un spell a utiliser : "<< endl;
-            cin >> saisie;
-            istringstream(saisie)>>intSaisie;
-            intSaisie--;
-            while (intSaisie<0&&intSaisie>this->joueur->getNombreSlots()){
-                cout << "Erreur vous ne pouvez selectionner cette valeur ! " << endl;
-                cout << "Veuillez selectionner un spell a utiliser : "<< endl;
-                cin >> saisie;
-                istringstream(saisie)>>intSaisie;
-                intSaisie--;
+                if (tourDeJeu==1){
+                if(joueur->getInitiative()>= monstre->getInitiative()*2 || monstre->getInitiative() >= joueur->getInitiative()*2){
+                	int initiativeSuperieur=0;
+                	if (monstre->getInitiative() >= joueur->getInitiative()*2){
+                		initiativeSuperieur=2;
+                	} else{
+                		initiativeSuperieur=1;
+                	}
+                    switch (initiativeSuperieur){
+                    case 1:
+                        cout << joueur->getNom() << " Donne un premier coup " << endl;
+                    	utilisationSpellParticulier(monstre, degat);
+                    	cout << joueur->getNom() << " Donne un second coup " << endl;
+                    	utilisationSpellParticulier(monstre, degat);
+                        joueurCommenceEnPremier=1;
+                    break;
+                    case 2:
+                        cout << monstre->getNom() << " Donne un premier coup " << endl;
+                    	degat = monstre->donneUnCoup();
+                    	cout << monstre->getNom() << " Donne un second coup " << endl;
+                    	degat2 = monstre->donneUnCoup();
+                    	joueur->sePrendUnCoup(degat);
+                    	joueur->sePrendUnCoup(degat2);
+                    	cout << "Le monstre " << monstre->getNom() << " vous donne un coup a " << degat << "et il recommence avec " << degat2 << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                    break;
+                    }
+                }
+               else if(joueur->getInitiative() > monstre->getInitiative()) {
+                    cout << joueur->getNom() << " Donne un coup " << endl;
+                    utilisationSpellParticulier(monstre, degat);
+                }
+                else{
+                    cout << monstre->getNom() << " Donne un coup " << endl;
+                    degat = monstre->donneUnCoup();
+                    joueur->sePrendUnCoup(degat);
+                    cout << "Le monstre " << monstre->getNom() << " vous donne un coup a " << degat << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                }
+            } else {
+                if (joueurCommenceEnPremier==1){
+                        if (tourDeJeu%2){
+                            // le monstre tape
+                            cout << monstre->getNom() << " Donne un coup " << endl;
+                            degat = monstre->donneUnCoup();
+                            joueur->sePrendUnCoup(degat);
+                            cout << "Le monstre " << monstre->getNom() << " vous donne un coup a " << degat << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                        } else {
+                            // le joueur tape
+                            cout << joueur->getNom() << " Donne un coup " << endl;
+                            utilisationSpellParticulier(monstre, degat);
+                        }
+                } else {
+                        if (tourDeJeu%2){
+                            // le joueur tape
+                            cout << joueur->getNom() << " Donne un coup " << endl;
+                            utilisationSpellParticulier(monstre, degat);
+                        } else {
+                            // le monstre tape
+                            cout << monstre->getNom() << " Donne un coup " << endl;
+                            degat = monstre->donneUnCoup();
+                            joueur->sePrendUnCoup(degat);
+                            cout << "Le monstre " << monstre->getNom() << " vous donne un coup a " << degat << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                    }
+                }
             }
-            degat=this->joueur->utilisationSpell(intSaisie, monstre);
-            monstre->sePrendUnCoup(degat);
-            cout << "Vous frappez le monstre " << monstre->getNom() <<" de " << degat << " degats" << ", il lui reste " << monstre->getVie() << endl;
         }
-
     }
 
     if(monstre->estMort()) {
@@ -408,69 +503,246 @@ int Jeu::baston(Monstre* monstre)
         }
         cout << "Vous gagnez 10xp, vous etes niveau " << joueur->getNiveau() << "."  << endl;
     }
-    cout << "\n\nfin de tour \n" << endl;
+    if (joueur->estMort()){
+        this->ecranDeDefaiteDeLaMortQuiTue();
+    }
     return abandon;
 }
 
+void Jeu::utilisationSpellParticulier(Monstre* monstre, int degat){
+        string saisie;
+        int intSaisie;
+        this->joueur->affichageSpellz();
+        // gestion de saisie + utilisation du spell en question
+        cout << "Veuillez selectionner un spell a utiliser : "<< endl;
+        cin >> saisie;
+        istringstream(saisie)>>intSaisie;
+        intSaisie--;
+        while (intSaisie<0&&intSaisie>this->joueur->getNombreSlots()){
+            cout << "Erreur vous ne pouvez selectionner cette valeur ! " << endl;
+            cout << "Veuillez selectionner un spell a utiliser : "<< endl;
+            cin >> saisie;
+            istringstream(saisie)>>intSaisie;
+            intSaisie--;
+        }
+        degat=this->joueur->utilisationSpell(intSaisie, monstre);
+        monstre->sePrendUnCoup(degat);
+        cout << "Vous frappez le monstre " << monstre->getNom() <<" de " << degat << " degats" << ", il lui reste " << monstre->getVie() << endl;
+}
+
+//methodes
 void Jeu::baston(Boss* boss)
 {
-    cout << "Vous rencontrez le Boss " << boss->getNom() << " qui a " << boss->getVie() << "pv." << endl;
+    string saisie;
+    int intSaisie;
+    cout << "Vous rencontrez le boss " << boss->getNom() << " qui a " << boss->getVie() << "pv." << endl;
     int choix =0;
     int degat;
-    int degat2;
-    while(!boss->estMort() || !joueur->estMort()){
-        cout << "Que voulez vous faire ?\nAttaquer = 1, utiliser un item = 2, utiliser un sort = 3 ?" << endl;
-        cin >> choix;
-        if(choix ==1){
-        if(joueur->getInitiative()>= boss->getInitiative()*2 || boss->getInitiative() >= joueur->getInitiative()*2){
-                int initiativeSup;
-                if (boss->getInitiative() >= joueur->getInitiative()*2){
-                    initiativeSup=2;
-                } else {
-                    initiativeSup=1;
-                }
-                    switch (initiativeSup){
+
+    int abandon = 0;
+    int tourDeJeu=0;
+    int tourDuMonstre=0;
+    int joueurCommenceEnPremier=0;
+    // todo rajouter joueur mort
+    while(!boss->estMort() && abandon!=1 && !joueur->estMort()){
+        tourDeJeu++;
+    	int degat2;
+    	if (tourDuMonstre==0){
+            cout << "Que voulez vous faire ?\nFuir = 1, Attaquer = 2, utiliser un item = 3, utiliser un sort = 4 ?" << endl;
+            cin>>saisie;
+            while (saisie!="1"&&saisie!="2"&&saisie!="3"&&saisie!="4"){
+                cout << "Erreur vous n'avez pas saisie l'une des options ..." << endl;
+                cout << "Que voulez vous faire ?\nFuir = 1, Attaquer = 2, utiliser un item = 3, utiliser un sort = 4 ?" << endl;
+                cin>>saisie;
+            }
+            istringstream(saisie)>>choix;
+        } else {
+            choix=1;
+        }
+        if (choix == 1) {
+            if (tourDeJeu==1){
+                if(joueur->getInitiative()>= boss->getInitiative()*2 || boss->getInitiative() >= joueur->getInitiative()*2){
+                	int initiativeSuperieur=0;
+                	if (boss->getInitiative() >= joueur->getInitiative()*2){
+                		initiativeSuperieur=2;
+                	} else{
+                		initiativeSuperieur=1;
+                	}
+                    switch (initiativeSuperieur){
                     case 1:
-                        degat = this->joueur->donneUnCoup();
-                        degat2 = this->joueur->donneUnCoup();
-                        boss->sePrendUnCoup(degat);
-                        boss->sePrendUnCoup(degat2);
-                        cout << "Vous frappez le monstre " << boss->getNom() <<" de " << degat << " degats et vous recommencez avec" << degat2 << ", il lui reste " << boss->getVie() << endl;
+                        cout << joueur->getNom() << " Donne un premier coup " << endl;
+                    	degat = this->joueur->donneUnCoup();
+                    	cout << joueur->getNom() << " Donne un second coup " << endl;
+                    	degat2 = this->joueur->donneUnCoup();
+                    	boss->sePrendUnCoup(degat);
+                    	boss->sePrendUnCoup(degat2);
+                    	cout << "Vous frappez le boss " << boss->getNom() <<" de " << degat << " degats et vous recommencez avec " << degat2 << ", il lui reste " << boss->getVie() << endl;
+                        joueurCommenceEnPremier=1;
+                        tourDuMonstre=0;
                     break;
                     case 2:
-                        degat = boss->donneUnCoup();
-                        degat2 = boss->donneUnCoup();
-                        joueur->sePrendUnCoup(degat);
-                        joueur->sePrendUnCoup(degat2);
-                        cout << "Le monstre " << boss->getNom() << " vous donne un coup a " << degat << "et il recommence avec " << degat2 << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                        cout << boss->getNom() << " Donne un premier coup " << endl;
+                    	degat = boss->donneUnCoup();
+                    	cout << boss->getNom() << " Donne un second coup " << endl;
+                    	degat2 = boss->donneUnCoup();
+                    	joueur->sePrendUnCoup(degat);
+                    	joueur->sePrendUnCoup(degat2);
+                    	cout << "Le boss " << boss->getNom() << " vous donne un coup a " << degat << "et il recommence avec " << degat2 << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                        tourDuMonstre=1;
                     break;
                     }
                 }
                else if(joueur->getInitiative() > boss->getInitiative()) {
+                    cout << joueur->getNom() << " Donne un coup " << endl;
                     degat = this->joueur->donneUnCoup();
                     boss->sePrendUnCoup(degat);
-                    cout << "Vous frappez le monstre " << boss->getNom() <<" de " << degat << " degats" << ", il lui reste " << boss->getVie() << endl;
+                    cout << "Vous frappez le boss " << boss->getNom() <<" de " << degat << " degats" << ", il lui reste " << boss->getVie() << endl;
+                    tourDuMonstre=0;
                 }
                 else{
+                    cout << boss->getNom() << " Donne un coup " << endl;
                     degat = boss->donneUnCoup();
                     joueur->sePrendUnCoup(degat);
-                    cout << "Le monstre " << boss->getNom() << " vous donne un coup a " << degat << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                    cout << "Le boss " << boss->getNom() << " vous donne un coup a " << degat << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                    tourDuMonstre=1;
                 }
+            } else {
+                if (joueurCommenceEnPremier==1){
+                        if (tourDeJeu%2){
+                            // le boss tape
+                            cout << boss->getNom() << " Donne un coup " << endl;
+                            degat = boss->donneUnCoup();
+                            joueur->sePrendUnCoup(degat);
+                            cout << "Le boss " << boss->getNom() << " vous donne un coup a " << degat << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                            tourDuMonstre=1;
+                        } else {
+                            // le joueur tape
+                            cout << joueur->getNom() << " Donne un coup " << endl;
+                            degat = this->joueur->donneUnCoup();
+                            boss->sePrendUnCoup(degat);
+                            cout << "Vous frappez le boss " << boss->getNom() <<" de " << degat << " degats" << ", il lui reste " << boss->getVie() << endl;
+                            tourDuMonstre=0;
+                        }
+                } else {
+                        if (tourDeJeu%2){
+                            // le joueur tape
+                            cout << joueur->getNom() << " Donne un coup " << endl;
+                            degat = this->joueur->donneUnCoup();
+                            boss->sePrendUnCoup(degat);
+                            cout << "Vous frappez le boss " << boss->getNom() <<" de " << degat << " degats" << ", il lui reste " << boss->getVie() << endl;
+                            tourDuMonstre=0;
+                        } else {
+                            // le boss tape
+                            cout << boss->getNom() << " Donne un coup " << endl;
+                            degat = boss->donneUnCoup();
+                            joueur->sePrendUnCoup(degat);
+                            cout << "Le boss " << boss->getNom() << " vous donne un coup a " << degat << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                            tourDuMonstre=1;
+                    }
+                }
+            }
         }
+        // utilisation item
         else if (choix == 2) {
-
+            this->joueur->affichageInventaire();
+            // gestion de saisie + utilisation de l'item en question - bloqué l'utilisation des deux premieres cases
+            cout << "Veuillez selectionner un item a utiliser : "<< endl;
+            cin >> saisie;
+            while (saisie!="3"&&saisie!="4"&&saisie!="5"&&saisie!="6"){
+                    if (saisie=="2"||saisie=="1"){
+                        cout << "Vous ne pouvez selectionner une arme ou une armure !"<< endl;
+                    } else {
+                    cout << "Erreur ! Vous n'avez pas selectionner un emplacement d'inventaire" << endl;
+                }
+                cout << "Veuillez selectionner un item a utiliser : "<< endl;
+                cin >> saisie;
+            }
+            istringstream(saisie)>>intSaisie;
+            intSaisie--;
+            if (joueur->getInventaire(intSaisie-1)!='\0'){
+                this->joueur->utilisationItem(intSaisie);
+            } else {
+                cout << "Vous ne pouvez pas utilisez cet emplacement, il est vide !" << endl;
+            }
         }
+        // utilisation spell
         else if( choix == 3) {
-
+                if (tourDeJeu==1){
+                if(joueur->getInitiative()>= boss->getInitiative()*2 || boss->getInitiative() >= joueur->getInitiative()*2){
+                	int initiativeSuperieur=0;
+                	if (boss->getInitiative() >= joueur->getInitiative()*2){
+                		initiativeSuperieur=2;
+                	} else{
+                		initiativeSuperieur=1;
+                	}
+                    switch (initiativeSuperieur){
+                    case 1:
+                        cout << joueur->getNom() << " Donne un premier coup " << endl;
+                    	utilisationSpellParticulier(boss, degat);
+                    	cout << joueur->getNom() << " Donne un second coup " << endl;
+                    	utilisationSpellParticulier(boss, degat);
+                        joueurCommenceEnPremier=1;
+                    break;
+                    case 2:
+                        cout << boss->getNom() << " Donne un premier coup " << endl;
+                    	degat = boss->donneUnCoup();
+                    	cout << boss->getNom() << " Donne un second coup " << endl;
+                    	degat2 = boss->donneUnCoup();
+                    	joueur->sePrendUnCoup(degat);
+                    	joueur->sePrendUnCoup(degat2);
+                    	cout << "Le boss " << boss->getNom() << " vous donne un coup a " << degat << "et il recommence avec " << degat2 << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                    break;
+                    }
+                }
+               else if(joueur->getInitiative() > boss->getInitiative()) {
+                    cout << joueur->getNom() << " Donne un coup " << endl;
+                    utilisationSpellParticulier(boss, degat);
+                }
+                else{
+                    cout << boss->getNom() << " Donne un coup " << endl;
+                    degat = boss->donneUnCoup();
+                    joueur->sePrendUnCoup(degat);
+                    cout << "Le boss " << boss->getNom() << " vous donne un coup a " << degat << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                }
+            } else {
+                if (joueurCommenceEnPremier==1){
+                        if (tourDeJeu%2){
+                            // le boss tape
+                            cout << boss->getNom() << " Donne un coup " << endl;
+                            degat = boss->donneUnCoup();
+                            joueur->sePrendUnCoup(degat);
+                            cout << "Le boss " << boss->getNom() << " vous donne un coup a " << degat << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                        } else {
+                            // le joueur tape
+                            cout << joueur->getNom() << " Donne un coup " << endl;
+                            utilisationSpellParticulier(boss, degat);
+                        }
+                } else {
+                        if (tourDeJeu%2){
+                            // le joueur tape
+                            cout << joueur->getNom() << " Donne un coup " << endl;
+                            utilisationSpellParticulier(boss, degat);
+                        } else {
+                            // le boss tape
+                            cout << boss->getNom() << " Donne un coup " << endl;
+                            degat = boss->donneUnCoup();
+                            joueur->sePrendUnCoup(degat);
+                            cout << "Le boss " << boss->getNom() << " vous donne un coup a " << degat << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                    }
+                }
+            }
         }
     }
 
     if(boss->estMort()) {
-        this->joueur->ajoutExperience(50);
+        this->joueur->ajoutExperience(10);
         if(this->joueur->gagneNiveau()) {
                 cout << "Vous gagnez 1 niveau " << ". Vous avez ete soigne."  << endl;
         }
         cout << "Vous gagnez 10xp, vous etes niveau " << joueur->getNiveau() << "."  << endl;
+    }
+    if (joueur->estMort()){
+        this->ecranDeDefaiteDeLaMortQuiTue();
     }
 }
 
@@ -624,10 +896,77 @@ if (i==0){
 "     |=_ =       | =_-_| |  | |     |   =_      | -_   | \n"
 "     |_=-_       |=_=  | |  | |     |=_=        |=-    | \n"
 "^^^^^^^^^^`^`^^`^`^`^^^\"\"\"\"\"\"\"\"^`^^``^^`^^`^^`^`^``^`^``^``^^ \n"
-"\t\t BRAVO VOUS AVEZ GAGNEZ !!! " << endl;
+"\t\t BRAVO VOUS AVEZ GAGNEZ !!! ctrl + c pour quitter " << endl;
 
         i--;
         }
         Sleep(250);
     }
 }
+
+void Jeu::ecranDeDefaiteDeLaMortQuiTue(){
+        int i=0;
+    while (1){
+if (i==0){
+        system("CLS");
+cout << "\
+                        ____________\n"
+"                      .~      ,   . ~.\n"
+"                     /                \\\n"
+"                    /      /~\\/~\\   ,  \\\n"
+"                   |   .   \\    /   '   |\n"
+"                   |         \\/         |\n"
+"          XX       |  /~~\\        /~~\\  |       XX\n"
+"        XX  X      | |  o  \\    /  o  | |      X  XX\n"
+"      XX     X     |  \\____/    \\____/  |     X     XX\n"
+" XXXXX     XX      \\         /\\        ,/      XX     XXXXX\n"
+"X        XX%;;@      \\      /  \\     ,/      @%%;XX        X\n"
+"X       X  @%%;;@     |           '  |     @%%;;@  X       X\n"
+"X      X     @%%;;@   |. ` ; ; ; ;  ,|   @%%;;@     X      X\n"
+" X    X        @%%;;@                  @%%;;@        X    X\n"
+"  X   X          @%%;;@              @%%;;@          X   X\n"
+"   X  X            @%%;;@          @%%;;@            X  X\n"
+"    XX X             @%%;;@      @%%;;@             X XX\n"
+"      XXX              @%%;;@  @%%;;@              XXX\n"
+"                         @%%;;%%;;@\n"
+"                           @%%;;@\n"
+"                         @%%;;@..@@\n"
+"                          @@@  @@@\n"
+"**********************************************************\n" << endl;
+    i++;
+    } else {
+
+        system("CLS");
+    cout << "\
+                        ____________\n"
+"                      .~      ,   . ~.\n"
+"                     /                \\\n"
+"                    /      /~\\/~\\   ,  \\\n"
+"                   |   .   \\    /   '   |\n"
+"                   |         \\/         |\n"
+"          XX       |  /~~\\        /~~\\  |       XX\n"
+"        XX  X      | |  0  \\    /  0  | |      X  XX\n"
+"      XX     X     |  \\____/    \\____/  |     X     XX\n"
+" XXXXX     XX      \\         /\\        ,/      XX     XXXXX\n"
+"X        XX%;;@      \\      /  \\     ,/      @%%;XX        X\n"
+"X       X  @%%;;@     |           '  |     @%%;;@  X       X\n"
+"X      X     @%%;;@   |. ` ; ; ; ;  ,|   @%%;;@     X      X\n"
+" X    X        @%%;;@                  @%%;;@        X    X\n"
+"  X   X          @%%;;@              @%%;;@          X   X\n"
+"   X  X            @%%;;@          @%%;;@            X  X\n"
+"    XX X             @%%;;@      @%%;;@             X XX\n"
+"      XXX              @%%;;@  @%%;;@              XXX\n"
+"                         @%%;;%%;;@\n"
+"                           @%%;;@\n"
+"                         @%%;;@..@@\n"
+"                          @@@  @@@\n"
+"**********************************************************\n"
+"\t\tRip t'a perdu !!! - ctrl + c pour quitter" << endl;
+
+        i--;
+        }
+        Sleep(250);
+    }
+}
+
+

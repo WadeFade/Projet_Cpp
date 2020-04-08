@@ -11,8 +11,8 @@ class Monstre : public Entite
         virtual ~Monstre();
 /* *********************************** Methodes ******************************************* */
         virtual void affichageEntite();
-        virtual void sePrendUnCoup(int attaqueDansLaTronche);
-        virtual int donneUnCoup();
+        //virtual void sePrendUnCoup(int attaqueDansLaTronche);
+        //virtual int donneUnCoup();
         virtual bool estMort();
 
         virtual int type();

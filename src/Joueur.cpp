@@ -238,7 +238,12 @@ void Joueur::affichageInventaire(){
     cout << "Inventaire : " << endl;
     for (unsigned int i=0; i<(this->inventaire.size()); i++){
         cout << i+1 << " : ";
-        this->getInventaire(i)->affichageItem();
+        if (this->inventaire[i]=='\0'){
+            cout << "Aucun element" << endl;
+        }
+        else {
+            cout << this->getInventaire(i)->getNomItem() << endl;
+        }
     }
 }
 
@@ -246,7 +251,7 @@ void Joueur::affichageSpellz(){
     cout << "Spellz dispo : " << endl;
     for (unsigned int i=0; i<(this->spellz.size()); i++){
         cout << i+1 << " : ";
-        this->getSpellz(i)->affichageSpell();
+        cout << this->spellz[i]->getNom() << endl;
     }
 }
 
@@ -281,6 +286,7 @@ void Joueur::utilisationItem(int emplacementDansInventaire){
 
     Consommables* consommables;
     Cristaux* cristaux;
+    if (this->inventaire[emplacementDansInventaire]!='\0'){
     switch (this->inventaire[emplacementDansInventaire]->type()){
         case 1:
             /** ****TODO*** **/
@@ -317,6 +323,9 @@ void Joueur::utilisationItem(int emplacementDansInventaire){
         default:
             // fonction dans le cas ou ce n'est pas l'un des 4 (si c'est un item par exemple, ce qui ne devrais jamais arrivé)
             break;
+        }
+        } else {
+            cout << "il n'y a rien dans cet emplacement d'inventaire" << endl;
         }
 }
 
@@ -364,7 +373,7 @@ int Joueur::utilisationSpell(int emplacementSpell, Entite* entiterQuiPrendUnCoup
     // trouvé le type de l'entité, savoir si c'est un boss ou un mob
     // trouvé l'élément du mob en question
     int degatInfliger=monSpell->getDegat();
-    if (monstreOuBoss==1){
+    if (monstreOuBoss==2){
         if (monSpell->getElement()=="Katon"){
                 // si dégat element opposé sur lesquelles on tape, alors +50% ou -50% dmg
                 if (unMonstre->getElement()=="Futon"){
@@ -401,10 +410,12 @@ int Joueur::utilisationSpell(int emplacementSpell, Entite* entiterQuiPrendUnCoup
                     degatInfliger=(int)((degatInfliger*0.5)+0.5);
                 }
             }
+            cout << "mobs" << endl;
             return degatInfliger;
-            } else if (monstreOuBoss==2){
+            } else if (monstreOuBoss==1){
             // retirer 15% de degats vu que c'est un boss, sans parlé de resistance
             // + moyen d'arrondir trouvé
+            cout << "boss" << endl;
             return (int)((degatInfliger*0.85)+0.5);
         }
     }
@@ -455,8 +466,10 @@ bool Joueur::gagneNiveau()
             this->ajoutManaMax(50);
             this->ajoutVieMax(50);
             this->ajoutresistance(1);
+            return true;
+    } else {
+        return false;
     }
-    return true;
 }
 
 void Joueur::changementBonusArmureEtArmes(){
@@ -482,4 +495,48 @@ void Joueur::applicationBonusArmureEtArmes(int valueBonusArmure,int valueBonusAr
 
     this->attaque+=this->bonusArmes;
     this->resistance+=this->bonusArmure;
+}
+
+void Joueur::sePrendUnCoup(int attaqueDansLaTronche){
+    int bonusDef;
+    Armures* armures=(Armures*)this->inventaire[1];
+    if (this->inventaire[1]!='\0'){
+        bonusDef=armures->getResistance();
+    } else {
+        bonusDef=0;
+    }
+
+    if ((rand()%100)>this->esquive){
+        this->vie-=attaqueDansLaTronche-this->resistance-bonusDef;
+    } else{
+        cout << "Zoup " << this->nom << " esquive tel un ninja ! aucun degats subis" << endl;
+    }
+}
+
+int Joueur::donneUnCoup(){
+    // dans le cas ou ça ne crit pas
+    int bonusAtk;
+    int damage=this->attaque;
+    damage+=bonusAtk;
+    Armes* armes=(Armes*)this->inventaire[0];
+    if (this->inventaire[0]!='\0'){
+        bonusAtk=armes->getAttaque();
+    } else {
+        bonusAtk=0;
+    }
+
+    if ((rand()%100)>this->coupCritique){
+        if ((rand()%100)>this->echecCritique){
+                return damage;
+        }
+        // dans le cas ou l'attaque échec critique
+        else{
+            cout << "AHAHAHA " << this->nom << " fait un echec critique (mdr) !" << endl;
+            return 0;
+        }
+        // dans le cas ou l'attaque crit
+    } else{
+        cout << "ET PAFFFFF " << this->nom << " balance un sale critique !" << endl;
+        return (damage*1.5);
+    }
 }

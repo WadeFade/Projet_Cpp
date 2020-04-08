@@ -14,6 +14,9 @@ class Joueur : public Entite
         virtual ~Joueur();
 /* *********************************** Methodes ******************************************* */
         virtual void affichageEntite();
+        virtual int donneUnCoup();
+        virtual void sePrendUnCoup(int attaqueDansLaTronche);
+
         void affichageInventaire();
         void utiliserUnConsommable(int emplacementDansInventaire);
         void manaRegen(int regenMana);
@@ -24,7 +27,6 @@ class Joueur : public Entite
         int utilisationSpell(int emplacementSpell,Entite* entiteQuiSePrendUnCoup);
         void affichageSpellz();
         bool gagneNiveau();
-        // new
         void changementBonusArmureEtArmes();
         void applicationBonusArmureEtArmes(int valueBonusArmure,int valueBonusArmes);
         void ajoutVieMax(int vieaAjouter);
@@ -32,7 +34,6 @@ class Joueur : public Entite
         void ajoutresistance(int resistanceaAjouter);
         void ajoutAttaque(int attaqueaAjouter);
         void ajoutEsquive(int esquiveaAjouter);
-
 /* *********************************** Getter ********************************************* */
         int getNombreSlots();
         int getNombreSpellAppris();
@@ -42,7 +43,6 @@ class Joueur : public Entite
         int getManaMax();
         Item* getInventaire(int positionDansInventaire);
         Spell* getSpellz(int positionDansSpellz);
-        // new
         int getBonusArmure();
         int getBonusArmes();
 /* *********************************** Setter ********************************************* */
@@ -53,9 +53,9 @@ class Joueur : public Entite
         void setManaMax(int manaMax);
         int setInventaire(Item* unItem, int position);
         void setSpellz(Spell* spell);
-        // new
         void setBonusArmure(int bonusArmure);
         void setBonusArmes(int bonusArmes);
+
     protected:
         int niveau;
         vector<Item*> inventaire;

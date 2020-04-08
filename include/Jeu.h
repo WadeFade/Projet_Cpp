@@ -33,6 +33,8 @@ class Jeu
     void setLesItems(vector<Item*> item);
     void setDifficulty(int difficulty);
     void ecranDeVictoireDeLaMortQuiTue();
+    void ecranDeDefaiteDeLaMortQuiTue();
+    void utilisationSpellParticulier(Monstre* monstre, int degat);
 //================getter==================
     vector<Entite*> getEntites();
     vector<Donjon*> getLesDonjons();
@@ -47,12 +49,12 @@ class Jeu
     Joueur* menu();
     void afficherMonstresSalles();
     void setJoueur(Joueur* joueur);
-    int baston(Monstre* monstre);
     void resoudreSalle(Salle* salle);
     void resoudreDonjon(Donjon* donjon);
     void resoudreJeu();
     void deplacerJoueur(Joueur * joueur);
     void baston(Boss* boss);
+    int baston(Monstre* monstre);
 
     protected:
 

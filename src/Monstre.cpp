@@ -50,7 +50,7 @@ void Monstre::affichageEntite(){
     cout << "Esquive : " << this->esquive << endl;
     cout << "Element : " << this->element << endl;
 }
-
+/*
 void Monstre::sePrendUnCoup(int attaqueDansLaTronche){
     if ((rand()%100)>this->esquive){
         cout << "PAF " << this->nom << " prend un coup dans la tronche !" << endl;
@@ -79,7 +79,7 @@ int Monstre::donneUnCoup(){
         return this->attaque;
     }
 }
-
+*/
 bool Monstre::estMort()
 {
     return (this->vie <= 0);
