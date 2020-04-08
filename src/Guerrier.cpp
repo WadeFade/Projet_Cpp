@@ -55,6 +55,7 @@ Guerrier::Guerrier()
     spellCriDeGuerre->setBuffVie(10);
     spellCriDeGuerre->setBuffAttaque(10);
     spellCriDeGuerre->setNom("Cri de guerre");
+    tableauDeSpells.push_back(spellCriDeGuerre);
 
     // spell Charge
     Spell* spellCharge=new Spell();
@@ -62,6 +63,14 @@ Guerrier::Guerrier()
     spellCharge->setElement("Doton");
     spellCharge->setNom("Charge comme un bourrin");
     tableauDeSpells.push_back(spellCharge);
+
+    for (unsigned int i=0;i<tableauDeSpells.size();i++){
+        this->spellz.push_back(tableauDeSpells[i]);
+    }
+
+    for (unsigned int i=0;i<tableauDeSpells.size();i++){
+        delete tableauDeSpells[i];
+    }
 }
 
 Guerrier::~Guerrier()

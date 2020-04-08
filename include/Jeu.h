@@ -28,7 +28,7 @@ class Jeu
     void setLesDonjons(Donjon* donjon);
     void setLesItems(vector<Item*> item);
     void setDifficulty(int difficulty);
-
+    void ecranDeVictoireDeLaMortQuiTue();
 //================getter==================
     vector<Entite*> getEntites();
     vector<Donjon*> getLesDonjons();

@@ -17,6 +17,7 @@ class Salle
     public:
         Salle();
         Salle(int numeroDonjon);
+        Salle(int numeroSalle, int numeroDonjon);
         virtual ~Salle();
 //같같같같같같� methodes 같같같같같같�
         void affichageSalle();

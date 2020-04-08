@@ -89,6 +89,10 @@ Mage::Mage()
     for (unsigned int i=0;i<tableauDeSpells.size();i++){
         this->spellz.push_back(tableauDeSpells[i]);
     }
+
+    for (unsigned int i=0;i<tableauDeSpells.size();i++){
+        delete tableauDeSpells[i];
+    }
 }
 
 Mage::~Mage()

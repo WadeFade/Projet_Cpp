@@ -15,6 +15,7 @@ class Boss : public Monstre
         virtual int donneUnCoup();
         virtual int type();
         virtual bool estMort();
+        virtual void multiplicationStatistique(double multiplicateur);
 /* *********************************** Getter ********************************************* */
 
 /* *********************************** Setter ********************************************* */

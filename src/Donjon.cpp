@@ -18,7 +18,7 @@ Donjon::Donjon(int numeroDonjon)
                 this->lesSalles[i]->setNum(i+1);
             }
             else {
-                this->lesSalles.push_back(new Salle());
+                this->lesSalles.push_back(new Salle(i,numeroDonjon));
                 this->lesSalles[i]->setNum(i+1);
             }
     }

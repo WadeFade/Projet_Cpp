@@ -3,14 +3,17 @@
 #include "time.h"
 #include "stdlib.h"
 #include "Armes.h"
+#include "Entite.h"
 #include "Monstre.h"
-#include "Zombie.h"
-#include "Minotaure.h"
-#include "Griffon.h"
-#include "Cerbere.h"
+#include "Boss.h"
 #include "Zombie.h"
 #include "Loup.h"
 #include "Elementaire.h"
+
+#include "Minotaure.h"
+#include "Griffon.h"
+#include "Cerbere.h"
+
 #include <windows.h>
 #include <string>
 #include <iostream>
@@ -20,32 +23,58 @@ using namespace std;
 Salle::Salle()
 {
     //ctor
-    this->lesMonstresDeLaSalle.push_back(new Zombie());
-    this->lesMonstresDeLaSalle.push_back(new Loup());
-    this->lesMonstresDeLaSalle.push_back(new Elementaire());
+}
+
+Salle::Salle(int numeroSalle, int numeroDonjon)
+{
+    //ctor
+    Zombie* zombie=new Zombie();
+    Loup* loup=new Loup();
+    Elementaire* elementaire=new Elementaire();
+
+    numeroDonjon*=10;
+    numeroSalle+=numeroDonjon;
+    double multiplicateur;
+    multiplicateur=numeroSalle*0.1;
+
+    zombie->multiplicationStatistique(multiplicateur);
+    loup->multiplicationStatistique(multiplicateur);
+    elementaire->multiplicationStatistique(multiplicateur);
+
+    this->lesMonstresDeLaSalle.push_back(zombie);
+    this->lesMonstresDeLaSalle.push_back(loup);
+    this->lesMonstresDeLaSalle.push_back(elementaire);
 }
 
 Salle::Salle(int numeroDonjon)
 {
     //ctor
+    Minotaure* minotaure=new Minotaure();
+    Griffon* griffon=new Griffon();
+    Cerbere* cerbere=new Cerbere();
+
+    minotaure->multiplicationStatistique((double)numeroDonjon);
+    griffon->multiplicationStatistique((double)numeroDonjon);
+    cerbere->multiplicationStatistique((double)numeroDonjon);
+
     switch (numeroDonjon){
+    case 0:
+        this->lesMonstresDeLaSalle.push_back(minotaure);
+        break;
     case 1:
-        this->lesMonstresDeLaSalle.push_back(new Minotaure());
+        this->lesMonstresDeLaSalle.push_back(griffon);
         break;
     case 2:
-        this->lesMonstresDeLaSalle.push_back(new Griffon());
+        this->lesMonstresDeLaSalle.push_back(cerbere);
         break;
     case 3:
-        this->lesMonstresDeLaSalle.push_back(new Cerbere());
+        this->lesMonstresDeLaSalle.push_back(minotaure);
+        this->lesMonstresDeLaSalle.push_back(griffon);
         break;
     case 4:
-        this->lesMonstresDeLaSalle.push_back(new Minotaure());
-        this->lesMonstresDeLaSalle.push_back(new Griffon());
-        break;
-    case 5:
-        this->lesMonstresDeLaSalle.push_back(new Minotaure());
-        this->lesMonstresDeLaSalle.push_back(new Griffon());
-        this->lesMonstresDeLaSalle.push_back(new Cerbere());
+        this->lesMonstresDeLaSalle.push_back(minotaure);
+        this->lesMonstresDeLaSalle.push_back(griffon);
+        this->lesMonstresDeLaSalle.push_back(cerbere);
         break;
     }
 }
