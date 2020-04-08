@@ -48,4 +48,5 @@ int Consommables::type(){
     } else if ((this->regenMana)>0){
         return 4;
     }
+    return 3;
 }

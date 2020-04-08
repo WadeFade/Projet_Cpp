@@ -305,7 +305,7 @@ int Jeu::baston(Monstre* monstre)
     int degat;
 
     int abandon = 0;
-    // todo rajouter joueur mort 
+    // todo rajouter joueur mort
     while(!monstre->estMort() && abandon!=1){
     	int degat2;
         cout << "Que voulez vous faire ?\nFuir = 1, Attaquer = 2, utiliser un item = 3, utiliser un sort = 4 ?" << endl;
@@ -321,9 +321,9 @@ int Jeu::baston(Monstre* monstre)
             abandon = 1;
         }
         else if (choix == 2) {
-                if(joueur->getInitiative()=> monstre->getInitiative()*2 || monstre->getInitiative() => joueur->getInitiative()*2){
+                if(joueur->getInitiative()>= monstre->getInitiative()*2 || monstre->getInitiative() >= joueur->getInitiative()*2){
                 	int initiativeSuperieur=0;
-                	if (monstre->getInitiative() => joueur->getInitiative()*2){
+                	if (monstre->getInitiative() >= joueur->getInitiative()*2){
                 		initiativeSuperieur=2;
                 	} else{
                 		initiativeSuperieur=1;
@@ -399,9 +399,6 @@ int Jeu::baston(Monstre* monstre)
             cout << "Vous frappez le monstre " << monstre->getNom() <<" de " << degat << " degats" << ", il lui reste " << monstre->getVie() << endl;
         }
 
-        if(joueur->estMort()){
-            return;
-        }
     }
 
     if(monstre->estMort()) {
@@ -425,21 +422,28 @@ void Jeu::baston(Boss* boss)
         cout << "Que voulez vous faire ?\nAttaquer = 1, utiliser un item = 2, utiliser un sort = 3 ?" << endl;
         cin >> choix;
         if(choix ==1){
-        if(joueur->getInitiative()== boss->getInitiative()*2 || boss->getInitiative() == joueur->getInitiative()*2){
-                    switch (boss->getInitiative() == joueur->getInitiative()*2){
+        if(joueur->getInitiative()>= boss->getInitiative()*2 || boss->getInitiative() >= joueur->getInitiative()*2){
+                int initiativeSup;
+                if (boss->getInitiative() >= joueur->getInitiative()*2){
+                    initiativeSup=2;
+                } else {
+                    initiativeSup=1;
+                }
+                    switch (initiativeSup){
                     case 1:
-                    degat = this->joueur->donneUnCoup();
-                    degat2 = this->joueur->donneUnCoup();
-                    boss->sePrendUnCoup(degat);
-                    boss->sePrendUnCoup(degat2);
-                    cout << "Vous frappez le monstre " << boss->getNom() <<" de " << degat << " degats et vous recommencez avec" << degat2 << ", il lui reste " << boss->getVie() << endl;
-
+                        degat = this->joueur->donneUnCoup();
+                        degat2 = this->joueur->donneUnCoup();
+                        boss->sePrendUnCoup(degat);
+                        boss->sePrendUnCoup(degat2);
+                        cout << "Vous frappez le monstre " << boss->getNom() <<" de " << degat << " degats et vous recommencez avec" << degat2 << ", il lui reste " << boss->getVie() << endl;
+                    break;
                     case 2:
-                    degat = boss->donneUnCoup();
-                    degat2 = boss->donneUnCoup();
-                    joueur->sePrendUnCoup(degat);
-                    joueur->sePrendUnCoup(degat2);
-                    cout << "Le monstre " << boss->getNom() << " vous donne un coup a " << degat << "et il recommence avec " << degat2 << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                        degat = boss->donneUnCoup();
+                        degat2 = boss->donneUnCoup();
+                        joueur->sePrendUnCoup(degat);
+                        joueur->sePrendUnCoup(degat2);
+                        cout << "Le monstre " << boss->getNom() << " vous donne un coup a " << degat << "et il recommence avec " << degat2 << ", il vous reste " << joueur->getVie() << "pv." << endl;
+                    break;
                     }
                 }
                else if(joueur->getInitiative() > boss->getInitiative()) {

@@ -48,4 +48,5 @@ int Cristaux::type(){
     } else if ((this->manaSup)>0){
         return 6;
     }
+    return 5;
 }

@@ -30,7 +30,6 @@ using namespace std;
 int main()
 {
     Jeu* monJeu = new Jeu();
-    Salle* mesSalles = new Salle();
 
     //Pour récupérer tous les items du jeu.
     vector<Item*> lesItems = monJeu->getTableauItems();
