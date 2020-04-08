@@ -14,6 +14,7 @@ class Donjon
 {
     public:
         Donjon();
+        Donjon(int numeroDonjon);
         virtual ~Donjon();
 //같같같같같같� methodes 같같같같같같�
         void affichageDonjon();

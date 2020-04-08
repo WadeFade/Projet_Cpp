@@ -7,6 +7,10 @@
 #include "Zombie.h"
 #include "Minotaure.h"
 #include "Griffon.h"
+#include "Cerbere.h"
+#include "Zombie.h"
+#include "Loup.h"
+#include "Elementaire.h"
 #include <windows.h>
 #include <string>
 #include <iostream>
@@ -17,11 +21,33 @@ Salle::Salle()
 {
     //ctor
     this->lesMonstresDeLaSalle.push_back(new Zombie());
-    this->lesMonstresDeLaSalle.push_back(new Griffon());
-    this->lesMonstresDeLaSalle.push_back(new Minotaure());
-    this->lesMonstresDeLaSalle[0]->setNom("Zombie");
-    this->lesMonstresDeLaSalle[1]->setNom("Griffon");
-    this->lesMonstresDeLaSalle[2]->setNom("Minotaure");
+    this->lesMonstresDeLaSalle.push_back(new Loup());
+    this->lesMonstresDeLaSalle.push_back(new Elementaire());
+}
+
+Salle::Salle(int numeroDonjon)
+{
+    //ctor
+    switch (numeroDonjon){
+    case 1:
+        this->lesMonstresDeLaSalle.push_back(new Minotaure());
+        break;
+    case 2:
+        this->lesMonstresDeLaSalle.push_back(new Griffon());
+        break;
+    case 3:
+        this->lesMonstresDeLaSalle.push_back(new Cerbere());
+        break;
+    case 4:
+        this->lesMonstresDeLaSalle.push_back(new Minotaure());
+        this->lesMonstresDeLaSalle.push_back(new Griffon());
+        break;
+    case 5:
+        this->lesMonstresDeLaSalle.push_back(new Minotaure());
+        this->lesMonstresDeLaSalle.push_back(new Griffon());
+        this->lesMonstresDeLaSalle.push_back(new Cerbere());
+        break;
+    }
 }
 
 Salle::~Salle()

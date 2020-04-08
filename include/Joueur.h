@@ -24,7 +24,9 @@ class Joueur : public Entite
         int utilisationSpell(int emplacementSpell,Entite* entiteQuiSePrendUnCoup);
         void affichageSpellz();
         bool gagneNiveau();
-
+        // new
+        void changementBonusArmureEtArmes();
+        void applicationBonusArmureEtArmes(int valueBonusArmure,int valueBonusArmes);
 /* *********************************** Getter ********************************************* */
         int getNombreSlots();
         int getNombreSpellAppris();
@@ -34,7 +36,9 @@ class Joueur : public Entite
         int getManaMax();
         Item* getInventaire(int positionDansInventaire);
         Spell* getSpellz(int positionDansSpellz);
-
+        // new
+        int getBonusArmure();
+        int getBonusArmes();
 /* *********************************** Setter ********************************************* */
         void ajoutNiveau(int niveau);
         void setMana(int mana);
@@ -43,6 +47,9 @@ class Joueur : public Entite
         void setManaMax(int manaMax);
         void setInventaire(Item* inventaire);
         void setSpellz(Spell* spell);
+        // new
+        void setBonusArmure(int bonusArmure);
+        void setBonusArmes(int bonusArmes);
     protected:
         int niveau;
         vector<Item*> inventaire;
@@ -50,6 +57,8 @@ class Joueur : public Entite
         int mana;
         int experience;
         int manaMax;
+        int bonusArmure;
+        int bonusArmes;
     private:
 };
 

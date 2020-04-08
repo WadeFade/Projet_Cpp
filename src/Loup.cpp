@@ -6,7 +6,7 @@ using namespace std;
 Loup::Loup()
 {
     //ctor
-    this->element="neutre";
+    this->element="Katon";
     this->nom="Loup";
 }
 

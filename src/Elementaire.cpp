@@ -6,7 +6,7 @@ using namespace std;
 Elementaire::Elementaire()
 {
     //ctor
-    this->element="Katon";
+    this->element="Suiton";
     this->nom="Elementaire";
     this->vie=20;
     this->vieMax=20;

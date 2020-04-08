@@ -84,7 +84,7 @@ bool Monstre::estMort()
 {
     return (this->vie <= 0);
 }
+
 int Monstre::type(){
     return 2;
 }
-

@@ -63,6 +63,13 @@ Spell* Joueur::getSpellz(int positionDansInventaire){
     return this->spellz.at(positionDansInventaire);
 }
 
+int Joueur::getBonusArmes(){
+    return this->bonusArmes;
+}
+
+int Joueur::getBonusArmure(){
+    return this->bonusArmure;
+}
 /* *********************************** Setter ********************************************* */
 void Joueur::setMana(int mana){
     this->mana=mana;
@@ -92,6 +99,13 @@ void Joueur::setSpellz(Spell* unSpell){
     this->spellz.push_back(unSpell);
 }
 
+void Joueur::setBonusArmes(int bonusArmes){
+    this->bonusArmes=bonusArmes;
+}
+
+void Joueur::setBonusArmure(int bonusArmure){
+    this->bonusArmure=bonusArmure;
+}
 /* *********************************** Methodes ******************************************* */
 void Joueur::affichageEntite(){
     cout << "Joueur : " << endl;
@@ -110,6 +124,7 @@ void Joueur::affichageEntite(){
 void Joueur::affichageInventaire(){
     cout << "Inventaire : " << endl;
     for (unsigned int i=0; i<(this->inventaire.size()); i++){
+        cout << i+1 << " : ";
         this->getInventaire(i)->affichageItem();
     }
 }
@@ -117,6 +132,7 @@ void Joueur::affichageInventaire(){
 void Joueur::affichageSpellz(){
     cout << "Spellz dispo : " << endl;
     for (unsigned int i=0; i<(this->spellz.size()); i++){
+        cout << i+1 << " : ";
         this->getSpellz(i)->affichageSpell();
     }
 }
@@ -149,26 +165,23 @@ void Joueur::utiliserUnConsommable(int emplacementDansInventaire){
 }
 
 void Joueur::utilisationItem(int emplacementDansInventaire){
-    Armes* armes;
-    Armures* armures;
+
     Consommables* consommables;
     Cristaux* cristaux;
     switch (this->inventaire[emplacementDansInventaire]->type()){
         case 1:
             /** ****TODO*** **/
             // fonction dans le cas ou c'est une arme
-            armes = (Armes*)this->getInventaire(emplacementDansInventaire);
             cout<<"item basique il ne ce passe rien de special (armes)"<<endl;
             // rien de spécial, on ne veux pas pouvoir utilisé une arme via le menu pour utilisé les consommables
             break;
         case 2:
             /** ****TODO*** **/
             // fonction dans le cas ou c'est une armure
-            armures = (Armures*)this->getInventaire(emplacementDansInventaire);
             cout<<"item basique il ne ce passe rien de special (armure)"<<endl;
             // rien de spécial, on ne veux pas pouvoir utilisé une armures via le menu pour utilisé les consommables
             break;
-        case 3:
+        case 3 ... 4:
             // fonction dans le cas ou c'est un consommable
             consommables = (Consommables*)this->getInventaire(emplacementDansInventaire);
             if (consommables->getRegenVie()>0){
@@ -178,7 +191,7 @@ void Joueur::utilisationItem(int emplacementDansInventaire){
                 this->manaRegen(consommables->getRegenMana());
             }
             break;
-        case 4:
+        case 5 ... 6:
             cristaux = (Cristaux*)this->getInventaire(emplacementDansInventaire);
             // fonction dans le cas ou c'est un cristal
             if (cristaux->getVieSup()>0){
@@ -282,6 +295,7 @@ int Joueur::utilisationSpell(int emplacementSpell, Entite* entiterQuiPrendUnCoup
             return (int)((degatInfliger*0.85)+0.5);
         }
     }
+    return 0;
 }
 
 bool Joueur::gagneNiveau()
@@ -291,5 +305,30 @@ bool Joueur::gagneNiveau()
             this->setExperience(0);
             this->ajoutNiveau(1);
     }
+    return true;
 }
 
+void Joueur::changementBonusArmureEtArmes(){
+    int valeurBonusArmure;
+    Armures* armures;
+    armures = (Armures*)this->inventaire.at(1);
+    valeurBonusArmure=armures->getResistance();
+
+    int valeurBonusArmes;
+    Armes* armes;
+    armes = (Armes*)this->inventaire.at(2);
+    valeurBonusArmes=armes->getAttaque();
+
+    this->applicationBonusArmureEtArmes(valeurBonusArmure, valeurBonusArmes);
+}
+
+void Joueur::applicationBonusArmureEtArmes(int valueBonusArmure,int valueBonusArmes){
+    this->attaque-=this->bonusArmes;
+    this->resistance-=this->bonusArmure;
+
+    this->bonusArmes=valueBonusArmes;
+    this->bonusArmure=valueBonusArmure;
+
+    this->attaque+=this->bonusArmes;
+    this->resistance+=this->bonusArmure;
+}

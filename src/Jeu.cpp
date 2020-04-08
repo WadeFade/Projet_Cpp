@@ -10,6 +10,9 @@
 #include "Guerrier.h"
 #include "Mage.h"
 #include "Entite.h"
+#include <iostream>   // std::cout
+#include <string>     // std::string, std::stoi
+#include <sstream>
 
 
 using namespace std;
@@ -110,7 +113,7 @@ Jeu::Jeu()
 
 
     for(int i = 0; i < 5;i++){
-        this->lesDonjons.push_back(new Donjon());
+        this->lesDonjons.push_back(new Donjon(i));
     }
 
     this->lesDonjons[0]->setNom("Tortage");
@@ -163,7 +166,7 @@ vector<Entite*> Jeu::getTableauEntites(){
 void Jeu::affichageElementSalle()
 {
     for(int i = 0;i < 5;i++){
-        cout << lesDonjons[i]->getNom();
+        cout << this->lesDonjons[i]->getNom();
             for(int a = 0; a < 5;a++){
             this->lesDonjons[i]->getSalles(a)->affichageSalle();
         }
@@ -204,12 +207,19 @@ void Jeu::resoudreSalle(Salle* salle)
 //Methode de combat
 void Jeu::baston(Monstre* monstre)
 {
+    string saisie;
     cout << "Vous rencontrez le monstre " << monstre->getNom() << " qui a " << monstre->getVie() << "pv." << endl;
     int choix =0;
     int degat;
     while(!monstre->estMort()){
         cout << "Que voulez vous faire ?\nFuir = 1, Attaquer = 2, utiliser un item = 3, utiliser un sort = 4 ?" << endl;
-        cin >> choix;
+        cin>>saisie;
+        while (saisie!="1"&&saisie!="2"&&saisie!="3"&&saisie!="4"){
+            cout << "Erreur vous n'avez pas saisie l'une des options ..." << endl;
+            cout << "Que voulez vous faire ?\nFuir = 1, Attaquer = 2, utiliser un item = 3, utiliser un sort = 4 ?" << endl;
+            cin>>saisie;
+        }
+        istringstream(saisie)>>choix;
         if(choix == 1) {
             cout << "Vous avez fuit le combat, vous éviter ce mob" << endl;
             break;
@@ -219,11 +229,45 @@ void Jeu::baston(Monstre* monstre)
             monstre->sePrendUnCoup(degat);
         cout << "Vous frappez le monstre " << monstre->getNom() <<" de " << degat << " degats" << ", il lui reste " << monstre->getVie() << endl;
         }
+        // utilisation item
         else if (choix == 3) {
+            this->joueur->affichageInventaire();
+            // gestion de saisie + utilisation de l'item en question - bloqué l'utilisation des deux premieres cases
+            cout << "Veuillez selectionner un item a utiliser : "<< endl;
+            cin >> saisie;
 
+            while (saisie!="3"&&saisie!="4"&&saisie!="5"&&saisie!="6"){
+                    if (saisie=="2"||saisie=="1"){
+                        cout << "Vous ne pouvez selectionner une arme ou une armure !"<< endl;
+                    } else {
+                    cout << "Erreur ! Vous n'avez pas selectionner un emplacement d'inventaire" << endl;
+                }
+                cout << "Veuillez selectionner un item a utiliser : "<< endl;
+                cin >> saisie;
+            }
+            int intSaisie;
+            istringstream(saisie)>>intSaisie;
+            intSaisie--;
+            this->joueur->utilisationItem(intSaisie);
         }
+        // utilisation spell
         else if( choix == 4) {
+            this->joueur->affichageSpellz();
+            // gestion de saisie + utilisation du spell en question
+            cout << "Veuillez selectionner un spell a utiliser : "<< endl;
+            cin >> saisie;
 
+            while (saisie!="1"&&saisie!="2"&&saisie!="3"&&saisie!="4"&&saisie!="5"&&saisie!="6"){
+                cout << "Erreur ! " << endl;
+                cout << "Veuillez selectionner un spell a utiliser : "<< endl;
+                cin >> saisie;
+            }
+            int intSaisie;
+            istringstream(saisie)>>intSaisie;
+            intSaisie--;
+            degat=this->joueur->utilisationSpell(intSaisie, monstre);
+            monstre->sePrendUnCoup(degat);
+            cout << "Vous frappez le monstre " << monstre->getNom() <<" de " << degat << " degats" << ", il lui reste " << monstre->getVie() << endl;
         }
     }
 
@@ -257,13 +301,15 @@ Joueur* Jeu::menu()
     cout << "Tapez 1 pour commencer a jouer, tapez 2 voir le tutoriel" << endl;
     string saisie="0";
     cin>>saisie;
-    while(saisie!="1"&&saisie!="2"&&saisie!="3"){
+    while(saisie!="1"&&saisie!="2"){
         cout<<"Erreur :"<<endl;
         cout << "Tapez 1 pour commencer a jouer, tapez 2 voir le tutoriel" << endl;
         cin>>saisie;
     }
     if(saisie == "2") {
-        cout<<"Rogue Hey'psi est un rpg textuel, le jeu ce constitue de 5 donjons contenant chacun 5 salles. Le but etant d'arriver au bout des 5 donjons sans mourir.\nSur votre chemin vous pouvez recuperez des armes, armures ou des consomnable qui vous seront tres utile pour avancer.Au debut vous pouvez choisir une classe, chaque classe a des sort differents."<<endl;
+        cout<<"Rogue Hey'psi est un rpg textuel, le jeu ce constitue de 5 donjons contenant chacun 5 salles. Le but etant d'arriver au bout des 5 donjons sans mourir.\n\
+        Sur votre chemin vous pouvez recuperez des armes, armures ou des consomnable qui vous seront tres utile pour avancer.Au debut vous pouvez choisir une classe,"
+        "chaque classe a des sort differents."<<endl;
         system("pause");
         system("cls");
         saisie = 1;

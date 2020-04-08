@@ -12,6 +12,7 @@ Zombie::Zombie()
     this->resistance=5;
     this->initiative=50;
     this->tauxInfection=0;
+    this->element="Doton";
 }
 
 Zombie::~Zombie()

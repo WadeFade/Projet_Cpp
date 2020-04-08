@@ -43,5 +43,9 @@ void Consommables::affichageItem(){
     cout << "Regen Vie : " << this->regenVie << endl;
 }
 int Consommables::type(){
-    return 3;
+    if ((this->regenVie)>0){
+        return 3;
+    } else if ((this->regenMana)>0){
+        return 4;
+    }
 }

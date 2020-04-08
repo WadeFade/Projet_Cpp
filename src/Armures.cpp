@@ -31,6 +31,7 @@ void Armures::affichageItem(){
     cout << "Nom item : " << this->nomItem << endl;
     cout << "Resistance : " << this->resistance << endl;
 }
+
 int Armures::type(){
     return 2;
 }

@@ -10,13 +10,12 @@ class Spell
         virtual ~Spell();
 /* *********************************** Methodes ******************************************* */
         void reduireTempsDeChargement();
-        //new
         void affichageSpell();
+
 /* *********************************** Getter ********************************************* */
         int getManaCost();
         int getTempsDeRechargement();
         string getElement();
-        //new
         int getCanalisationSpell();
         int getBuffAttaque();
         int getBuffVie();
@@ -25,11 +24,12 @@ class Spell
         int getBuffCoupCritique();
         int getBuffEchecCritique();
         int getDegat();
+        //new
+        string getNom();
 /* *********************************** Setter ********************************************* */
         void setManaCost(int manaCost);
         void setTempsDeRechargement(int tempsDeRechargement);
         void setElement(string element);
-        //new
         void setCanalisationSpell(int canalisationSpell);
         void setBuffAttaque(int buffAttaque);
         void setBuffVie(int buffVie);
@@ -38,12 +38,12 @@ class Spell
         void setBuffCoupCritique(int buffCoupCritique);
         void setBuffEchecCritique(int buffEchecCritique);
         void setDegat(int degatDuSpell);
-
+        //new
+        void setNom(string nomSpell);
     protected:
         int manaCost;
         int tempsDeRechargement;
         string element;
-        //new
         int canalisationSpell;
         int buffAttaque;
         int buffVie;
@@ -52,6 +52,8 @@ class Spell
         int buffCoupCritique;
         int buffEchecCritique;
         int degatDuSpell;
+        //new
+        string nomSpell;
     private:
 };
 

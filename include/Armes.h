@@ -6,6 +6,7 @@
 class Armes : public Item
 {
     public:
+        Armes();
         Armes(int id, int atck, string type, double taux, string nom, int dura);
         virtual ~Armes();
 //==========methodes=========

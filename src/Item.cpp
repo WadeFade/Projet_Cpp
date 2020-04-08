@@ -57,4 +57,3 @@ void Item::affichageItem(){
 int Item::type(){
     return 0;
 }
-
