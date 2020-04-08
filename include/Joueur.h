@@ -27,6 +27,12 @@ class Joueur : public Entite
         // new
         void changementBonusArmureEtArmes();
         void applicationBonusArmureEtArmes(int valueBonusArmure,int valueBonusArmes);
+        void ajoutVieMax(int vieaAjouter);
+        void ajoutManaMax(int manaaAjouter);
+        void ajoutresistance(int resistanceaAjouter);
+        void ajoutAttaque(int attaqueaAjouter);
+        void ajoutEsquive(int esquiveaAjouter);
+
 /* *********************************** Getter ********************************************* */
         int getNombreSlots();
         int getNombreSpellAppris();

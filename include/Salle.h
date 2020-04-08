@@ -10,6 +10,7 @@
 #include "Cristaux.h"
 #include "Monstre.h"
 #include "couleur.h"
+#include "Boss.h"
 
 using namespace std;
 class Salle
@@ -28,11 +29,14 @@ class Salle
         void setNum(int num);
         void setEnvironnement(int environnement);
         void setLesMonstresDeLaSalle(Monstre* monstre);
+        void setLesBoss(Boss* boss);
 
 //같같같같같같같 getter 같같같같같같같
         int getNum();
         int getEnvironnement();
         vector<Monstre*> getLesMonstresDeLaSalle();
+        vector<Boss*> getLesBossDuDonjon();
+        Boss* getBoss(int indexBoss);
         Monstre* getMonstre(int indexMonstre);
 
     protected:
@@ -40,6 +44,7 @@ class Salle
         int num;
         int environnement;
         vector<Monstre*> lesMonstresDeLaSalle;
+        vector<Boss*> lesBoss;
         couleur color;
 };
 

@@ -11,7 +11,7 @@ Elementaire::Elementaire()
     this->vie=20;
     this->vieMax=20;
     this->attaque=10;
-    this->initiative=50;
+    this->initiative=60;
 }
 
 Elementaire::~Elementaire()

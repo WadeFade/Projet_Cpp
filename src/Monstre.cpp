@@ -13,12 +13,22 @@ Monstre::Monstre()
     this->element="neutre";
     this->vie=30;
     this->vieMax=30;
-    this->attaque=5;
+    this->attaque=20;
     this->resistance=0;
     this->initiative=75;
     this->coupCritique=1;
     this->echecCritique=10;
 }
+
+void Monstre::multiplicationStatistique(double multiplicateurStatistique){
+    this->vie+=(int)((this->vie*multiplicateurStatistique)+0.5);
+    this->vieMax+=(int)((this->vieMax*multiplicateurStatistique)+0.5);
+    this->attaque+=(int)((this->attaque*multiplicateurStatistique)+0.5);
+    this->resistance+=(int)((this->resistance*multiplicateurStatistique)+0.5);
+    this->initiative+=(int)((this->initiative*multiplicateurStatistique)+0.5);
+    this->coupCritique+=(int)((this->coupCritique*multiplicateurStatistique)+0.5);
+}
+
 
 Monstre::~Monstre()
 {

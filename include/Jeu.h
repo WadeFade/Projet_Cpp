@@ -52,6 +52,7 @@ class Jeu
     void resoudreDonjon(Donjon* donjon);
     void resoudreJeu();
     void deplacerJoueur(Joueur * joueur);
+    void baston(Boss* boss);
 
     protected:
 

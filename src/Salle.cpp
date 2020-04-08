@@ -14,6 +14,9 @@
 #include "Griffon.h"
 #include "Cerbere.h"
 
+#include "Elementaire.h"
+#include "Loup.h"
+
 #include <windows.h>
 #include <string>
 #include <iostream>
@@ -83,7 +86,6 @@ Salle::~Salle()
 {
     //dtor
 }
-
 /* *********************************** Setter ********************************************* */
 
 void Salle::setNum(int num)
@@ -97,6 +99,11 @@ void Salle::setEnvironnement(int environnement)
 void Salle::setLesMonstresDeLaSalle(Monstre* monstre)
 {
     this->lesMonstresDeLaSalle.push_back(monstre);
+}
+
+void Salle::setLesBoss(Boss* boss)
+{
+    this->lesBoss.push_back(boss);
 }
 
 /* *********************************** Getter ********************************************* */
@@ -120,6 +127,16 @@ Monstre* Salle::getMonstre(int indexMonstre)
     return this->lesMonstresDeLaSalle[indexMonstre];
 }
 
+vector<Boss*> Salle::getLesBossDuDonjon()
+{
+    return this->lesBoss;
+}
+
+Boss* Salle::getBoss(int indexBoss)
+{
+    return this->lesBoss[indexBoss];
+}
+
 /* *********************************** Methodes ********************************************* */
 //voir les salles + leur elements + les monstres de la salle
 void Salle::affichageSalle(){
@@ -132,7 +149,7 @@ void Salle::affichageSalle(){
     mettreEnCouleur(7,0);
     //Pour voir les monstres de la salle
     //for(unsigned int i =0;i<lesMonstresDeLaSalle.size();i++){
-    //    cout << this->lesMonstresDeLaSalle[i]->getNom() << endl;
+        //cout << this->lesMonstresDeLaSalle[i]->getNom() << endl;
     //}
 }
 
