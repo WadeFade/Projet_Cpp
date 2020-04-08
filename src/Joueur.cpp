@@ -117,7 +117,7 @@ int Joueur::setInventaire(Item* unItem, int position){
                 system("cls");
                 cout << "Voulez-vous remplacer votre ";
 
-                switch (position){
+                switch (position+1){
                 case 1:
                     uneArme = (Armes*)unItem;
 

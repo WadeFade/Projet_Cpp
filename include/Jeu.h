@@ -17,6 +17,10 @@
 #include "Monstre.h"
 #include "Joueur.h"
 
+#include "Armes.h"
+#include "Armures.h"
+#include "Consommables.h"
+#include "Cristaux.h"
 class Jeu
 {
     public:

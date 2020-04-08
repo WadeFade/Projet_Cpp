@@ -1,18 +1,28 @@
 #include "Jeu.h"
 #include "time.h"
 #include "stdlib.h"
-#include <cstdio>
-#include "couleur.h"
 #include "windows.h"
-#include "Monstre.h"
-#include "couleur.h"
-#include "Barde.h"
-#include "Guerrier.h"
-#include "Mage.h"
-#include "Entite.h"
+#include <cstdio>
 #include <iostream>   // std::cout
 #include <string>     // std::string, std::stoi
 #include <sstream>
+#include <vector>
+
+#include "couleur.h"
+
+#include "Entite.h"
+#include "Monstre.h"
+
+#include "Joueur.h"
+#include "Barde.h"
+#include "Guerrier.h"
+#include "Mage.h"
+
+#include "Item.h"
+#include "Armes.h"
+#include "Armures.h"
+#include "Consommables.h"
+#include "Cristaux.h"
 
 #include <windows.h>
 
@@ -88,34 +98,6 @@ Jeu::Jeu()
         this->tableauItems.push_back(cristalV);
         this->tableauItems.push_back(cristalM);
     }
-
-
-    //Création des Entites (Réécriture partie d'Andy).
-    //A voir le nombre d'instantiation par la suite des monstres.
-    /*
-    creation du perso
-    Barde* barde = new Barde();
-    Guerrier* guerrier = new Guerrier();
-    Mage* mage = new Mage();
-
-    Elementaire* elementaire = new Elementaire();
-    Loup* loup = new Loup();
-    Zombie* zombie = new Zombie();
-    Cerbere* cerbere = new Cerbere();
-    Griffon* griffon = new Griffon();
-    Minotaure* minotaure = new Minotaure();
-    //Ajout des entites dans le vecteur des entites.
-    this->tableauEntites.push_back(barde);
-    this->tableauEntites.push_back(guerrier);
-    this->tableauEntites.push_back(mage);
-    this->tableauEntites.push_back(elementaire);
-    this->tableauEntites.push_back(loup);
-    this->tableauEntites.push_back(zombie);
-    this->tableauEntites.push_back(cerbere);
-    this->tableauEntites.push_back(griffon);
-    this->tableauEntites.push_back(minotaure);
-    */
-
 
     for(int i = 0; i < 5;i++){
         this->lesDonjons.push_back(new Donjon(i));
@@ -219,7 +201,7 @@ void Jeu::resoudreSalle(Salle* salle)
     for(unsigned int i = 0; i < lesMonstres.size() && abandon!=1;i++) {
        abandon=this->baston(lesMonstres[i]);
     }
-    system("cls");
+    //system("cls");
     if (abandon == 1){
         cout << "Vous avez decide de fuir la salle, vous allez passer a la suivante sans gagner d'experience..." << endl;
     }
@@ -228,12 +210,13 @@ void Jeu::resoudreSalle(Salle* salle)
         cout << "Allez-vous loot un objet ? =)" << endl;
 
         nbGen = rand()%101;
+
         if (nbGen % (10-salle->getNum())){
             int itemLoot = 0;
             vector <Item*> lesItems = this->getTableauItems();
 
             itemLoot = rand()%67;
-            cout << "Vous avez loot : " << lesItems[itemLoot]->getNomItem();
+            cout << "Vous avez loot : " << lesItems[itemLoot]->getNomItem() << " ";
             switch (lesItems[itemLoot]->type()){
             case 1:
                 armeLoot = (Armes*)lesItems[itemLoot];
@@ -272,12 +255,12 @@ void Jeu::resoudreSalle(Salle* salle)
 
             cout << endl;
             while (choix!=1 && choix!=2){
-                system("cls");
+                //system("cls");
                 cout << "Voulez-vous prendre cet item ? (" << lesItems[itemLoot]->getNomItem() << ")." << endl;
                 cout << "Ne vous inquietez pas vous pourrez choisir quel item garder si votre inventaire est complet ! =)" << endl;
                 cout << "1. Oui" << endl;
                 cout << "2. Non" << endl;
-                cout << "Votre choix (1 ou 2) : ";
+                cout << "Votre choix (1 ou 2) : " << endl;
                 cin >> choix;
             }
 
@@ -289,6 +272,7 @@ void Jeu::resoudreSalle(Salle* salle)
                 //4 = Potions de mana
                 //5 = Cristaux de vie
                 //6 = Cristaux de mana
+
                 aChange = this->joueur->setInventaire(lesItems[itemLoot], lesItems[itemLoot]->type()-1);
 
                 if (aChange == 1){
@@ -317,6 +301,7 @@ void Jeu::resoudreSalle(Salle* salle)
 int Jeu::baston(Monstre* monstre)
 {
     string saisie;
+    int intSaisie;
     cout << "Vous rencontrez le monstre " << monstre->getNom() << " qui a " << monstre->getVie() << "pv." << endl;
     int choix =0;
     int degat;
@@ -345,7 +330,6 @@ int Jeu::baston(Monstre* monstre)
             // gestion de saisie + utilisation de l'item en question - bloqué l'utilisation des deux premieres cases
             cout << "Veuillez selectionner un item a utiliser : "<< endl;
             cin >> saisie;
-
             while (saisie!="3"&&saisie!="4"&&saisie!="5"&&saisie!="6"){
                     if (saisie=="2"||saisie=="1"){
                         cout << "Vous ne pouvez selectionner une arme ou une armure !"<< endl;
@@ -355,10 +339,13 @@ int Jeu::baston(Monstre* monstre)
                 cout << "Veuillez selectionner un item a utiliser : "<< endl;
                 cin >> saisie;
             }
-            int intSaisie;
             istringstream(saisie)>>intSaisie;
             intSaisie--;
-            this->joueur->utilisationItem(intSaisie);
+            if (joueur->getInventaire(intSaisie-1)!='\0'){
+                this->joueur->utilisationItem(intSaisie);
+            } else {
+                cout << "Vous ne pouvez pas utilisez cet emplacement, il est vide !" << endl;
+            }
         }
         // utilisation spell
         else if( choix == 4) {
@@ -366,15 +353,15 @@ int Jeu::baston(Monstre* monstre)
             // gestion de saisie + utilisation du spell en question
             cout << "Veuillez selectionner un spell a utiliser : "<< endl;
             cin >> saisie;
-
-            while (saisie!="1"&&saisie!="2"&&saisie!="3"&&saisie!="4"&&saisie!="5"&&saisie!="6"){
-                cout << "Erreur ! " << endl;
-                cout << "Veuillez selectionner un spell a utiliser : "<< endl;
-                cin >> saisie;
-            }
-            int intSaisie;
             istringstream(saisie)>>intSaisie;
             intSaisie--;
+            while (intSaisie<0&&intSaisie>this->joueur->getNombreSlots()){
+                cout << "Erreur vous ne pouvez selectionner cette valeur ! " << endl;
+                cout << "Veuillez selectionner un spell a utiliser : "<< endl;
+                cin >> saisie;
+                istringstream(saisie)>>intSaisie;
+                intSaisie--;
+            }
             degat=this->joueur->utilisationSpell(intSaisie, monstre);
             monstre->sePrendUnCoup(degat);
             cout << "Vous frappez le monstre " << monstre->getNom() <<" de " << degat << " degats" << ", il lui reste " << monstre->getVie() << endl;
@@ -389,6 +376,7 @@ int Jeu::baston(Monstre* monstre)
         }
         cout << "Vous gagnez 10xp, vous etes niveau " << joueur->getNiveau() << "."  << endl;
     }
+    cout << "\n\nfin de tour \n" << endl;
     return abandon;
 }
 
