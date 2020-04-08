@@ -14,9 +14,11 @@
 
 using namespace std;
 
+
 Jeu::Jeu()
 {
     //ctor
+    srand(time(NULL));
     int nbNoms = 5;
     int nbNomsArmes = 6;
 
@@ -193,26 +195,131 @@ void Jeu::resoudreDonjon(Donjon* donjon)
 //fin de la salle
 void Jeu::resoudreSalle(Salle* salle)
 {
+    int abandon = 0;
+    int nbGen = 0;
+    int choix = 0;
+    int aChange = 0;
+
+    //Pour le transtypage des loots.
+    Armes* armeLoot;
+    Armures* armureLoot;
+    Consommables* potionVieLoot;
+    Consommables* potionManaLoot;
+    Cristaux* cristalVieLoot;
+    Cristaux* cristalManaLoot;
+
     cout << "Vous entrez dans la salle " << salle->getNum() << endl;
     vector<Monstre*> lesMonstres = salle->getLesMonstresDeLaSalle();
-    for(unsigned int i = 0; i < lesMonstres.size();i++) {
-        this->baston(lesMonstres[i]);
+    for(unsigned int i = 0; i < lesMonstres.size() && abandon!=1;i++) {
+       abandon=this->baston(lesMonstres[i]);
     }
     system("cls");
+    if (abandon == 1){
+        cout << "Vous avez decide de fuir la salle, vous allez passer a la suivante sans gagner d'experience..." << endl;
+    }
+    else {
+        cout << "Felicitation ! Vous avez passe cette salle avec Brio !" << endl;
+        cout << "Allez-vous loot un objet ? =)" << endl;
+
+        nbGen = rand()%101;
+        if (nbGen % (10-salle->getNum())){
+            int itemLoot = 0;
+            vector <Item*> lesItems = this->getTableauItems();
+
+            itemLoot = rand()%67;
+            cout << "Vous avez loot : " << lesItems[itemLoot]->getNomItem();
+            switch (lesItems[itemLoot]->type()){
+            case 1:
+                armeLoot = (Armes*)lesItems[itemLoot];
+                cout << " degats : " << armeLoot->getAttaque() << "." << endl;
+                break;
+
+            case 2:
+                armureLoot = (Armures*)lesItems[itemLoot];
+                cout << " resistances : " << armureLoot->getResistance() << "." << endl;
+                break;
+
+            case 3:
+                potionVieLoot = (Consommables*)lesItems[itemLoot];
+                cout << potionVieLoot->getRegenVie() << " de vie." << endl;
+                break;
+
+            case 4:
+                potionManaLoot = (Consommables*)lesItems[itemLoot];
+                cout << potionManaLoot->getRegenMana() << " de mana." << endl;
+                break;
+
+            case 5:
+                cristalVieLoot = (Cristaux*)lesItems[itemLoot];
+                cout << cristalVieLoot->getVieSup() << " de vie supplementaire au porteur." << endl;
+                break;
+
+            case 6:
+                cristalManaLoot = (Cristaux*)lesItems[itemLoot];
+                cout << cristalManaLoot->getManaSup() << " de mana supplementaire au porteur." << endl;
+                break;
+
+            default :
+                break;
+
+            } //fin switch
+
+            cout << endl;
+            while (choix!=1 && choix!=2){
+                system("cls");
+                cout << "Voulez-vous prendre cet item ? (" << lesItems[itemLoot]->getNomItem() << ")." << endl;
+                cout << "Ne vous inquietez pas vous pourrez choisir quel item garder si votre inventaire est complet ! =)" << endl;
+                cout << "1. Oui" << endl;
+                cout << "2. Non" << endl;
+                cout << "Votre choix (1 ou 2) : ";
+                cin >> choix;
+            }
+
+            if (choix == 1){
+                //Faire attention que les type des items ont bien été fait :
+                //1 = Armes
+                //2 = Armures
+                //3 = Potions de vie
+                //4 = Potions de mana
+                //5 = Cristaux de vie
+                //6 = Cristaux de mana
+                aChange = this->joueur->setInventaire(lesItems[itemLoot], lesItems[itemLoot]->type()-1);
+
+                if (aChange == 1){
+                    cout << "Vous avez bien change d'item !" << endl;
+                }
+                else if (aChange == 2){
+                    cout << "Vous n'avez pas ramasse l'item !" << endl;
+                }
+                else {
+
+                }
+
+            }
+            else {
+
+            }
+
+        } //fin IF
+        else {
+            cout << "Vous n'avez malheureusement pas eu de chance ! :(" << endl;
+        }
+    }
 }
 
 //Methode de combat
-void Jeu::baston(Monstre* monstre)
+int Jeu::baston(Monstre* monstre)
 {
     cout << "Vous rencontrez le monstre " << monstre->getNom() << " qui a " << monstre->getVie() << "pv." << endl;
     int choix =0;
     int degat;
-    while(!monstre->estMort()){
+    int abandon = 0;
+    while(!monstre->estMort() && abandon!=1){
         cout << "Que voulez vous faire ?\nFuir = 1, Attaquer = 2, utiliser un item = 3, utiliser un sort = 4 ?" << endl;
         cin >> choix;
         if(choix == 1) {
             cout << "Vous avez fuit le combat, vous éviter ce mob" << endl;
-            break;
+            abandon = 1;
         }
         else if (choix == 2) {
             degat = this->joueur->donneUnCoup();
@@ -225,6 +332,7 @@ void Jeu::baston(Monstre* monstre)
         else if( choix == 4) {
 
         }
+
     }
 
     if(monstre->estMort()) {
@@ -234,6 +342,7 @@ void Jeu::baston(Monstre* monstre)
         }
         cout << "Vous gagnez 10xp, vous etes niveau " << joueur->getNiveau() << "."  << endl;
     }
+    return abandon;
 }
 
 //methode du menu

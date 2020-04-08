@@ -57,10 +57,7 @@ void Item::affichageItem(){
 int Item::type(){
     return 0;
 }
-// test pa bo
-int Item::getRegenVie(){
-    return 0;
-}
-int Item::getRegenMana(){
-    return 0;
+
+void Item::addDurability(int dura){
+    this->durability += dura;
 }

@@ -14,9 +14,7 @@ class Item
         virtual void affichageItem();
         // new
         virtual int type();
-        // test pa bo
-        virtual int getRegenVie();
-        virtual int getRegenMana();
+        void addDurability(int durability);
 //============setter===============
         void setIdItem(int id);
         void setNomItem(string nom);

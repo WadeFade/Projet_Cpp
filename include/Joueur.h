@@ -41,7 +41,7 @@ class Joueur : public Entite
         void setExperience(int experience);
         void ajoutExperience(int experience);
         void setManaMax(int manaMax);
-        void setInventaire(Item* inventaire);
+        int setInventaire(Item* unItem, int position);
         void setSpellz(Spell* spell);
     protected:
         int niveau;
