@@ -124,7 +124,6 @@ int Joueur::setInventaire(Item* unItem, int position){
 
                 case 2:
                     uneArmure = (Armures*)unItem;
-
                     //Pour pouvoir appeler la méthode getResistance liée à la classe Armures.
                     armureInventaire = (Armures*)this->inventaire[position];
 
