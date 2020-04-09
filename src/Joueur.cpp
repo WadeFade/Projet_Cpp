@@ -289,13 +289,13 @@ void Joueur::utilisationItem(int emplacementDansInventaire){
     if (this->inventaire[emplacementDansInventaire]!='\0'){
     switch (this->inventaire[emplacementDansInventaire]->type()){
         case 1:
-            /** ****TODO*** **/
+            /* ****TODO*** */
             // fonction dans le cas ou c'est une arme
             cout<<"item basique il ne ce passe rien de special (armes)"<<endl;
             // rien de spécial, on ne veux pas pouvoir utilisé une arme via le menu pour utilisé les consommables
             break;
         case 2:
-            /** ****TODO*** **/
+            /* ****TODO*** */
             // fonction dans le cas ou c'est une armure
             cout<<"item basique il ne ce passe rien de special (armure)"<<endl;
             // rien de spécial, on ne veux pas pouvoir utilisé une armures via le menu pour utilisé les consommables
@@ -304,10 +304,22 @@ void Joueur::utilisationItem(int emplacementDansInventaire){
             // fonction dans le cas ou c'est un consommable
             consommables = (Consommables*)this->getInventaire(emplacementDansInventaire);
             if (consommables->getRegenVie()>0){
-                this->healing(consommables->getRegenVie());
+                if (this->inventaire[2]->getDurability()==0){
+                    this->inventaire[2]='\0';
+                } else {
+                    consommables=(Consommables*)this->inventaire[2];
+                    consommables->retirerUneDura();
+                    this->healing(consommables->getRegenVie());
+                }
             }
             if (consommables->getRegenMana()>0){
-                this->manaRegen(consommables->getRegenMana());
+                if (this->inventaire[3]->getDurability()==0){
+                    this->inventaire[3]='\0';
+                } else {
+                    consommables=(Consommables*)this->inventaire[3];
+                    consommables->retirerUneDura();
+                    this->manaRegen(consommables->getRegenMana());
+                }
             }
             break;
         case 5 ... 6:
@@ -315,9 +327,11 @@ void Joueur::utilisationItem(int emplacementDansInventaire){
             // fonction dans le cas ou c'est un cristal
             if (cristaux->getVieSup()>0){
                 this->vieSupp(cristaux->getVieSup());
+                this->inventaire[4]='\0';
             }
             if (cristaux->getManaSup()>0){
                 this->manaSupp(cristaux->getManaSup());
+                this->inventaire[5]='\0';
             }
             break;
         default:
@@ -348,76 +362,88 @@ int Joueur::utilisationSpell(int emplacementSpell, Entite* entiterQuiPrendUnCoup
         break;
     }
     Spell* monSpell=this->spellz[emplacementSpell];
-    if(monSpell->getBuffAttaque()>0){
-        this->attaque+=monSpell->getBuffAttaque();
-    }
-    if (monSpell->getBuffCoupCritique()>0){
-        this->coupCritique+=monSpell->getBuffCoupCritique();
-    }
-    if (monSpell->getBuffEchecCritique()>0){
-        this->echecCritique-=monSpell->getBuffEchecCritique();
-    }
-    if (monSpell->getBuffInitiative()>0){
-        this->initiative+=monSpell->getBuffInitiative();
-    }
-    if (monSpell->getBuffResistance()>0){
-        this->resistance+=monSpell->getBuffResistance();
-    }
-    if (monSpell->getBuffVie()>0){
-        this->vie+=monSpell->getBuffVie();
-    }
-    if (monSpell->getManaCost()){
-        this->mana-=monSpell->getManaCost();
-    }
-    if (monSpell->getDegat()>0){
-    // trouvé le type de l'entité, savoir si c'est un boss ou un mob
-    // trouvé l'élément du mob en question
-    int degatInfliger=monSpell->getDegat();
-    if (monstreOuBoss==2){
-        if (monSpell->getElement()=="Katon"){
-                // si dégat element opposé sur lesquelles on tape, alors +50% ou -50% dmg
-                if (unMonstre->getElement()=="Futon"){
-                    degatInfliger=(int)((degatInfliger*1.5)+0.5);
-                } else if (unMonstre->getElement()=="Suiton"){
-                    degatInfliger=(int)((degatInfliger*0.5)+0.5);
-                }
-            } else if (monSpell->getElement()=="Suiton"){
-                // si dégat element opposé sur lesquelles on tape, alors +50% ou -50% dmg
-                if (unMonstre->getElement()=="Katon"){
-                    degatInfliger=(int)((degatInfliger*1.5)+0.5);
-                } else if (unMonstre->getElement()=="Doton"){
-                    degatInfliger=(int)((degatInfliger*0.5)+0.5);
-                }
-            } else if (monSpell->getElement()=="Futon"){
-                // si dégat element opposé sur lesquelles on tape, alors +50% ou -50% dmg
-                if (unMonstre->getElement()=="Raiton"){
-                    degatInfliger=(int)((degatInfliger*1.5)+0.5);
-                } else if (unMonstre->getElement()=="Katon"){
-                    degatInfliger=(int)((degatInfliger*0.5)+0.5);
-                }
-            } else if (monSpell->getElement()=="Doton"){
-                // si dégat element opposé sur lesquelles on tape, alors +50% ou -50% dmg
-                if (unMonstre->getElement()=="Suiton"){
-                    degatInfliger=(int)((degatInfliger*1.5)+0.5);
-                } else if (unMonstre->getElement()=="Raiton"){
-                    degatInfliger=(int)((degatInfliger*0.5)+0.5);
-                }
-            } else if (monSpell->getElement()=="Raiton"){
-                // si dégat element opposé sur lesquelles on tape, alors +50% ou -50% dmg
-                if (unMonstre->getElement()=="Doton"){
-                    degatInfliger=(int)((degatInfliger*1.5)+0.5);
-                } else if (unMonstre->getElement()=="Futon"){
-                    degatInfliger=(int)((degatInfliger*0.5)+0.5);
-                }
-            }
-            cout << "mobs" << endl;
-            return degatInfliger;
-            } else if (monstreOuBoss==1){
-            // retirer 15% de degats vu que c'est un boss, sans parlé de resistance
-            // + moyen d'arrondir trouvé
-            cout << "boss" << endl;
-            return (int)((degatInfliger*0.85)+0.5);
+
+    if (this->mana>=monSpell->getManaCost()){
+            if (monSpell->getManaCost()){
+            this->mana-=monSpell->getManaCost();
         }
+
+        if(monSpell->getBuffAttaque()>0){
+            this->attaque+=monSpell->getBuffAttaque();
+        }
+
+        if (monSpell->getBuffCoupCritique()>0){
+            this->coupCritique+=monSpell->getBuffCoupCritique();
+        }
+
+        if (monSpell->getBuffEchecCritique()>0){
+            this->echecCritique-=monSpell->getBuffEchecCritique();
+        }
+
+        if (monSpell->getBuffInitiative()>0){
+            this->initiative+=monSpell->getBuffInitiative();
+        }
+
+        if (monSpell->getBuffResistance()>0){
+            this->resistance+=monSpell->getBuffResistance();
+        }
+
+        if (monSpell->getBuffVie()>0){
+            this->vie+=monSpell->getBuffVie();
+        }
+
+        if (monSpell->getDegat()>0){
+        // trouvé le type de l'entité, savoir si c'est un boss ou un mob
+        // trouvé l'élément du mob en question
+        int degatInfliger=monSpell->getDegat();
+        if (monstreOuBoss==2){
+            if (monSpell->getElement()=="Katon"){
+                    // si dégat element opposé sur lesquelles on tape, alors +50% ou -50% dmg
+                    if (unMonstre->getElement()=="Futon"){
+                        degatInfliger=(int)((degatInfliger*1.5)+0.5);
+                    } else if (unMonstre->getElement()=="Suiton"){
+                        degatInfliger=(int)((degatInfliger*0.5)+0.5);
+                    }
+                } else if (monSpell->getElement()=="Suiton"){
+                    // si dégat element opposé sur lesquelles on tape, alors +50% ou -50% dmg
+                    if (unMonstre->getElement()=="Katon"){
+                        degatInfliger=(int)((degatInfliger*1.5)+0.5);
+                    } else if (unMonstre->getElement()=="Doton"){
+                        degatInfliger=(int)((degatInfliger*0.5)+0.5);
+                    }
+                } else if (monSpell->getElement()=="Futon"){
+                    // si dégat element opposé sur lesquelles on tape, alors +50% ou -50% dmg
+                    if (unMonstre->getElement()=="Raiton"){
+                        degatInfliger=(int)((degatInfliger*1.5)+0.5);
+                    } else if (unMonstre->getElement()=="Katon"){
+                        degatInfliger=(int)((degatInfliger*0.5)+0.5);
+                    }
+                } else if (monSpell->getElement()=="Doton"){
+                    // si dégat element opposé sur lesquelles on tape, alors +50% ou -50% dmg
+                    if (unMonstre->getElement()=="Suiton"){
+                        degatInfliger=(int)((degatInfliger*1.5)+0.5);
+                    } else if (unMonstre->getElement()=="Raiton"){
+                        degatInfliger=(int)((degatInfliger*0.5)+0.5);
+                    }
+                } else if (monSpell->getElement()=="Raiton"){
+                    // si dégat element opposé sur lesquelles on tape, alors +50% ou -50% dmg
+                    if (unMonstre->getElement()=="Doton"){
+                        degatInfliger=(int)((degatInfliger*1.5)+0.5);
+                    } else if (unMonstre->getElement()=="Futon"){
+                        degatInfliger=(int)((degatInfliger*0.5)+0.5);
+                    }
+                }
+                cout << "mobs" << endl;
+                return degatInfliger;
+                } else if (monstreOuBoss==1){
+                // retirer 15% de degats vu que c'est un boss, sans parlé de resistance
+                // + moyen d'arrondir trouvé
+                cout << "boss" << endl;
+                return (int)((degatInfliger*0.85)+0.5);
+            }
+        }
+    } else {
+        cout << "N'a pas assez de mana pour utiliser ce sort" << endl;
     }
     return 0;
 }
@@ -458,7 +484,8 @@ void Joueur::ajoutEsquive(int esquiveaAjouter)
 bool Joueur::gagneNiveau()
 {
     if(this->getExperience() >=100){
-            this->setVie(vieMax);
+            this->setVie(this->vieMax);
+            this->setMana(this->manaMax);
             this->setExperience(0);
             this->ajoutNiveau(1);
             this->ajoutAttaque(10);

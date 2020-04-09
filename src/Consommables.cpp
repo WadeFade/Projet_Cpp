@@ -26,6 +26,10 @@ void Consommables::setRegenMana(int regenMana){
     this->regenMana = regenMana;
 }
 
+void Consommables::retirerUneDura(){
+    this->durability--;
+}
+
 //=========getter==========
 int Consommables::getRegenVie(){
     return this->regenVie;
